@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="lib/vue.js" charset="UTF-8"></script>
+</head>
+<body>
+
+    <div id="app">
+        <input type="text" v-model="currentView">
+        <keep-alive>
+            <component v-bind:is="currentView"></component>
+        </keep-alive>
+    </div>
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                currentView: 'home'
+            },
+            components: {
+                home: {
+                    template: '<p>home</p>'
+                },
+                index: {
+                    template: '<p>index</p>'
+                },
+                setting: {
+                    template: '<p>setting</p>'
+                }
+            }
+        })
+    </script>
+
+</body>
+</html>

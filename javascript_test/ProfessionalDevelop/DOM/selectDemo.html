@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>up or down</title>
+    <style type="text/css">
+        #divSelect ul li {
+            list-style-type:none;
+            width:45px;
+            height:14px;
+            line-height:20px;
+            font:14px arial;
+            text-align:left;
+            padding:2px
+        }
+    </style>
+</head>
+<body>
+    <input type="text" id="txtInput" value="" autocomplete="off" />
+    <div id="divSelect">
+        <ul>
+            <li>JavaScript</li>
+            <li>Node</li>
+            <li>Java</li>
+            <li>C++</li>
+            <li>C</li>
+            <li>php</li>
+            <li>D3</li>
+        </ul>
+    </div>
+
+    <script type="text/javascript">
+        var KEYCODE = {
+            UP: 38,
+            DOWN: 40,
+            ENTER: 13
+        };
+        function $(ID) {
+            return document.getElementById(ID);
+        }
+
+        var input = $("txtInput"),
+            options = $("divSelect").getElementsByTagName("li"),
+            selectedIndex = -1;
+        function selectOption(target){
+            if(target) target.style.background = "green";
+        }
+        function clearSelected(target){
+            if(target) target.style.background = "";
+        }
+        input.addEventListener('keydown',function(){
+           var value = input.value;
+            input.value = '2222';
+        });
+        input.addEventListener("keyup", function(event){
+            var len = options.length,
+                    that = this;
+            switch (event.keyCode){
+                case KEYCODE.UP:
+                    var value = input.value;
+                    input.value = value;
+                    clearSelected(options[selectedIndex]);
+                    selectedIndex--;
+                    if (selectedIndex < 0)
+                        selectedIndex = len - 1;
+                    selectOption(options[selectedIndex]);
+                    input.value = options[selectedIndex].innerHTML;
+                    break;
+                case KEYCODE.DOWN:
+                    clearSelected(options[selectedIndex]);
+                    selectedIndex++;
+                    if (selectedIndex >= len )
+                        selectedIndex = 0;
+                    selectOption(options[selectedIndex]);
+                    input.value = options[selectedIndex].innerHTML;
+                    break;
+                case KEYCODE.ENTER:
+                    input.value = options[selectedIndex].innerHTML;
+                    break;
+            }
+            event.preventDefault();
+            return false;
+        }, false);
+
+
+    </script>
+</body>
+</html>

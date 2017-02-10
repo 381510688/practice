@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <p>李刚</p>
+
+    <div class="bj"></div>
+    <div class="bj hh"></div>
+
+    <ul id="myUl">
+
+    </ul>
+    <p id="blog">http://blog.csdn.net/ligang2585116</p>
+    <script>
+//        var content = document.getElementById("content"),
+//                blog = document.getElementById("blog"),
+//                company = document.getElementById("company");
+////        div.appendChild(p);
+//
+//        content.insertBefore(blog, content.childNodes.item(0)); // content.firstChild
+//        content.insertBefore(company, null);
+
+        var fragment = document.createDocumentFragment();
+        var li = null;
+        for(var i = 0; i < 5; i++){
+            li = document.createElement("li");
+            li.appendChild(document.createTextNode("Item "+ (i+1)));
+            fragment.appendChild(li);
+        }
+
+        document.getElementById("myUl").appendChild(fragment);
+
+
+        function matchesSelector(element, selector){
+            if (element.matchesSelector){
+                return element.matchesSelector(selector);
+            } else if (element.msMatchesSelector){
+                return element.msMatchesSelector(selector);
+            } else if (element.mozMatchesSelector){
+                return element.mozMatchesSelector(selector);
+            } else if (element.webkitMatchesSelector){
+                return element.webkitMatchesSelector(selector);
+            } else if(ele.matches){
+                return ele.matches(selector);
+            } else{
+                throw new Error("Not supported.");
+            }
+        }
+
+
+
+
+    </script>
+</body>
+</html>

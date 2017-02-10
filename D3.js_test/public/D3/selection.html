@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>选择集的处理</title>
+    <script src="../../lib/d3/v4/d3.js" charset="UTF-8"></script>
+</head>
+<body>
+    <p></p>
+
+    <script>
+        var datas = [10, 20 ,30];
+        var p = d3.select("body").selectAll("p");
+        var update = p.data(datas);
+
+        /* update部分的处理方法直接修改内容 */
+        update.text(function(d, i){
+            return d;
+        });
+
+        /* enter部分的处理方法是添加元素后再修改内容 */
+        update.enter().append("p").text(function(d, i){
+            return d;
+        });
+
+        /* exit部分的处理方法是删除,删除后不会有多余的p元素 */
+        update.exit().remove();
+
+
+        /**
+         * 从服务器获取数据后,网页中没有与之对应的元素.
+         * 选择一个空集,然后使用enter().append()的形式来添加足够数量的元素
+         * 总结:[可以根据数据的个数,添加p]
+         */
+        var dataset = [1, 2, 3, 4, 5];
+        var body = d3.select("body");
+        body.selectAll("p")      // 此时没有p,因此选择一个空集
+                .data(dataset)   // 绑定数据
+                .enter()         // 返回enter部分
+                .append("p")     // 添加p
+                .text(function(d){ return d; });
+
+
+        /**
+         * 选择集 p.data(dataset)
+         * 可以对选择集进行过滤 filter()
+         * 可以对选择集进行排序 sort()
+         * 可以对选择集分别处理 each()
+         */
+
+        /**
+         * 允许将选择集自身作为参数 call()
+         */
+        d3.selectAll("div").call(myFun);
+        function myFun(selection){
+            selection.attr("name", "value");
+        }
+        // 等价于
+        myFun(d3.selectAll("div"));
+    </script>
+</body>
+</html>

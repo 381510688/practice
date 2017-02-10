@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="lib/vue.js" charset="UTF-8"></script>
+</head>
+<body>
+
+    <div id="app">
+        <my-component :name="myName" @say="sayHello" ref="my">
+            <div slot="main">
+                <p>my name is ligang.</p>
+                <p>hh</p>
+            </div>
+        </my-component>
+    </div>
+    <script>
+        Vue.component('my-component', {
+            template: `<div>
+                            <a href="javascript:;" v-on:click="say">{{name}}</a>
+                            <slot name="main"></slot>
+                       </div>`,
+            props: ['name'],
+            methods: {
+                say: function() {
+                    this.$emit('say');
+                }
+            }
+        });
+        var app = new Vue({
+            el: '#app',
+            data: {
+                myName: 'ligang'
+            },
+            methods: {
+                sayHello: () => {console.log('say hello')}
+            }
+        });
+        console.log(app.$refs.my);
+    </script>
+
+</body>
+</html>

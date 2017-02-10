@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>柱形图</title>
+    <script src="../../lib/d3/v3/d3.js" charset="UTF-8"></script>
+    <style>
+        .axis path, .axis line{
+            fill: none;
+            stroke: black;
+            shape-rendering: crispEdges;
+        }
+        .axis text{
+            font-family: sans-serif;
+            font-size: 11px;
+        }
+
+    </style>
+</head>
+<body>
+    <div>
+        <button type="button" onclick="mySort();">排序</button>
+        <button type="button" onclick="myAdd();">增加</button>
+    </div>
+
+    <script>
+        var dataset = [50, 43, 120, 87, 99, 167, 142];  // 数据集
+
+        var width = 400;    // svg可视区域宽度
+        var height = 400;   // svg可视区域高度
+        var svg = d3.select("body")
+                .append("svg")
+                .attr("width", width).attr("height", height);
+
+        var padding = {top: 20, right: 20, bottom: 20, left: 50};   // 边距
+//        var rectStep = 35;  // 矩形所占宽度(包括空格)   交给比例尺
+//        var rectWidth = 30; // 矩形所占宽度(不包括空格) 交给比例尺
+
+        var xAxisWidth = 300; // x轴宽度
+        var yAxisWidth = 300; // y轴宽度
+
+        /* x轴比例尺(序数比例尺) */
+        var xScale = d3.scale.ordinal()
+                .domain(d3.range(dataset.length))
+                .rangeRoundBands([0, xAxisWidth], 0.2);
+
+        /* y轴比例尺(线性比例尺) */
+        var yScale = d3.scale.linear()
+                .domain([0, d3.max(dataset)])
+                .range([0, yAxisWidth]);
+
+        /* rect */
+        var rect = svg.selectAll("rect")
+                .data(dataset)
+                .enter()
+                .append("rect")
+                .call(rectFun);
+
+        /* text */
+        var text = svg.selectAll("text")
+                .data(dataset)
+                .enter()
+                .append("text")
+                .call(textFun);
+
+        /* 添加坐标轴 */
+        var xAxis = d3.svg.axis().scale(xScale).orient("bottom");
+        yScale.range([yAxisWidth, 0]);  // 重新设置y轴比例尺的值域,与原来的相反
+        var yAxis = d3.svg.axis().scale(yScale).orient("left");
+
+        svg.append("g").attr("class", "axis")
+                .attr("transform", "translate("+ padding.left +","+ (height - padding.bottom) +")")
+                .call(xAxis);
+
+        svg.append("g").attr("class", "axis")
+                .attr("transform", "translate("+ padding.left +","+ (height - padding.bottom - yAxisWidth) +")")
+                .call(yAxis);
+
+        /* rect处理函数 */
+        function rectFun(selection) {
+            selection.attr("fill", "steelblue")
+                    .attr("x", function(d, i){
+                        return padding.left + xScale(i);
+                    })
+                    .attr("y", function(d){
+                        return height - padding.bottom - yScale(d);
+                    })
+                    .attr("width", xScale.rangeBand())
+                    .attr("height", function(d){
+                        return yScale(d);
+                    });
+        }
+
+        /* text处理函数 */
+        function textFun(selection){
+            selection.attr("fill", "white")
+                    .attr("font-size", "14px").attr("text-anchor", "middle")
+                    .attr("x", function(d, i){
+                        return padding.left + xScale(i);
+                    })
+                    .attr("y", function(d){
+                        return height - padding.bottom - yScale(d);
+                    })
+                    .attr("dx", xScale.rangeBand()/2).attr("dy", "1em")
+                    .text(function(d){
+                        return d;
+                    });
+        }
+
+        /* 更新数据 */
+        function draw(){
+            var updateRect = svg.selectAll("rect").data(dataset);   // 错误 d3.selectAll() 出了svg范围
+            updateRect.call(rectFun);
+            updateRect.enter().append("rect").call(rectFun);
+            updateRect.exit().remove();
+
+            var updateText = svg.selectAll("text").data(dataset);
+            updateText.call(textFun);
+            updateText.enter().append("text").call(textFun);
+            updateText.exit().remove();
+        }
+
+        /* 排序 */
+        function mySort(){
+            dataset.sort(d3.ascending);
+            draw();
+        }
+
+        /* 增加 */
+        function myAdd(){
+            dataset.push(Math.floor(Math.random() * 100));
+            draw();
+        }
+
+    </script>
+</body>
+</html>

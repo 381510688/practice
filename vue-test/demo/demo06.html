@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="lib/vue.js" charset="UTF-8"></script>
+</head>
+<body>
+    <div id="app">
+        <p ref="p1">哈哈</p>
+        <p ref="p2">啦啦</p>
+    </div>
+    <script>
+        var vm1 = new Vue({
+            el: '#app',
+            data: {},
+            methods: {
+                showp: () => console.log(vm1.$refs)
+            }
+        });
+    </script>
+
+
+    <div id="app2">
+        <my-name ref="name"></my-name>
+    </div>
+    <script>
+        Vue.component('my-name', {
+            template: '<p>李刚</p>'
+        });
+        var vm2 = new Vue({
+            el: '#app2',
+            data: {},
+            methods: {
+                showp: () => console.log(vm2.$refs)
+            }
+        });
+    </script>
+</body>
+</html>

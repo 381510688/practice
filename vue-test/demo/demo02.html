@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="lib/vue.js"></script>
+</head>
+<body>
+  <div id="app">
+    <input type="text" v-model="name"/>
+    <ul>
+      <item-todo
+        v-for="(item, index) in liList" :key="item.id"
+        v-bind:todo="item"
+        v-on:alertme="alertmeFn(item, index)">
+      </item-todo>
+    </ul>
+    <p>{{"my name is ligang" | capitalize}}</p>
+
+    <label for="firstName">firstName:</label><input type="text" id="firstName" v-model="firstName" />
+    <label for="lastName">lastName:</label><input type="text" id="lastName" v-model="lastName" />
+    <p>{{fullName}}</p>
+    <input type="text" v-model="fullName2">
+  </div>
+
+<script>
+  // 顺序执行的,先注册组件
+  Vue.component('item-todo', {
+    props: ["todo"],
+    template: "<li v-on:click='$emit(\"alertme\")'>{{todo.text}}</li>"
+  });
+  var app = new Vue({
+    el: "#app",
+    data: {
+      name: "ligang",
+      firstName: "li",
+      lastName: "gang",
+      liList: [{id: 3, text: "javascript"}, {id: 2, text: "HTML5"}, {id: 5, text: "Vue"}]
+    },
+    methods: {
+      alertmeFn: function(li, index){
+        alert(index + " " + li.text);
+      }
+    },
+    filters: {
+      capitalize: function(value){
+        if(!value) return "";
+        value = value.toString();
+        return value.charAt(0).toUpperCase() + value.slice(1);
+      }
+    },
+    computed: {
+      fullName: function(){
+        return this.firstName + " " + this.lastName;
+      },
+      fullName2: {
+        get: function(){
+          return this.firstName + " " + this.lastName;
+        },
+        set: function(newValue){
+          var names = newValue.split(' ');
+          this.firstName = names[0];
+          this.lastName = names[names.length - 1];
+        }
+      }
+    }
+  });
+  app.$watch("name", function(newVal, oldValue){
+    alert("变化前的值:"+ oldValue + " 变化后的值:" + newVal);
+  });
+</script>
+</body>
+</html>

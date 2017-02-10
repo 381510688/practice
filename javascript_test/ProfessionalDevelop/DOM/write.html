@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>写入</title>
+</head>
+<body>
+    <span>my name is:</span>
+
+    <script>
+        document.write("<strong>ligang</strong>");
+
+        window.onload = function(){
+//            document.write("<strong>ligang</strong>");
+        }
+    </script>
+
+
+    <div id="myDiv" title="ligang Demo" lang="zh" dir="ltr" class="bd bf">http://blog.csdn.net/ligang2585116</div>
+    <script>
+        var div = document.getElementById("myDiv");
+        div.id;
+        div.title;
+        div.lang;
+        div.dir;
+        div.className;
+    </script>
+
+    <a href=" http://blog.csdn.net/ligang2585116" style="background-color: grey;text-underline: none;"
+       onclick="function(){console.log('la')}">
+        http://blog.csdn.net/ligang2585116
+    </a>
+    <script>
+        var a = document.getElementsByTagName("a")[0];
+        a.getAttribute("style");
+        a.getAttribute("onclick");
+
+//        var target = document.createAttribute("target");
+//        target.nodeValue = "_blank";
+//        a.attributes.setNamedItem(target);
+
+        a.setAttribute("target", "_blank");
+
+    </script>
+    <script>
+        var a = document.createElement("a");
+        a.href = "http://blog.csdn.net/ligang2585116";
+        a.text = "http://blog.csdn.net/ligang2585116";
+        document.body.appendChild(a);
+    </script>
+
+    <div id="content"></div>
+    <script>
+        var div = document.getElementById("content");
+        var textNode = document.createTextNode("Hello"),
+            anotherNode = document.createTextNode("Ligang");
+        div.appendChild(textNode);
+        div.appendChild(anotherNode);
+        console.log(div.childNodes.length);
+        div.normalize();
+        console.log(div.childNodes.length);
+
+        var newNode = div.firstChild.splitText(5);
+        console.log(div.childNodes.length);
+    </script>
+</body>
+</html>

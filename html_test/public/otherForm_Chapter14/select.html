@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>select表单</title>
+</head>
+<body>
+<form action="http://localhost:8888/form/select" method="post">
+    <p>
+        <label for="fave">
+            Favorite Fruit:
+            <select name="fave" id="fave">
+                <option value="apples">苹果</option>
+                <option value="organges">橘子</option>
+                <option value="pears">梨</option>
+            </select>
+        </label>
+    </p>
+    <p>
+        <label for="like">
+            Like Sport:
+            <select name="like" id="like" size="3" multiple>
+                <option value="football">足球</option>
+                <option value="basketball">篮球</option>
+                <option value="table tennis">乒乓球</option>
+                <option value="badminton">羽毛球</option>
+                <option value="swiming">游泳</option>
+            </select>
+        </label>
+    </p>
+    <p>
+        <label for="love">
+            <select name="love" id="love">
+                <optgroup label="前端语言">
+                    <option value="javascript">JavaScript</option>
+                    <option value="html">Html</option>
+                    <option value="css">CSS</option>
+                </optgroup>
+                <optgroup label="后端语言">
+                    <option value="java">Java</option>
+                    <option value="php">PHP</option>
+                </optgroup>
+            </select>
+        </label>
+    </p>
+    <button type="submit">提交</button>
+</form>
+</body>
+</html>

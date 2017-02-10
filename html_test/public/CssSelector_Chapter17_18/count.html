@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CSS计数</title>
+    <style>
+        body{
+            /* 设置计数器名称,初始值为-1 */
+            counter-reset: myAccount -1;
+        }
+        p:before{
+            content: counter(myAccount) ".";
+            /* 设置计数器增量,增量为2 */
+            counter-increment: myAccount 2;
+        }
+    </style>
+</head>
+<body>
+    <a href="http://blog.csdn.net/ligang2585116">访问我的博客</a>
+    <p>I like apples.</p>
+    <p>I like oranges.</p>
+    <p>I like pears.</p>
+</body>
+</html>

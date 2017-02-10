@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Form Target</title>
+</head>
+<body>
+    <form action="http://localhost:8888/form/userInfo" enctype="application/x-www-form-urlencoded"
+          target="_blank" method="post" autocomplete="off">
+        <p>
+            <label for="username">用户名:</label>
+            <input type="text" name="username" id="username" autofocus>
+        </p>
+        <p>
+            <label for="password">密码:</label>
+            <input type="password" id="password" autocomplete="on"><br>
+        </p>
+        <p>
+            <label for="address">地址:</label>
+            <input type="text" name="address" id="address" disabled value="北京市">
+        </p>
+        <p>
+            <input type="hidden" name="source" value="直接来源">
+        </p>
+        <button>提交</button>
+    </form>
+</body>
+</html>

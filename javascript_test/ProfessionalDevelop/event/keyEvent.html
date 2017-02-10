@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>键盘事件&文本事件</title>
+    <script src="EventUtil.js"></script>
+</head>
+<body>
+<input type="text" id="ipt">
+
+<script>
+    var iptDom = document.getElementById("ipt");
+    iptDom.addEventListener("keydown", function(event){
+        console.log("keydown");
+        console.log(event.keyCode);
+    });
+    iptDom.addEventListener("keypress", function(event){
+        console.log("keypress");
+        console.log(event.charCode);
+    });
+
+    iptDom.addEventListener("textInput", function(event){
+        console.log(event.data);
+        var sensitiveWordAry = ["李", "刚"];
+        if(sensitiveWordAry.indexOf(event.data) >= 0){
+            event.preventDefault();
+        }
+    });
+
+</script>
+</body>
+</html>

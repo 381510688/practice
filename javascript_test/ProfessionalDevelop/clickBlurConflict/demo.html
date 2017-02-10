@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="../../lib/jquery/dist/jquery.min.js"></script>
+    <title>click事件与blur事件冲突</title>
+    <style>
+        .search-content{
+            position: relative;
+            width: 100px;
+            margin: 6px 0 6px 20px;
+            height: 28px;
+        }
+        .search-input{
+            position: absolute;
+            top: 0;
+            left: 0;
+            padding-left: 20px;
+            width: 100%;
+            height: 28px;
+            cursor: pointer;
+        }
+        .search-list{
+            position: absolute;
+            top: 21px;
+            right: 0;
+            width: 100%;
+        }
+        .search-list .pt-light-panel:before{
+            left: 100%;
+            margin-left: -22px;
+        }
+        .search-list[data-status="hide"]{
+            opacity: 0;
+            visibility: hidden;
+        }
+        .search-list[data-status="show"]{
+            opacity: 1;
+            visibility: visible;
+            top: 41px;
+        }
+        .pt-light-panel {
+            padding: 6px;
+            border-radius: 2px;
+            background-color: #f1f1f1;
+            box-shadow: 0 1px 2px 0 rgba(0, 0, 0, .26);
+        }
+        ul{
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        .pt-light-panel-list {
+            line-height: 26px;
+        }
+        .pt-light-panel-txt {
+            display: block;
+            color: #999;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            padding-left: 10px;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+
+<input type="text" id="ipt">
+<input type="button" id="btn" value="点我">
+<script>
+    var ipt = document.getElementById("ipt");
+    ipt.addEventListener("blur", function(){
+        console.log("my input blur");
+    });
+
+    var btn = document.getElementById("btn");
+    btn.addEventListener("mousedown", function(){
+        console.log("my button mousedown");
+    });
+    btn.addEventListener("click", function(){
+        console.log("my button click");
+    });
+    btn.addEventListener("mouseup", function(){
+        console.log("my button mouseup");
+    });
+</script>
+
+    <div class="search-content">
+        <!-- input框 -->
+        <input type="text"  class="search-input" placeholder="请选择姓氏" maxlength="128" readonly>
+        <!-- 结果展示 -->
+        <div class="search-list" data-status="show">
+            <div class="pt-light-panel">
+                <ul class="">
+                    <li class="pt-light-panel-list">
+                        <a href="javascript:" class="pt-light-panel-txt" title="赵">赵</a>
+                    </li>
+                    <li class="pt-light-panel-list">
+                        <a href="javascript:" class="pt-light-panel-txt" title="钱">钱</a>
+                    </li>
+                    <li class="pt-light-panel-list">
+                        <a href="javascript:" class="pt-light-panel-txt" title="孙">孙</a>
+                    </li>
+                    <li class="pt-light-panel-list">
+                        <a href="javascript:" class="pt-light-panel-txt" title="李">李</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        (function($){
+            $("input").focus(function(){
+                $(".search-list").attr("data-status", "show");
+            }).blur(function(){
+//                setTimeout(function(){
+                    $(".search-list").attr("data-status", "hide");
+//                }, 300);
+            });
+
+//            $(".search-list li a").click(function(){
+            $(".search-list li a").mousedown(function(){
+                console.log("是否被执行");
+                $("input").val($(this).text());
+            });
+
+        })(jQuery);
+    </script>
+</body>
+</html>

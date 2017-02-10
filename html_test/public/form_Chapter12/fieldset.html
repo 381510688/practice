@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>元素分组</title>
+</head>
+<body>
+    <form action="http://localhost:8888/form/userInfo" method="post" target="_blank">
+       <fieldset>
+           <legend>用户基本信息</legend>
+           <p>
+               <label for="username">用户名:</label>
+               <input type="text" name="username" id="username">
+           </p>
+           <p>
+               <label for="address">地址:</label>
+               <input type="text" name="address" id="address">
+           </p>
+       </fieldset>
+        <fieldset>
+            <legend>用户爱好</legend>
+            <p>
+                <label for="fave1">#1:</label>
+                <input type="text" name="fave1" id="fave1">
+            </p>
+            <p>
+                <label for="fave2">#2:</label>
+                <input type="text" name="fave2" id="fave2">
+            </p>
+            <p>
+                <label for="fave1">#3:</label>
+                <input type="text" name="fave3" id="fave3">
+            </p>
+        </fieldset>
+        <button>提交</button>
+    </form>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>UI Event</title>
+    <script src="EventUtil.js"></script>
+</head>
+<body>
+    <div>
+        UI Event
+    </div>
+
+
+<script>
+    EventUtil.addHandler(window, "load", function(event){
+        alert("loaded");
+    });
+
+    EventUtil.addHandler(window, "load", function(event){
+        var image = document.createElement("img");
+        EventUtil.addHandler(image, "load", function(e){
+            e = EventUtil.getEvent(e);
+            alert(EventUtil.getTarget(e).src);
+        });
+        document.body.appendChild(image);
+        image.src = "test.jpg";
+    });
+
+    EventUtil.addHandler(window, "load", function(){
+        var script = document.createElement("script");
+        EventUtil.addHandler(script, "load", function(){
+            alert("script加载完成");
+        });
+        script.src = "EventUtil.js";
+        document.body.appendChild(script);
+    });
+
+    EventUtil.addHandler(window, "unload", function() {
+        alert("unload");
+    });
+</script>
+</body>
+</html>

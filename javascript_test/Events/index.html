@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="generalEvent.js" charset="UTF-8"></script>
+</head>
+<body>
+
+
+<script>
+    /* 传统方式 */
+//    var event = new Event();
+//
+//    function Person(name){
+//        this.name = name;
+//    }
+//    Person.prototype.sayName = function(){
+//        console.log(this.name);
+//        event.emit("Person.sayName", this,name);
+//    };
+//
+//    event.on("Person.sayName", function(args){
+//        console.log(args.name + " emit Person.sayName event!");
+//    });
+//
+//    var p = new Person("ligang");
+//    p.sayName();
+//
+//
+//    /* 伪类继承 */
+//    function Person(name){
+//        this.name = name;
+//    }
+//    Person.prototype = new Event(); // Object.create(Event.prototype);
+//    Person.prototype.constructor = Person;
+//    Person.prototype.sayName = function(){
+//        console.log(this.name);
+//        this.emit("Person.sayName", this,name);
+//    };
+//    var p = new Person("ligang");
+//    p.on("Person.sayName", function(args){
+//        console.log(args.name + " emit Person.sayName event!");
+//    });
+//    p.sayName();
+//
+//    console.log(p instanceof Person);
+//    console.log(p instanceof Event);
+
+    /* 混入 */
+    function mixin(des, src){
+        for(var prop in src){
+            if(src.hasOwnProperty(prop)){
+                des[prop] = src[prop];
+            }
+        }
+        return des;
+    }
+
+
+    function Person(name){
+        this.name = name;
+    }
+//    mixin(Person.prototype, Event.prototype);   // 本处在书中刊登有误,new Event()并不能获取任何属性
+    Object.assign(Person.prototype, Event.prototype);
+    mixin(Person.prototype, {
+        constructor: Person,
+        sayName: function() {
+            console.log(this.name);
+            this.emit("Person.sayName", this, name);
+        }
+    });
+    var p = new Person("ligang");
+    p.on("Person.sayName", function(args){
+        console.log(args.name + " emit Person.sayName event!");
+    });
+    p.sayName();
+
+    console.log(p instanceof Person);
+    console.log(p instanceof Event);
+//    Event.prototype 会有一个问题,所有的行为和属性都要写在原型上
+//    function Event(){} 内部不能有属性存在!!!
+
+</script>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>标记</title>
+</head>
+<body>
+    <svg width="1000" height="500" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+            <!-- 箭头-->
+            <marker id="arrow"
+                    markerUnits="strokeWidth"
+                    markerWidth="12"
+                    markerHeight="12"
+                    viewBox="0 0 12 12"
+                    refX="6"
+                    refY="6"
+                    orient="auto">
+                <path d="M2,2 L10,6 L2,10 L6,6 L2,2"
+                      style="fill: black;"></path>
+            </marker>
+        </defs>
+        <line x1="10" y1="10" x2="300" y2="300"
+              style="stroke: black; stroke-width: 3"
+              marker-end="url(#arrow)">
+        </line>
+        <path d="M320,370 T380,400 T460,380 T500,390"
+            fill="white" stroke="red" stroke-width="3"
+            marker-start="url(#arrow)"
+            marker-mid="url(#arrow)"
+            marker-end="url(#arrow">
+        </path>
+    </svg>
+</body>
+</html>

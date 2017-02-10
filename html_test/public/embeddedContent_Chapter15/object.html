@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <object data="../images/sport.jpg" type="image/jpg"></object>
+
+    <header>
+        <nav>
+            <ul>
+                <li>
+                    <a href="img_a.html" target="myframe">Img a Demo</a>
+                </li>
+                <li>
+                    <a href="img_map.html" target="myframe">Img map Demo</a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <object type="text/html" name="myframe" width="300" height="100"></object>
+
+    <p>
+        <object type="image/jpg" data="../images/sport.jpg" usemap="#sportmap"></object>
+    </p>
+    <map name="sportmap">
+        <area href="archery.html" shape="rect" coords="0,5,90,125" alt="射箭">
+        <area href="swimming.html" shape="rect" coords="120,5,250,125" alt="游泳">
+        <area href="weightlifting.html" shape="rect" coords="290,5,390,125" alt="举重">
+        <area href="hockey.html" shape="rect" coords="420,5,520,125" alt="曲棍球">
+        <area href="sport.html" shape="default" alt="运动">
+    </map>
+
+</body>
+</html>

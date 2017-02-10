@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>柱形图</title>
+    <script src="../../lib/d3/v3/d3.js" charset="UTF-8"></script>
+</head>
+<body>
+    <button type="button" onclick="mySort();">排序</button>
+    <button type="button" onclick="myAdd();">增加</button>
+
+    <script>
+        var dataset = [50, 43, 120, 87, 99, 167, 142];  // 数据集
+
+        var width = 400;    // svg可视区域宽度
+        var height = 400;   // svg可视区域高度
+        var svg = d3.select("body")
+                .append("svg")      // 在body中添加SVG
+                .attr("width", width)
+                .attr("height", height);
+
+        var padding = {top: 20, right: 20, bottom: 20, left: 20};   // 边距
+        var rectStep = 35;  // 矩形所占宽度(包括空格)
+        var rectWidth = 30; // 矩形所占宽度(不包括空格)
+
+        /* rect */
+        var rect = svg.selectAll("rect")
+                .data(dataset)          // 绑定数据
+                .enter()                // 获取enter部分
+                .append("rect")         // 添加text元素,使其与绑定数组的长度一致
+                .attr("fill", "steelblue")
+                .attr("x", function(d, i){
+                    return padding.left + i * rectStep;
+                })
+                .attr("y", function(d){
+                    return height - padding.bottom - d;
+                })
+                .attr("width", rectWidth)
+                .attr("height", function(d){
+                    return d;
+                });
+
+        /* text */
+        var text = svg.selectAll("text")
+                .data(dataset)          // 绑定数据
+                .enter()                // 获取enter部分
+                .append("text")         // 添加text元素,使其与绑定数组的长度一致
+                .attr("fill", "white")
+                .attr("font-size", "14px").attr("text-anchor", "middle")
+                .attr("x", function(d, i){
+                    return padding.left + i * rectStep;
+                })
+                .attr("y", function(d){
+                    return height - padding.bottom - d;
+                })
+                .attr("dx", rectWidth/2).attr("dy", "1em")
+                .text(function(d){
+                    return d;
+                });
+
+        /* 更新数据 */
+        function draw(){
+            var updateRect = svg.selectAll("rect").data(dataset);   // 错误 d3.selectAll() 出了svg范围
+            var enterRect = updateRect.enter();
+            var exitRect = updateRect.exit();
+
+            updateRect.attr("fill", "steelblue")
+                .attr("x", function(d, i){
+                    return padding.left + i * rectStep;
+                })
+                .attr("y", function(d){
+                    return height - padding.bottom - d;
+                })
+                .attr("width", rectWidth)
+                .attr("height", function(d){
+                    return d;
+                });
+
+            enterRect.append("rect").attr("fill", "steelblue")
+                .attr("x", function(d, i){
+                    return padding.left + i * rectStep;
+                })
+                .attr("y", function(d){
+                    return height - padding.bottom - d;
+                })
+                .attr("width", rectWidth)
+                .attr("height", function(d){
+                    return d;
+                });
+
+            exitRect.remove();
+
+
+
+            var updateText = svg.selectAll("text").data(dataset);
+            var enterText = updateText.enter();
+            var exitText = updateText.exit();
+
+            updateText.attr("fill", "white")
+                .attr("font-size", "14px").attr("text-anchor", "middle")
+                .attr("x", function(d, i){
+                    return padding.left + i * rectStep;
+                })
+                .attr("y", function(d){
+                    return height - padding.bottom - d;
+                })
+                .attr("dx", rectWidth/2).attr("dy", "1em")
+                .text(function(d){
+                    return d;
+                });
+
+            enterText.append("text").attr("fill", "white")
+                .attr("font-size", "14px").attr("text-anchor", "middle")
+                .attr("x", function(d, i){
+                    return padding.left + i * rectStep;
+                })
+                .attr("y", function(d){
+                    return height - padding.bottom - d;
+                })
+                .attr("dx", rectWidth/2).attr("dy", "1em")
+                .text(function(d){
+                    return d;
+                });
+
+            exitText.remove();
+        }
+
+        /* 排序 */
+        function mySort(){
+            dataset.sort(d3.ascending);
+            draw();
+        }
+
+        /* 增加 */
+        function myAdd(){
+            dataset.push(Math.floor(Math.random() * 100));
+            draw();
+        }
+
+    </script>
+</body>
+</html>

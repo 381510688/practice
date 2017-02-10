@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="../../lib/angular/angular.min.js"></script>
+    <title>实时搜索</title>
+</head>
+<body>
+    <div ng-controller="searchCtrl">
+        <div>
+            <!-- 搜索框 -->
+            <input type="text" ng-model="search.name" />
+        </div>
+        <div>
+            <ul>
+                <li ng-repeat="item in search.searchNames | filter:search.name">
+                    <label for="name-{{$index}}">
+                        <i>{{$index + 1}}</i>
+                        {{item.name}}
+                    </label>
+                </li>
+            </ul>
+            <div ng-if="(search.searchNames | filter:search.name).length == 0">
+                无数据
+            </div>
+        </div>
+    </div>
+
+
+
+    <script>
+        var app =  angular.module('myApp', []);
+        app.controller("searchCtrl", ["$scope", function($scope) {
+            $scope.search = {
+                name: "",
+                searchNames: [{
+                    name: "ligang"
+                },{
+                    name: "leegang"
+                },{
+                    name: "lg"
+                }]
+            };
+        }]);
+        angular.bootstrap(document,['myApp']);
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <!-- 加载处理错误的js -->
+    <script src="demo.js"></script>
+</head>
+<body>
+    <button id="errorBtn1">ReferenceError</button>
+    <button id="errorBtn2">TypeError</button>
+    <script>
+        var btn1 = document.getElementById("errorBtn1");
+        var btn2 = document.getElementById("errorBtn2");
+
+        btn1.addEventListener("click", function(){
+           foo();
+        });
+        btn2.addEventListener("click", function(){
+            var zoo;
+            zoo();
+        });
+    </script>
+</body>
+</html>

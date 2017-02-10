@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <a href="javascript:;" onclick="openWin();">打开新窗口</a>
+    <a href="javascript:;" onclick="closeWin();">关闭新窗口</a>
+    <script>
+        var newWin;
+        /**
+         * 打开新窗口
+         */
+        function openWin(){
+            newWin = window.open("http://blog.csdn.net/ligang2585116", "_blank");
+
+            // 轮询监听子窗口是否被关闭
+            var timer = setInterval(function(){
+                if(newWin.closed){
+                    newWin = null;
+                    clearInterval(timer);
+                    console.log("子窗口已被关闭");
+                }
+            }, 100);
+        }
+
+        /**
+         * 在父窗口中关闭子窗口
+         */
+        function closeWin(){
+            newWin.close();
+        }
+    </script>
+</body>
+</html>

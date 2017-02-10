@@ -1,0 +1,17 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>output</title>
+</head>
+<body>
+<form action="return false;" oninput="res.value = quantity.value * price.value">
+    <fieldset>
+        <legend>价格计算</legend>
+        <input type="number" placeholder="数量" id="quantity" name="quantity"> x
+        <input type="number" placeholder="价格" id="price" name="price"> =
+        <output for="quantity price" name="res"></output>
+    </fieldset>
+</form>
+</body>
+</html>

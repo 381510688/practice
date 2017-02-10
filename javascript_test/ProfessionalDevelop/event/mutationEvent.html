@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>变动事件</title>
+    <script src="EventUtil.js"></script>
+    <script>
+        EventUtil.addHandler(window, "load", function(){
+            var ulList = document.getElementById("myList"),
+                aDom = ulList.firstElementChild.firstElementChild;
+
+            document.addEventListener("DOMSubtreeModified", function(event){
+                console.log(event.type);    // DOMSubtreeModified
+                console.log(event.target);  // <ul>...</ul>
+            });
+
+            // 最先被执行
+            document.addEventListener("DOMNodeRemoved", function(event){
+                console.log(event.type);    // DOMNodeRemoved
+                console.log(event.target);  // <li>...</li>
+                console.log(event.relatedNode);   // <ul>...</ul>
+            });
+
+            aDom.addEventListener("DOMNodeRemovedFromDocument", function(event){
+                console.log(event.type);    // DOMNodeRemovedFromDocument
+                console.log(event.target);  // <a>赵</a>
+            });
+
+            // 移除第一个li
+            ulList.removeChild(ulList.firstElementChild);
+        });
+    </script>
+</head>
+<body>
+    <div>
+        <ul id="myList">
+            <li>
+                <a href="javascript:;">赵</a>
+            </li>
+            <li>
+                <a href="javascript:;">李</a>
+            </li>
+        </ul>
+    </div>
+
+
+</body>
+</html>

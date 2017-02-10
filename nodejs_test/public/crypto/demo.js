@@ -1,0 +1,3 @@
+var crypto = require('crypto');
+var hash = crypto.createHash('md5').update('{"dc_obase":{"time":{"starttime":1482940800,"endtime":1483459200,"timezone":"+08:00"},"filter":{"fasterfilter":[{"name":"dt","op":"include","value":"2"},{"name":"vt","op":"include","value":"1"}]},"range":{"rangetype":"site","sid":"7cd998c4","rangeparam":"7cd998c4"},"item":{"mainitem":"overview","subitem":"overview"}}}').digest('hex');
+console.log(hash);

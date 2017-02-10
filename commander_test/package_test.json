@@ -1,0 +1,18 @@
+{
+  "name": "lg_test",
+  "version": "1.0.0",
+  "description": "模拟npm init",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "dependencies": {},
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "ligang",
+  "license": "",
+  "repository": "",
+  "keywords": "npm init commander"
+}

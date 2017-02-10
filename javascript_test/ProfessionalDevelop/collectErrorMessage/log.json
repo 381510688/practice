@@ -1,0 +1,5 @@
+{
+  "message": "zoo is not a function",
+  "stack": "TypeError: zoo is not a function\nat HTMLButtonElement.<anonymous> (http://localhost:63342/javascript_test/public/collectErrorMessage/demo.html:21:13)",
+  "date": "16:09:28 GMT+0800 (CST)"
+}

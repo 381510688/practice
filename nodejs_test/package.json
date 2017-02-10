@@ -1,0 +1,27 @@
+{
+  "name": "nodejs_test",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "async": "^2.0.0-rc.6",
+    "babel-plugin-transform-async-to-generator": "^6.16.0",
+    "babel-register": "^6.18.0",
+    "co": "^4.6.0",
+    "koa": "^2.0.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/381510688/nodejs_test.git"
+  },
+  "author": "ligang",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/381510688/nodejs_test/issues"
+  },
+  "homepage": "https://github.com/381510688/nodejs_test#readme"
+}

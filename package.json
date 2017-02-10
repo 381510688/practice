@@ -1,0 +1,27 @@
+{
+  "name": "practice",
+  "version": "1.0.0",
+  "description": "practice",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/381510688/practice.git"
+  },
+  "author": "ligang",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/381510688/practice/issues"
+  },
+  "homepage": "https://github.com/381510688/practice#readme",
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "ejs": "^2.4.2",
+    "express": "^4.14.0",
+    "co": "^4.6.0",
+    "co-prompt": "^1.0.0",
+    "commander": "^2.9.0",
+    "jsonfile": "^2.4.0"
+  }
+}

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        div {
+            position: relative;
+            display: inline-block;
+        }
+        textarea {
+            width: 500px;
+            height: 300px;
+        }
+        p{
+            position: absolute;
+            right: 0;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <textarea name="content" id="content" cols="30" rows="10"></textarea>
+        <p>剩余输入字符个数:<span>10</span></p>
+    </div>
+
+
+    <script>
+        var content = document.querySelector("#content");
+        var words = document.querySelector("p span");
+        content.addEventListener("input", function(e){
+            var numbers = this.value.length;
+            if(numbers >= 10){
+//                e.preventDefault();
+                this.value = this.value.slice(0, 10);
+            }
+            words.innerHTML = 10 - numbers < 0 ? 0 : 10 - numbers;
+        }, false);
+    </script>
+</body>
+</html>

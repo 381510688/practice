@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>classList</title>
+</head>
+<body>
+    <div class="bd user">ligang</div>
+    <button id="myBtn">Lg</button>
+
+    <script>
+//        var div = document.getElementsByClassName("bd")[0];
+//        var classNames = div.className.split(/\s+/);
+//        // 查找要删除的类名"user"
+//        var index = classNames.indexOf("user");
+//        // 删除类名"user"
+//        classNames.splice(index, 1);
+//        // 重新设置className
+//        div.className = classNames;
+
+        var div = document.getElementsByClassName("bd")[0];
+        div.classList.remove("user");
+
+        var btn = document.getElementById("myBtn");
+        btn.focus();
+        console.log(document.activeElement === btn);
+
+    </script>
+</body>
+</html>

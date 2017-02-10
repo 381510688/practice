@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>拖拽</title>
+    <script src="../../lib/d3/v3/d3.js" charset="UTF-8"></script>
+</head>
+<body>
+
+
+    <script>
+        var circles = [{cx: 150, cy:200, r:30},{cx:250, cy:200, r:30}];
+        var width = 400;
+        var height = 400;
+
+        var drag = d3.behavior.drag()
+                .origin(function(d, i) {        // 设置起点坐标
+                    return {x: d.cx, y: d.cy};
+                })
+                .on("dragstart", function(d){
+                    console.log("开始拖拽!");
+                })
+                .on("dragend", function(d){
+                    console.log("拖拽结束!");
+                })
+                .on("drag", function(d){
+                    d3.select(this)
+                            .attr("cx", d.cx = d3.event.x)
+                            .attr("cy", d.cy = d3.event.y);
+                });
+
+
+        var svg = d3.select("body").append("svg")
+                .attr("width", width)
+                .attr("height", height);
+
+        svg.selectAll("circle")
+                .data(circles).enter().append("circle")
+                .attr("cx", function(d, i){
+                    return d.cx;
+                })
+                .attr("cy", function(d) {
+                    return d.cy;
+                })
+                .attr("r", function(d){
+                    return d.r;
+                })
+                .attr("fill", "black")
+                .call(drag);
+
+    </script>
+</body>
+</html>

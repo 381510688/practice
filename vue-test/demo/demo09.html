@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="lib/vue.js" charset="UTF-8"></script>
+</head>
+<body>
+
+    <div id="counter-event-example">
+        <p>{{total}}</p>
+        <my-button v-on:increment="incrementTotal"></my-button>
+        <my-button @increment="incrementTotal" v-on:click.native="clickListener"></my-button>
+    </div>
+
+    <script>
+        Vue.component('my-button', {
+            template: '<button v-on:click="increment">{{counter}}</button>',
+            data: function(){
+                return {
+                    counter: 0
+                }
+            },
+            methods: {
+                increment: function() {
+                    this.counter++;
+                    this.$emit('increment');
+                }
+            }
+        });
+
+        var vm = new Vue({
+            el: '#counter-event-example',
+            data: {
+                total: 0
+            },
+            methods: {
+                incrementTotal: function(){
+                    this.total++;
+                },
+                clickListener: () => {
+                        console.log("daye");
+                }
+            }
+        });
+    </script>
+
+</body>
+</html>

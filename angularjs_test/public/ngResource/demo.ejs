@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ngResource Test</title>
+    <!-- 注意,Node端配置的静态路径为lib -->
+    <script src="/angular/angular.min.js"></script>
+    <script src="/angular/angular-resource.min.js"></script>
+    <script>
+        var myApp = angular.module("myApp", ["ngResource"]);
+
+        myApp.controller('myCtrl', ['$scope', '$resource', function(scope, resource){
+            var User = resource('/ngResource/user/:uid',{
+//                age: '@id'
+            },{});
+            // 根据id获取用户
+            // 获取全部用户
+            scope.getUser = function(id){
+                if(id === 'all') {
+                    /**
+                     *  在调用该方法时,由于所有的方法是异步的执行的,
+                     *  其会立即返回一个空的数据引用,而非真实的数据.
+                     *  当数据从服务器返回后Angularjs会自动将数据填充进去.
+                     *  所以,调用过程看起来是同步的!!!
+                     */
+                    scope.userList = User.query({
+                        uid: "all"
+                    });
+                    // 等价写法
+                    // User.query(function(users){
+                    //    scope.userList = users;
+                    // });
+                }else {
+                    scope.user = User.get({
+                        uid: scope.uid
+                    }, function(res){
+                        console.log('获取成功');
+                    }, function(res){});
+                }
+
+            };
+            // 添加用户
+            var i = 0;
+            scope.addUser = function(){
+                /**
+                 * save方法,POST请求
+                 * @params 随请求发送的参数,可以是查询参数
+                 * @postData 随请求发送的数据体
+                 * @successFun 响应成功的回调函数
+                 * @errorFun 响应失败的回调函数
+                 */
+                var newUser1 = User.save({}, {
+                    id: parseInt(Math.random() * 100000000),
+                    name: "ligang" + (++i)
+                }, function(res){
+                    console.log("增加成功!");
+                    scope.getUser('all');
+                }, function(res){});
+            };
+            // 删除用户
+            scope.deleteUser = function(uid){
+                User.remove({
+//                    uid: uid
+                }, {
+                    test: 12
+                }, function(res){
+                    console.log("删除成功");
+                    scope.getUser('all');
+                }, function(res){});
+            };
+        }]);
+
+    </script>
+
+</head>
+<body ng-app="myApp">
+    <div ng-controller="myCtrl">
+        <input type="text" ng-model="uid" />
+        <button ng-click="getUser();">根据ID获取用户</button>
+        <div>
+            {{user.id}} - {{user.name}}
+        </div>
+        <br>
+        <hr>
+
+        <button ng-click="addUser();">增加用户</button>
+        <ul>
+            <li ng-repeat="u in userList track by u.id">
+                {{u.id}} - {{u.name}}
+                <a href="javascript:;" ng-click="deleteUser(u.id);">删除用户</a>
+            </li>
+        </ul>
+    </div>
+</body>
+</html>

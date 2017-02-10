@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <p>
+        <label for="name1">change事件控制:</label>
+        <input type="text" name="name" id="name1">
+    </p>
+    <p>
+        <label for="name2">keypress事件控制:</label>
+        <input type="text" name="name2" id="name2">
+    </p>
+    <p>
+        <label for="name3">input事件控制:</label>
+        <input type="text" name="name3" id="name3">
+    </p>
+    <p>
+        <label for="name4">textInput事件控制:</label>
+        <input type="text" name="name4" id="name4">
+    </p>
+
+    <script>
+        var name1 = document.querySelector("#name1"),
+            name2 = document.querySelector("#name2"),
+            name3 = document.querySelector("#name3"),
+            name4 = document.querySelector("#name4");
+
+        name1.addEventListener("change", function(e){
+            console.log(e);
+        });
+
+        name2.addEventListener("keypress", function(e){
+            console.log(e);
+        });
+
+        name3.addEventListener("input", function(e){
+            console.log(e);
+        });
+
+        name4.addEventListener("textInput", function(e){
+            console.log(e);
+        });
+
+    </script>
+
+</body>
+</html>

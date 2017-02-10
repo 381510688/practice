@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>input type</title>
+</head>
+<body>
+    <form action="http://localhost:8888/form/userInfo" method="post">
+        <fieldset>
+            <legend>number</legend>
+            <label for="score">分数:</label>
+            <input type="number" name="score" id="score" min="60" max="100" step="5">
+        </fieldset>
+        <fieldset>
+            <legend>range</legend>
+            <label for="price">价格:</label>
+            <span>1</span>
+            <input type="range" name="price" id="price" min="0" max="100" step="5">
+            <span>100</span>
+        </fieldset>
+        <fieldset>
+            <legend>checkbox</legend>
+            <input type="checkbox" name="agree" id="agree">
+            <label for="agree">同意条款</label>
+        </fieldset>
+        <fieldset>
+            <legend>选出你最喜欢的水果:</legend>
+            <label for="oranges">
+                <input type="radio" value="oranges" id="oranges" name="fave">
+                Oranges
+            </label>
+            <label for="apples">
+                <input type="radio" value="apples" id="apples" name="fave" checked>
+                Apples
+            </label>
+        </fieldset>
+        <fieldset>
+            <legend>规定格式的字符串</legend>
+            <p>
+                <label for="email">
+                    邮箱:<input type="email" name="email" id="email">
+                </label>
+            </p>
+            <p>
+                <label for="password">
+                    密码:<input type="password" name="password" id="password">
+                </label>
+            </p>
+            <p>
+                <label for="tel">
+                    电话:<input type="tel" name="tel" id="tel">
+                </label>
+            </p>
+            <p>
+                <label for="url">
+                    URL:<input type="text" name="url" id="url">
+                </label>
+            </p>
+        </fieldset>
+        <fieldset>
+            <legend>日期&时间</legend>
+            <p>
+                <label for="myDateTime">
+                    日期时间:<input type="datetime" name="myDateTime" id="myDateTime">
+                </label>
+            </p>
+            <p>
+                <label for="myTime">
+                    时间:<input type="time" name="myTime" id="myTime">
+                </label>
+            </p>
+            <p>
+                <label for="myDate">
+                    日期:<input type="date" name="myDate" id="myDate">
+                </label>
+            </p>
+            <p>
+                <label for="myMonth">
+                    月份:<input type="month" name="myMonth" id="myMonth">
+                </label>
+            </p>
+            <p>
+                <label for="myWeek">
+                    周:<input type="week" name="myWeek" id="myWeek">
+                </label>
+            </p>
+        </fieldset>
+        <fieldset>
+            <legend>颜色</legend>
+            <label for="color">
+                颜色:<input type="color" name="color" id="color">
+            </label>
+        </fieldset>
+        <input type="image" src="../images/submit.jpeg" name="submit">
+    </form>
+</body>
+</html>

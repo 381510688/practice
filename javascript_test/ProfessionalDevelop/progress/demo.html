@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>progress Demo</title>
+    <script src="../../lib/jquery/dist/jquery.min.js"></script>
+</head>
+<body>
+    <input type="text" id="number">
+    <span id="tips"></span>
+
+    <script>
+        var $input = $("#number"),
+            $tips = $("#tips");
+        var def = $.Deferred();
+        var goalCount = 20;
+        def.progress(function(currentCount){
+            var percentComplete = Math.floor(currentCount / goalCount * 100);
+            $tips.text(percentComplete + "% complete");
+        });
+        def.done(function(){
+            $tips.text("good job!");
+        });
+
+        $input.on("keypress", function(){
+            var count = $(this).val().split("").length;
+            console.log(count)
+            if(count >= goalCount) {
+                def.resolve();
+            }
+            def.notify(count);
+        });
+    </script>
+</body>
+</html>

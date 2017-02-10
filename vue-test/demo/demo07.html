@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="lib/vue.js" charset="UTF-8"></script>
+</head>
+<body>
+
+    <script type="text/x-template" id="slotTemplate">
+        <div>
+            <h2>子组件标题</h2>
+            <slot></slot>
+        </div>
+    </script>
+
+    <div id="slotDemo">
+        <h1>This is slot Demo</h1>
+        <my-slot>
+            <p>my name is ligang.</p>
+            <p>哈哈哈!</p>
+        </my-slot>
+    </div>
+    <script>
+        Vue.component('my-slot', {
+            template: '#slotTemplate'
+        });
+        new Vue({
+            el: '#slotDemo'
+        })
+    </script>
+
+
+    <hr>
+    <script type="text/x-template" id="slot-template">
+        <div>
+            <header>
+                <slot name="header" :value="header"></slot>
+            </header>
+            <main>
+                <slot :val1="main1" :val2="main2"></slot>
+            </main>
+            <footer>
+                <slot name="footer" :value="footer"></slot>
+            </footer>
+        </div>
+    </script>
+    <div id="app">
+        <my-layout>
+            <template slot="header" scope="props">
+                <h1>{{props.value}}</h1>
+            </template>
+            <template scope="props">
+                <p>{{props.val1}}</p>
+                <p>{{props.val2}}</p>
+            </template>
+            <template slot="footer" scope="props">
+                <p>{{props.value}}</p>
+            </template>
+        </my-layout>
+    </div>
+    <script>
+        Vue.component('my-layout', {
+            template: '#slot-template',
+            data: function(){
+                return {
+                    header: "哈哈",
+                    main1: "恢复",
+                    main2: "main2",
+                    footer: "footer"
+                }
+            }
+        });
+        var vm = new Vue({
+            el: '#app'
+        });
+    </script>
+
+
+    <hr>
+    <style>
+        ul{
+            padding: 0;
+        }
+        ul li{
+            list-style-type: none;
+            width: 200px;
+        }
+        .red {
+            background-color: red;
+        }
+        .green {
+            background-color: green;
+        }
+        .blue {
+            background-color: blue;
+        }
+    </style>
+    <script type="text/x-template" id="listTemplate">
+        <ul>
+            <slot name="li" v-for="item in items" :text="item.text" :color="item.color">
+            </slot>
+        </ul>
+    </script>
+    <div id="list">
+        <my-list :items="items">
+            <template slot="li" scope="props">
+                <li :class="props.color">{{props.text}}</li>
+            </template>
+        </my-list>
+    </div>
+    <script>
+        Vue.component('my-list', {
+            template: '#listTemplate',
+            props: ['items']
+        });
+        new Vue({
+            el: '#list',
+            data: {
+                items: [{
+                    text: '01',
+                    color: 'red'
+,                },{
+                    text: '02',
+                    color: 'green'
+                },{
+                    text: '03',
+                    color: 'blue'
+                }]
+            }
+        })
+    </script>
+
+</body>
+</html>

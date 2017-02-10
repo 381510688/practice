@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../demo/lib/vue.js" charset="UTF-8"></script>
+    <script src="../demo/lib/vuex.js" charset="UTF-8"></script>
+</head>
+<body>
+    <div id="app">
+        <p>{{count}}</p>
+        <div>
+            <button v-on:click="add">增加</button>
+            <button v-on:click="sub">减少</button>
+        </div>
+    </div>
+
+
+    <script>
+        // state view action
+        const store = new Vuex.Store({
+            state: {
+                count: 0
+            },
+            mutations: {
+                add: state => state.count++,
+                sub: state => state.count--
+            }
+        });
+
+        var app = new Vue({
+            el: '#app',
+            computed: {
+                count: () => store.state.count
+            },
+            methods: {
+                add: () => store.commit("add"),
+                sub: () => store.commit("sub")
+            }
+        });
+    </script>
+</body>
+</html>

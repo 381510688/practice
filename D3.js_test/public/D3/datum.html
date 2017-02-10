@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>datum数据绑定</title>
+    <script src="../../lib/d3/v4/d3.js" charset="UTF-8"></script>
+</head>
+<body>
+    <p>Fire</p>
+    <p>Water</p>
+    <p>Wind</p>
+
+    <div>Fire</div>
+    <div>Water</div>
+    <div>Wind</div>
+
+    <script>
+        // 绑定数据
+        var p = d3.select("body").selectAll("p");
+        p.datum("Thunder").text(function(d, i){  // 数据(datum) 索引(index)
+            return d + " " + i;
+        });
+
+        /* 在被绑定数据的选择集中添加元素后,新元素会继承该数据. */
+        // 添加元素
+        var div = d3.select("body").selectAll("div");
+        div.datum("Thunder").append("span").text(function(d, i){
+            return " " + d;
+        });
+    </script>
+</body>
+</html>

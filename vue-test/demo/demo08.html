@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="lib/vue.js" charset="UTF-8"></script>
+</head>
+<body>
+    <div id="app">
+        <my-child my-message="hello!" :my-number.number="1222" my-number2.number></my-child>
+
+        <input type="text" v-model="parentMessage">
+        <my-dynamic-child :my-message="parentMessage"></my-dynamic-child>
+    </div>
+
+    <script>
+        Vue.component('my-child', {
+            template: '<h1>{{myMessage}}-{{myNumber}}-{{myNumber2}}</h1>',
+//            props: ['myMessage', 'myNumber']
+            props: {
+                myMessage: {
+                    type: String,
+                    required: true
+                },
+                myNumber: {
+                    type: Number,
+                    default: 100
+                },
+                myNumber2: {
+                    type: Number,
+                    default: 100
+                }
+            }
+        });
+
+
+        Vue.component('my-dynamic-child', {
+            template: '<h1>{{myMessage}}</h1>',
+            props: ['myMessage']
+        });
+
+
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                parentMessage: 'hh'
+            }
+        });
+    </script>
+
+
+    <!-- https://cn.vuejs.org/v2/guide/components.html -->
+    <div id="app2">
+        <my-component my-msg="message" :my-info="information"></my-component>
+    </div>
+    <script>
+        Vue.component('my-component', {
+            template: '<p>{{ message }} - {{ myInfo }}</p>',
+            props: ['myInfo'],
+            data: function(){
+                return {
+                    message: 'ha'
+                }
+            }
+        });
+        new Vue({
+            el: '#app2',
+            data: {
+                information: "la"
+            }
+        })
+    </script>
+
+</body>
+</html>

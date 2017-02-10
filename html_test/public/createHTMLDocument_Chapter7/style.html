@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Style Test</title>
+    <!-- 显示样式 && 小于500px -->
+    <style media="screen and (max-width:500px)">
+        div{
+            background-color: blue;
+            color: white;
+        }
+    </style>
+    <!-- 显示样式 && 大于500px -->
+    <style media="screen and (min-width:500px)">
+        div{
+            background-color: grey;
+            color: white;
+        }
+    </style>
+    <!-- 打印样式 -->
+    <style media="print">
+        div{
+            background-color: green;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        注意我的背影颜色吼!!!
+    </div>
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="lib/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <input v-model="a"><p>{{a}}</p>
+        <input :value="b" @click="b=$event.target.value"><p>{{b}}</p>
+        <input :value="c" @input="c = arguments[0]"><p>{{c}}</p>
+    </div>
+    <script>
+        const vm = new Vue({
+            el: '#app',
+            data: {
+                a: 1,
+                b: 2,
+                c: 3
+            }
+        });
+    </script>
+
+
+    <script type="text/x-template" id="currencyTemplate">
+           <span>
+               $
+               <input ref="input" :value="value" @input="updateValue($event.target.value)">
+           </span>
+    </script>
+    <div id="currency">
+        <my-currency v-model.number="price"></my-currency>
+    </div>
+
+    <script>
+        Vue.component('my-currency', {
+            template: '#currencyTemplate',
+            props: ['value'],
+            methods: {
+                updateValue(value){
+                    var end = value.indexOf('.') > -1 ? value.indexOf('.') + 3 : value.length + 1;
+                    var formattedValue = value.trim().slice(0, end);
+                    // 如果值不统一，手动覆盖以保持一致
+                    if (formattedValue !== value) {
+                        this.$refs.input.value = formattedValue
+                    }
+                    // 通过 input 事件发出数值
+                    this.$emit('input', Number(formattedValue))
+                }
+            }
+        });
+        const currencyVm = new Vue({
+            el: '#currency',
+            data: {
+                price: 0
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>兄弟选择器</title>
+    <style>
+        #div1 p + span {
+            border: thin black solid;
+            padding: 4px;
+        }
+        #div2 p ~ span {
+            border: thin black solid;
+            padding: 4px;
+        }
+    </style>
+</head>
+<body>
+    <div id="div1">
+        <p></p>
+        <span>I like apple.</span>
+        <span>I like oranges.</span>
+    </div>
+    <hr>
+    <div id="div2">
+        <p></p>
+        <span>I like apple.</span>
+        <span>I like oranges.</span>
+    </div>
+</body>
+</html>

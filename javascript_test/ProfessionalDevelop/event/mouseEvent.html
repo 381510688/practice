@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>鼠标事件</title>
+</head>
+<body style="width: 5000px;">
+<input type="text" id="ipt1">
+
+<div id="div1" style="height: 100px; width: 100px; background-color: #2aabd2">
+    <div id="div2" style="height: 50px; width: 50px; background-color: #7a43b6">
+    </div>
+</div>
+
+<hr>
+<br>
+
+<div id="modifyKey" style="width:100px; height: 100px; border: dotted">
+
+</div>
+
+<script>
+    var ipt1 = document.getElementById("ipt1");
+    ipt1.addEventListener("db1click", function(event){
+       console.log(event.target);
+    });
+
+    var div1Dom = document.getElementById("div1");
+    div1Dom.addEventListener("mouseleave", function(event){
+        console.log("div1 mouseleave");
+    });
+    div1Dom.addEventListener("mouseout", function(event){
+        console.log("div1 mouseout");
+    });
+
+
+    div1Dom.addEventListener("mouseenter", function(event){
+        console.log("div1 mouseenter");
+    });
+    div1Dom.addEventListener("mouseover", function(event){
+        console.log("div1 mouseover");
+    });
+
+    var bodyDom = document.getElementsByTagName("body")[0];
+    bodyDom.addEventListener("click", function(){
+        console.log(event.clientX + "," + event.clientY);
+        console.log(event.pageX + "," + event.pageY);
+        console.log(event.screenX + "," + event.screenY);
+    });
+
+
+    var modifyKeyDom = document.getElementById("modifyKey");
+    modifyKeyDom.addEventListener("click", function(event){
+        var ary = new Array();
+
+        if(event.shiftKey){
+            ary.push("shift");
+        }
+        if(event.ctrlKey){
+            ary.push("ctrl");
+        }
+        if(event.altKey){
+            ary.push("alt");
+        }
+        if(event.metaKey){
+            ary.push("meta");
+        }
+        console.log(ary.join(","));
+    })
+
+</script>
+</body>
+</html>

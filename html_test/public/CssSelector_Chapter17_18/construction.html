@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>结构性伪类选择器</title>
+    <style>
+        body > :nth-child(1) > p:nth-of-type(1) {
+            border: thin black solid;
+            padding: 4px;
+        }
+        body > :nth-child(1) :last-child {
+            text-underline: none;
+            text-decoration: none;
+            padding: 4px;
+        }
+    </style>
+</head>
+<body>
+    <fieldset>
+        <legend>子元素选择器</legend>
+        <p>I like apples.</p>
+        <p>I like oranges.</p>
+        <a href="JavaScript:;">我的Blog</a>
+    </fieldset>
+</body>
+</html>

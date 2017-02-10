@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>dataList test</title>
+    <script src="../../demo/lib/vue.js" charset="UTF-8"></script>
+    <script src="../../demo/lib/jquery-3.1.1.js" charset="UTF-8"></script>
+    <script src="../../demo/lib/select2.js" charset="UTF-8"></script>
+    <link href="../../demo/lib/select2.css">
+    <style>
+        select {
+            min-width:300px;
+        }
+    </style>
+</head>
+<body>
+    <div id="dataListContainer">
+        <p>Selected: {{selected}}</p>
+        <select v-select="selected">
+            <option value="0">default</option>
+            <option v-for="o in options" :value="o.id">{{ o.text }}</option>
+        </select>
+    </div>
+
+
+
+<script>
+    Vue.directive("select", {
+        twoWay: true,
+        priority: 1000,
+
+        params: ['options'],
+        bind: function(el){
+            var self = this;
+            console.log(el)
+            $(el).select2();
+            $(el).on('change', function () {
+                self.set(this.value);
+            });
+        },
+        update: function(el){
+            $(el).val(value).trigger('change');
+        },
+        unbind: function(el){
+            $(el).off().select2('destroy');
+        }
+    });
+
+    var dataListContainer = new Vue({
+        el: "#dataListContainer",
+        data: {
+            selected: 0,
+            options: [
+                { id: 1, text: 'hello' },
+                { id: 2, text: 'what' }
+            ]
+        }
+    });
+</script>
+</body>
+</html>

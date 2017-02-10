@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>验证</title>
+</head>
+<body>
+<form action="http://localhost:8888/form/validate" method="post">
+    <p>
+        <label for="name">
+            姓名:<input type="text" name="name" id="name" required>
+        </label>
+    </p>
+    <p>
+        <label for="email">
+            邮箱:<input type="text" name="email" id="email" required pattern="\w+((-\w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z0-9]+">
+        </label>
+    </p>
+    <p>
+        <label for="age">
+            年龄:<input type="number" name="age" id="age" min="1" max="150">
+        </label>
+    </p>
+    <p>
+        <label for="floatNUM">
+            浮点数:<input type="text" name="floatNUM" id="floatNUM" pattern="/^\d+(\.?\d+)?$/" oninput="test(this);"></input>
+        </label>
+    </p>
+
+    <input type="submit" value="提交">
+
+
+    <script>
+        function test(oInput){
+            var reg = /\d+\.?\d*/;
+            if('' !== oInput.value.replace(reg,'')) {
+                var targetNum = oInput.value.match(reg);
+                oInput.value = targetNum == null ? '' : targetNum;
+            }
+        }
+    </script>
+</form>
+</body>
+</html>
