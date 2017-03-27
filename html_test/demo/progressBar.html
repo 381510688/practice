@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>网页loading</title>
+
+    <style>
+        .loading {
+            display: table;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: #fff;
+        }
+        .progress {
+            display: table-cell;
+            vertical-align: middle;
+            text-align: center;
+        }
+        .hide {
+            display: none;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="loading" id="loading">
+        <div class="progress" id="progress">0%</div>
+    </div>
+
+    <script>
+        // https://mp.weixin.qq.com/s?__biz=MzAxODE2MjM1MA==&mid=2651551832&idx=1&sn=dc56619492ea230fc7e492d3d77da0c7&chksm=8025af99b752268f1bfdeb1320f1177c624c858c56c758b55443a3f21c9e03649ffd54603abb&scene=0&key=9b78e6c4f9fb99fef7a15225b8b2cb569324c31cbe5ff0b99e8123064eb28c0d8e21cd35d21b04c544c9de2755c689e6be730e74fd8712276b20e40182a78eeb4103a3949c5ced02e43cfad088030780&ascene=0&uin=MjEzMTE5NTkwMA%3D%3D&devicetype=iMac+MacBookPro12%2C1+OSX+OSX+10.11.6+build(15G1108)&version=12010210&nettype=WIFI&fontScale=100&pass_ticket=e9kLpq0Ac%2BZMWupulcAYvN2uY45g0N57r%2BXfWOJvQ4plHgHXq19iKT%2Bylxr08WuE
+        var loading = document.querySelector("#loading"),
+            progress = document.querySelector("#progress");
+
+        window.onload = function(){
+            loading.setAttribute("class", 'hide');
+        }
+
+    </script>
+</body>
+</html>
