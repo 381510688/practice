@@ -1,0 +1,41 @@
+<template>
+    <style>
+        .coloured {
+            color: red;
+        }
+    </style>
+
+    <p>
+        My favorite colour is: <strong class="coloured">Red</strong>
+    </p>
+</template>
+<script>
+    // http://javascript.ruanyifeng.com/htmlapi/webcomponents.html
+    (function() {
+        // 根据HTMLElement原型对象创建一个新对象
+        var element = Object.create(HTMLElement.prototype);
+        // Gets content from <template>
+        var template = document.currentScript.ownerDocument.querySelector('template').content;
+        /**
+         * createdCallback：实例生成时触发
+         * attachedCallback：实例插入HTML文档时触发
+         * detachedCallback：实例从HTML文档移除时触发
+         * attributeChangedCallback(attrName, oldVal, newVal)：实例的属性发生改变时（添加、移除、更新）触发
+         */
+        // 实例生成时触发
+        element.createdCallback = function() {
+            // 创建Shadow DOM 向用户隐藏细节，直接提供组件；以封装内部样式表，不会影响到外部
+            var shadowRoot = this.createShadowRoot();
+            // Adds a template clone into shadow root
+            var clone = document.importNode(template, true);
+            shadowRoot.appendChild(clone);
+        };
+        // 自定义元素
+        document.registerElement('my-color', {
+            // 自定义网页元素的原型对象
+            prototype: element,
+            // 自定义元素继承某种特定的网页元素
+            extend: 'h1'
+        });
+    }());
+</script>
