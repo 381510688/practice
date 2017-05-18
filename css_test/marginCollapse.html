@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>margin塌陷</title>
+
+    <style>
+        * {
+            margin : 0;
+            padding : 0;
+        }
+        div {
+            float: left;
+            width: 100px;
+            height: 100px;
+        }
+        div.top {
+            margin-right: 10px;
+            /*margin-bottom: 10px;*/
+            background-color: #2b542c;
+        }
+        div.bottom {
+            margin-left: 10px;
+            /*margin-top: 10px;*/
+            background-color: #00B7FF;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="top">
+
+    </div>
+
+    <div class="bottom">
+    </div>
+</body>
+</html>
