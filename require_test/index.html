@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>require demo</title>
+    <script src="https://cdn.bootcss.com/require.js/2.3.3/require.js"></script>
+    <script src="require.config.js"></script>
+    <script type="text/javascript">
+        window._pt_lt = new Date().getTime();
+        window._pt_sp_2 = [];
+        _pt_sp_2.push('setAccount,59cab64e');
+        var _protocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+        (function() {
+            var atag = document.createElement('script'); atag.type = 'text/javascript'; atag.async = true;
+            atag.src = _protocol + 'jstest.ptmind.cn/pta.js';
+            var stag = document.createElement('script'); stag.type = 'text/javascript'; stag.async = true;
+            stag.src = _protocol + 'jstest.ptengine.jp/pts.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(atag, s); s.parentNode.insertBefore(stag, s);
+        })();
+    </script>
+
+</head>
+<body>
+    <h1>TEST</h1>
+    <h1>TEST</h1>
+    <h1>TEST</h1>
+    <h1>TEST</h1>
+    <div style="width: 100px; height: 100px; border: 1px solid #f0ad4e">
+
+    </div>
+<script>
+    require(['app'], function (app) {
+        app.print();
+    });
+</script>
+</body>
+</html>
