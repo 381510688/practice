@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Server-sent_events示例</title>
+</head>
+<body>
+    <h1>EventSource</h1>
+    <script>
+        var source = new EventSource('http://localhost:10086');
+        source.onopen = function(event) {
+            console.log('open');
+        };
+        source.onmessage = function(event) {
+            console.log(event.data);
+        };
+        source.onerror = function(error) {
+            console.log(error);
+        };
+    </script>
+</body>
+</html>

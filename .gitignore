@@ -3,3 +3,5 @@
 .idea/
 angularjs_test/.DS_Store
 /nodejs_test/node_modules/
+/webpack_test/Test/node_modules/
+/npm-debug.log
