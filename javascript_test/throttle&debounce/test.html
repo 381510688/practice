@@ -6,6 +6,8 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <script src="./underscore.js"></script>
+    <script src="./throttle.js"></script>
+    <script src="./debounce.js"></script>
     <title>Document</title>
 </head>
 <body>
@@ -20,8 +22,12 @@
         function clickBtn2() {
             console.log('debounce', j++);
         }
-        btnDom.addEventListener('click', _.throttle(clickBtn1, 5000));
-        btnDom.addEventListener('click', _.debounce(clickBtn2, 5000));
+//        btnDom.addEventListener('click', _.throttle(clickBtn1, 1000, {leading: false}));
+        btnDom.addEventListener('click', _.throttle(clickBtn1, 1000, {leading: false}));
+
+        btnDom.addEventListener('click', throttle(clickBtn1, 1000, {leading: false}));
+
+//        btnDom.addEventListener('click', _.debounce(clickBtn2, 5000));
     </script>
 </body>
 </html>
