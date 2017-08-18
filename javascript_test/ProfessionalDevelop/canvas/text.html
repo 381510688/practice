@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>text canvas demo</title>
+    <canvas id="drawing" width="1500px" height="1500px"></canvas>
+    <script>
+        let drawing = document.querySelector('#drawing');
+        if(drawing.getContext) {
+            let context = drawing.getContext('2d');
+
+            context.beginPath();
+            // 绘制外部圆
+            context.arc(100, 100, 99, 0 , 2 * Math.PI, false);
+
+            // 绘制内部圆
+            context.moveTo(194, 100); // 将起点定位到内部圆上
+            context.arc(100, 100, 94, 0 , 2 * Math.PI, false);
+
+            // 绘制分针
+            context.moveTo(100, 100);
+            context.lineTo(100, 20);
+
+            // 绘制时针
+            context.moveTo(100, 100);
+            context.lineTo(40, 100);
+
+            // 绘制边框
+            context.stroke();
+
+            context.font = 'bold 14px Arial';
+            context.textAlign = 'center';
+            context.textBaseline = 'middle';
+            context.fillText('12', 100, 15);
+
+
+        }
+    </script>
+</head>
+<body>
+
+</body>
+</html>

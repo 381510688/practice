@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>transform canvas demo</title>
+</head>
+<body>
+    <canvas id="drawing" width="1500px" height="1500px"></canvas>
+
+    <script>
+        let drawing = document.querySelector('#drawing');
+        if(drawing.getContext) {
+            let context = drawing.getContext('2d');
+
+            context.beginPath();
+
+            // 改变圆点坐标为(100, 100)
+            context.translate(100, 100);
+
+            // 绘制外部圆
+            context.arc(0, 0, 99, 0, 2 * Math.PI, false);
+
+            // 绘制内部圆
+            context.moveTo(94, 0);
+            context.arc(0, 0, 94, 0, 2 * Math.PI, false);
+
+            // 旋转指针
+//            context.rotate(2);
+
+            // 绘制时针
+            context.moveTo(0, 0);
+            context.lineTo(0, -80);
+
+            // 绘制秒针
+            context.moveTo(0, 0);
+            context.lineTo(-60, 0);
+
+            // 绘制文本
+            context.font = 'bold 14px Arial';
+            context.textAlign = 'center';
+            context.textBaseline = 'middle';
+            context.fillText('12', 0, -85);
+
+            context.stroke();
+        }
+    </script>
+    </body>
+</html>

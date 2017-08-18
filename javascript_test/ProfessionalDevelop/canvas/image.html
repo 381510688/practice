@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>image canvas demo</title>
+</head>
+<body>
+    <canvas id="drawing" width="1500px" height="1500px"></canvas>
+    <img id="img" src="./奋飛.jpg" alt="logo" width="400" height="592">
+    <script>
+        var drawing = document.querySelector('#drawing');
+        if(drawing.getContext) {
+            var sourceImg = document.querySelector('#img'), // document.images[0]
+                context = drawing.getContext('2d');
+
+            context.drawImage(sourceImg, 0, 0);
+
+            context.drawImage(sourceImg, 500, 500, 40, 59);
+
+            // 从源图像的(0, 0)开始截取宽度400，高度300的内容，放到坐标为(600, 500）宽、高为100的区域
+            context.drawImage(sourceImg, 0, 0, 400, 300, 600, 500, 100, 100);
+        }
+    </script>
+</body>
+</html>

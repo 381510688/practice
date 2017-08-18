@@ -8,26 +8,52 @@
     <script src="./underscore.js"></script>
     <script src="./throttle.js"></script>
     <script src="./debounce.js"></script>
+    <script src="../lib/jquery/dist/jquery.js"></script>
+
     <title>Document</title>
+
+    <style>
+        .item {
+            width: 200px;
+            height: 300px;
+            border: 1px solid #2b542c;
+        }
+    </style>
 </head>
 <body>
     <button id="btn">快速点击我</button>
 
+    <div class="item">哈哈，是我。</div>
+
     <script>
-        var btnDom = document.querySelector('#btn');
-        var i = 0, j = 0;
-        function clickBtn1() {
-            console.log('throttle', i++);
-        }
-        function clickBtn2() {
-            console.log('debounce', j++);
-        }
-//        btnDom.addEventListener('click', _.throttle(clickBtn1, 1000, {leading: false}));
-        btnDom.addEventListener('click', _.throttle(clickBtn1, 1000, {leading: false}));
+        $(document).ready(function(){
+            $(document).on('scroll', throttle(function(){
+                check_if_needs_more_content();
+            }, 300));
 
-        btnDom.addEventListener('click', throttle(clickBtn1, 1000, {leading: false}));
+            // 是否需要加载更多资源
+            function check_if_needs_more_content() {
+                var pixelsFromWindowBottomToBottom = 0 + $(document).height() - $(window).scrollTop() - $(window).height();
 
-//        btnDom.addEventListener('click', _.debounce(clickBtn2, 5000));
+                if (pixelsFromWindowBottomToBottom < 200){
+                    // 加载更多内容
+                    $('body').append($('.item').clone());
+                }
+            }
+        });
+    </script>
+
+    <script>
+//        var btnDom = document.querySelector('#btn');
+//        var i = 0, j = 0;
+//        function clickBtn1() {
+//            console.log('throttle', i++);
+//        }
+//        function clickBtn2() {
+//            console.log('debounce', j++);
+//        }
+//
+//        btnDom.addEventListener('click', throttle(clickBtn1, 1000));
     </script>
 </body>
 </html>

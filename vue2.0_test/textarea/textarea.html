@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="../vue.js"></script>
+    <title>Document</title>
+
+    <script src="../../javascript_test/throttle&debounce/throttle.js"></script>
+    <script src="../../javascript_test/throttle&debounce/debounce.js"></script>
+</head>
+<body>
+    <div id="app">
+        <input type="text" name="name" v-model="user.name" @change="changeTextarea($event)">
+        <input type="text" name="age" v-model="user.age" @change="changeTextarea($event)">
+        <input type="text" name="address" v-model="user.address" @change="changeTextarea($event)">
+
+        <!-- 选择框 -->
+        <div>
+            <select v-model="selected" name="source" @change="changeSelect($event)">
+                <option disabled value="">请选择</option>
+                <option value="A">选择A</option>
+                <option value="B">选择B</option>
+            </select>
+            <span>Selected: {{ selected }}</span>
+
+            <div v-if="selected === 'A'">
+                <input type="text" v-model="source.a" @change="changeTextarea($event)">
+                <input type="text" v-model="source.b" @change="changeTextarea($event)">
+            </div>
+            <div v-if="selected === 'B'">
+                <input type="text" v-model="source.a" @change="changeTextarea($event)">
+                <input type="text" v-model="source.c" @change="changeTextarea($event)">
+            </div>
+        </div>
+
+
+        <textarea name="content" id="content"
+                  cols="30" rows="10"
+                  v-model="content"
+                  @change="updateField($event)">
+        </textarea>
+
+
+
+    </div>
+
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data() {
+                return {
+                    user: {
+                        name: 'ligang',
+                        age: 27,
+                        address: '山东'
+                    },
+                    selected: '',
+                    source: {
+                        a: '',
+                        b: '',
+                        c: ''
+                    },
+                    content: null
+                }
+            },
+            methods: {
+                getContent() {
+                    let result = '', user = this.user;
+                    for(let key of Object.keys(user)) {
+                        result += `${key} = ${user[key]}\n`;
+                    }
+                    return result;
+                },
+                // 鼠标离开文本框后触发改变tesxtArea内容
+                changeTextarea(event) {
+                    let userPropKey = event.srcElement.name,
+                        userPropValue = event.target.value;
+
+                    this.content = this.content.replace(/([^\n]+)/g, function(full){
+                        let key = full.split('=')[0].trim(),       // user.name
+                            userKey = key.split('.').pop(); // name
+                        if(userKey === userPropKey) {
+                            return `${key} = ${userPropValue}`;
+                        }
+                        return full;
+                    });
+                },
+                // 改变select文本框
+                changeSelect(event) {
+
+                },
+                // textArea内容发生变更，input对应的文本框发生变化
+                updateField(event) {
+                    let value = event.target.value;
+                    let rows = value.split('\n');
+                    for(let line = 0, len = rows.length; line < len; line++) {
+                        let row = rows[line];
+                        if(row && row.trim().substring(0, 1) !== '#') {
+                            let splitProp = row.split('=');
+                            let userPropKey = splitProp[0] && splitProp[0].split('.').pop().trim(),
+                                userPropValue = splitProp[1] && splitProp[1].trim();
+                            if(this.user[userPropKey] !== userPropValue) {
+                                this.user[userPropKey] = userPropValue;
+                            }
+                        }
+                    }
+                }
+            },
+            created() {
+                this.content = this.getContent()
+            }
+        })
+    </script>
+</body>
+</html>
