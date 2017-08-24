@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>header</title>
+    <style>
+        div {
+            border: 1px solid #000000;
+        }
+
+        .header {
+            width: 100%;
+            height: 35px;
+            background-color: #00B7FF;
+            box-sizing: border-box;
+            border: 1px solid #00B7FF;
+        }
+
+        .container {
+            display: flex;
+            justify-content: space-between;
+            height: 100%;
+            width: 100%;
+        }
+
+        .container .header-left {
+            display: flex;
+        }
+
+        .container .header-left .header-logo {
+            margin-left: 80px;
+        }
+
+        .container .header-left .header-logo,
+        .container .header-left .header-menu {
+            display: flex;
+            align-items: center;
+        }
+
+        .container .header-left .header-menu .item{
+            padding: 0 50px;
+        }
+
+        .container .header-right {
+            display: flex;
+            align-items: center;
+            margin-right: 80px;
+            padding: 0 15px;
+        }
+
+        .container .header-right .item{
+            padding: 0 15px;
+        }
+
+
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="container">
+            <div class="header-left">
+                <div class="header-logo">Logo</div>
+                <div class="header-menu">
+                    <div class="item">菜单1</div>
+                    <div class="item">菜单2</div>
+                    <div class="item">菜单3</div>
+                    <div class="item">菜单4</div>
+                    <div class="item">菜单5</div>
+                </div>
+            </div>
+            <div class="header-right">
+                <div class="item">Admin</div>
+                <div class="item">设置</div>
+                <div class="item">
+                    <input type="text" placeholder="查找">
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
