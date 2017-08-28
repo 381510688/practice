@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>header</title>
+    <style>
+        html, body {
+            height: 100%;
+            width: 100%;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        div {
+            /*border: 1px solid #000000;*/
+            box-sizing: border-box;
+        }
+
+        .main {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            width: 100%;
+        }
+
+        /* header信息 */
+        .header {
+            width: 100%;
+            height: 35px;
+            background-color: #00B7FF;
+            box-sizing: border-box;
+            border: 1px solid #00B7FF;
+        }
+
+        .header .container {
+            display: flex;
+            justify-content: space-between;
+            height: 100%;
+            width: 100%;
+        }
+
+        .header .container .header-left {
+            display: flex;
+        }
+
+        .header .container .header-left .header-logo {
+            margin-left: 80px;
+        }
+
+        .header .container .header-left .header-logo,
+        .header .container .header-left .header-menu {
+            display: flex;
+            align-items: center;
+        }
+
+        .header .container .header-left .header-menu .item{
+            padding: 0 50px;
+        }
+
+        .header .container .header-right {
+            display: flex;
+            align-items: center;
+            margin-right: 80px;
+            padding: 0 15px;
+        }
+
+        .header .container .header-right .item{
+            padding: 0 15px;
+        }
+
+        /* menu */
+        .content {
+            display: flex;
+            background-color: gainsboro;
+            box-sizing: border-box;
+            width: 100%;
+            flex-grow: 1;
+        }
+
+        .content .menu {
+            /*position: fixed;*/
+            display: flex;
+            flex-direction: column;
+            box-sizing: border-box;
+            left: 0;
+            bottom: 0;
+            top: 35px;
+            width: 168px;
+            background-color: #333;
+            z-index: 9;
+        }
+
+        .content .menu .item {
+            display: flex;
+            align-items: center;
+            position: relative;
+            height: 40px;
+            box-sizing: border-box;
+        }
+
+        .content .menu .item span{
+            display: block;
+            position: absolute;
+            left: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="main">
+        <div class="header">
+            <div class="container">
+                <div class="header-left">
+                    <div class="header-logo">Logo</div>
+                    <div class="header-menu">
+                        <div class="item">菜单1</div>
+                        <div class="item">菜单2</div>
+                        <div class="item">菜单3</div>
+                        <div class="item">菜单4</div>
+                        <div class="item">菜单5</div>
+                    </div>
+                </div>
+                <div class="header-right">
+                    <div class="item">Admin</div>
+                    <div class="item">设置</div>
+                    <div class="item">
+                        <input type="text" placeholder="查找">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="content">
+            <div class="menu">
+                <div class="item"><span>菜单一</span></div>
+                <div class="item"><span>菜单二</span></div>
+                <div class="item"><span>菜单三</span></div>
+                <div class="item"><span>菜单四</span></div>
+                <div class="item"><span>菜单五</span></div>
+            </div>
+            <div>
+                哈哈哈
+            </div>
+        </div>
+    </div>
+</body>
+</html>
