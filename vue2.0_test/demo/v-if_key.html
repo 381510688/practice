@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../../vue-test/demo/lib/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <div>
+            <template v-if="type">
+                <label>Username</label>
+                <input type="text" placeholder="enter your username">
+            </template>
+            <template v-else="">
+                <label>Email</label>
+                <input type="text" placeholder="enter your email">
+            </template>
+        </div>
+        <div>
+            <template v-if="type">
+                <label>Username</label>
+                <input type="text" placeholder="enter your username" key="username">
+            </template>
+            <template v-else="">
+                <label>Email</label>
+                <input type="text" placeholder="enter your email" key="email">
+            </template>
+        </div>
+
+        <p v-show="false">123</p>
+        <!-- v-show 不支持 <template> 语法  -->
+        <!-- https://cn.vuejs.org/v2/guide/conditional.html?#v-show -->
+        <template v-show="false">
+            <p>456</p>
+        </template>
+
+        <button @click="toggleType">切换</button>
+    </div>
+
+    <script>
+        const app = new Vue({
+            el: '#app',
+            data() {
+                return {
+                    type: true
+                }
+            },
+            methods: {
+                toggleType() {
+                    this.type = !this.type;
+                }
+            }
+        })
+    </script>
+</body>
+</html>

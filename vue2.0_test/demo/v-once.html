@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../../vue-test/demo/lib/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <p>{{Date.now()}}</p>
+        <p>{{message}}</p>
+        <p v-once>{{message}}</p>
+        <button @click="updateMsg">修改message</button>
+    </div>
+
+    <script>
+        const app = new Vue({
+            el: '#app',
+            data() {
+                return {
+                    message: '哈哈'
+                }
+            },
+            methods: {
+                updateMsg() {
+                    this.message = '呵呵';
+                }
+            }
+        })
+    </script>
+</body>
+</html>
