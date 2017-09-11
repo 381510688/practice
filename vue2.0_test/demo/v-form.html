@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../../vue-test/demo/lib/vue.js"></script></head>
+</head>
+<body>
+    <div id="app">
+        <input type="checkbox" v-model="toggle" :true-value="trueVal" :false-value="falseVal">
+
+        <!-- 单选框 -->
+        <input type="radio" v-model="pick" v-bind:value="value">
+        <!-- 列表 -->
+        <select v-model="selected">
+            <!-- 内联对象字面量 -->
+            <option v-bind:value="{ number: 123 }">123</option>
+        </select>
+    </div>
+    <script>
+        const app = new Vue({
+            el: '#app',
+            data() {
+                return {
+                    toggle: '',
+                    trueVal: 'yes',
+                    falseVal: 'no',
+
+                    pick: '',
+                    value: 'yes',
+
+                    selected: '',
+
+                }
+            }
+        })
+
+    </script>
+</body>
+
+</html>
