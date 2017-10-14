@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>定宽</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        div {
+            box-sizing: border-box;
+            border: 1px solid red;
+        }
+
+        .box {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            height: 500px;
+            width: 1000px;
+        }
+
+        .left {
+            flex-basis: 500px;
+            height: 100%;
+            width: 500px;
+            background-color: red;
+        }
+
+        .right {
+            flex-grow: 1;
+            height: 100%;
+            background-color: blue;
+        }
+    </style>
+</head>
+<body>
+    <!--
+        一个页面上两个div左右铺满整个浏览器，要保证左边的div一直为500px，
+        右边的div跟随浏览器大小变化（比如浏览器为1000，右边div为500，浏览器为2000，右边div为1500）
+     -->
+    <div class="box">
+        <div class="left"></div>
+        <div class="right"></div>
+    </div>
+</body>
+</html>
