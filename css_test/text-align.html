@@ -2,11 +2,12 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>文本对齐</title>
+    <title>文本水平对齐</title>
     <style>
         div {
             border: 1px solid red;
             width: 200px;
+            height: 200px;
             margin: 10px;
         }
 
@@ -21,12 +22,25 @@
         div.txt-right {
             text-align: right;
         }
+
+        div.txt-vertical-center {
+            line-height: 200px;
+        }
+
+        div.txt-vertical-center2 {
+            display: table-cell;
+            vertical-align: middle;
+        }
     </style>
 </head>
 <body>
     <!-- 本对齐方式 -->
     <div class="txt-center">你好</div>
     <div class="txt-left">你好</div>
+    <div class="txt-right">你好</div>
+
+    <div class="txt-center txt-vertical-center">你好</div>
+    <div class="txt-left txt-vertical-center2">你好</div>
     <div class="txt-right">你好</div>
 </body>
 </html>
