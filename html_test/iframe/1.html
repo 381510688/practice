@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <form method="POST" action="/accounts/login/" class="well">
+        <input type="hidden" name="csrfmiddlewaretoken" value="usfMsCpcRBhEytUPxYoUYojfQw4MSJKi">
+        <h3>登录以继续使用 Hue</h3>
+
+
+        <div class="input-prepend
+            ">
+            <span class="add-on"><i class="fa fa-user"></i></span>
+            <input autocomplete="off" autofocus="autofocus" id="id_username" maxlength="30" name="username" placeholder="用户名" type="text">
+        </div>
+
+
+
+        <div class="input-prepend
+            ">
+            <span class="add-on"><i class="fa fa-lock"></i></span>
+            <input autocomplete="off" id="id_password" name="password" placeholder="密码" type="password">
+        </div>
+
+
+
+        <hr>
+        <input type="submit" class="btn btn-large btn-primary" value="登录">
+        <input type="hidden" name="next" value="/">
+    </form>
+</body>
+</html>
