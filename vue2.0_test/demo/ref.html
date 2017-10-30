@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>refs问题</title>
+	<script src="https://cdn.bootcss.com/vue/2.4.4/vue.js"></script>
+	<script src="https://cdn.bootcss.com/element-ui/1.4.6/index.js"></script>
+
+	<link href="https://cdn.bootcss.com/element-ui/1.4.6/theme-default/index.css" rel="stylesheet">
+</head>
+<body>
+	<div id="app">
+		<el-table :data="tableData" tyle="width: 100%" @expand="expandColumn">
+			<el-table-column type="expand" ref='col'>
+		      <template scope="props">
+		        <el-form label-position="left" inline class="demo-table-expand" ref='test'>
+		          <el-form-item label="地址">
+		            <span>{{ props.row.detail.address }}</span>
+		          </el-form-item>
+		        </el-form>
+		      </template>
+		    </el-table-column>
+		    <el-table-column
+		      label="姓名"
+		      prop="name">
+		    </el-table-column>
+		</el-table>
+	</div>
+
+	<script type="text/javascript">
+		const app = new Vue({
+			el: '#app',
+			data() {
+				return {
+					tableData: [{
+						id: 123,
+						name: 'lg',
+						detail: {
+							address: 'sd'
+						}
+					}, {
+						id: 456,
+						name: 'ligang',
+						detail: {
+							address: 'hb'
+						}
+					}]
+				}
+			},
+			methods: {
+				expandColumn(row, expanded) {
+					console.log(this.$refs)
+					console.log(this.$refs['col'])
+					console.log(this.$refs['test'])
+					this.$nextTick(() => {
+						console.log(this.$refs['test'])
+					});
+				}
+			}
+		})
+	</script>
+</body>
+</html>
