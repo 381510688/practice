@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <style>
+        html, body {
+            width: 100%;
+            height: 100%;
+        }
+
+        #container {
+            height: 500px;
+            width: 1000px;
+            box-sizing: border-box;
+            border: 1px solid blue;
+
+            display: flex;
+        }
+
+        #container div {
+            height: 300px;
+            width: 100px;
+            box-sizing: border-box;
+            border: 1px solid red;
+
+            font-size: 32px;
+            color: #666;
+            text-align: center;
+            /*文字垂直居中*/
+            line-height: 300px;
+        }
+
+        .a, .c {
+            flex-grow: 1;
+            flex-shrink: 1;
+            /*flex-basis: 100px;*/
+        }
+
+        .b {
+            flex-grow: 3;
+            flex-shrink: 3;
+            /*flex-basis: 200px;*/
+        }
+
+
+
+    </style>
+</head>
+<body>
+    <div id="container">
+        <div class="a">a</div>
+        <div class="b">b</div>
+        <div class="c">c</div>
+    </div>
+
+    <button onclick="clickBtn()">点击</button>
+
+    <script>
+        function clickBtn() {
+          let aDom = document.querySelector('.a'),
+            bDom = document.querySelector('.b'),
+            cDom = document.querySelector('.c');
+
+          aDom.innerHTML = 'a:' + (aDom.clientWidth + 2)
+          bDom.innerHTML = 'b:' + (bDom.clientWidth + 2)
+          cDom.innerHTML = 'c:' + (cDom.clientWidth + 2)
+        }
+    </script>
+</body>
+</html>
