@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <style>
+        div {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        #container, #container-copy {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+
+            width: 302px;
+            height: 302px;
+
+            border: 1px solid red;
+        }
+
+        div.block {
+            width: 100px;
+            height: 100px;
+
+            border: 1px solid #00d6b2;
+
+            background-color: #00b3ee;
+            text-align: center;
+            line-height: calc(100px);
+        }
+    </style>
+</head>
+<body>
+    <div style="display: flex">
+        <div id="container">
+            <div class="block">1</div>
+            <div class="block">2</div>
+            <div class="block">3</div>
+            <div class="block">4</div>
+            <div class="block">5</div>
+            <div class="block">6</div>
+            <div class="block">7</div>
+            <div class="block">8</div>
+            <div class="block">9</div>
+        </div>
+
+        <div style="margin: 10px"></div>
+
+        <div id="container-copy">
+            <div class="block" style="order: 1">1</div>
+            <div class="block" style="order: 4">2</div>
+            <div class="block" style="order: 7">3</div>
+            <div class="block" style="order: 2">4</div>
+            <div class="block" style="order: 5">5</div>
+            <div class="block" style="order: 8">6</div>
+            <div class="block" style="order: 3">7</div>
+            <div class="block" style="order: 6">8</div>
+            <div class="block" style="order: 9">9</div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <style>
+        html, body {
+            width: 500px;
+        }
+
+        div {
+            padding: 0;
+            margin: 0 10px;
+            box-sizing: border-box;
+            border: 1px solid red;
+        }
+
+        #div1 {
+            width: 500px;
+
+            column-count: 2;
+            -moz-column-count: 2;
+            -webkit-column-count: 2;
+
+            /*column-width: 200px;*/
+            /*-moz-column-width: 200px;*/
+            /*-webkit-column-width: 200px;*/
+
+            /*栏间距*/
+            column-gap: 10px;
+            -moz-column-gap: 1-px;
+            -webkit-column-gap: 10px;
+
+            /*间距线*/
+            column-rule: 3px solid red;
+            -moz-column-rule: 3px solid red;
+            -webkit-column-rule: 3px solid red;
+        }
+
+        #div3 {
+            width: 100%;
+            height: 200px;
+            background-color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div id="div1">
+        <p>341343124312423143124231</p>
+        <p>341343124312423143124231</p>
+        <p>afewfew</p>
+    </div>
+    <div id="div3"></div>
+</body>
+</html>
