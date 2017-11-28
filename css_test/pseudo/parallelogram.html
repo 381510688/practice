@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>平行四边形</title>
+
+    <style>
+        button {
+            position: relative;
+
+            width: 130px;
+            height: 50px;
+
+            color: #3a33d1;
+            font-size: 26px;
+            text-transform: capitalize;
+
+            background: transparent;
+            border: 0;
+        }
+
+        button:before {
+            content: "";
+
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            z-index: -1;
+
+            /*transform-origin: left bottom;*/
+            transform: skew(45deg);
+
+            background: #00d6b2;
+        }
+    </style>
+</head>
+<body>
+    <button>click me</button>
+</body>
+</html>

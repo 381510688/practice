@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>微元素清除浮动</title>
+
+    <style>
+        #container {
+            border: 1px solid red;
+        }
+
+        .clearfix:after {
+            display: block;
+            clear: both;
+            content: ''
+        }
+        .clearfix {
+            zoom: 1;
+        }
+
+
+        .a, .b {
+            float: left;
+            width: 100px;
+            height: 100px;
+        }
+
+        .a {
+            background-color: #00d6b2;
+        }
+
+        .b {
+            background-color: #00b3ee;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="container" class="clearfix">
+        <div class="a">1</div>
+        <div class="b">2</div>
+    </div>
+</body>
+</html>
