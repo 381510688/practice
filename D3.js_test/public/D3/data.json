@@ -1,0 +1,17 @@
+{
+  "name":"中国",
+  "number":"2000",
+  "children":[{
+    "name":"浙江" ,
+    "number":"100"
+  }, {
+    "name":"广西" ,
+    "number":"500"
+  }, {
+    "name":"黑龙江",
+    "number":"500"
+  }, {
+    "name":"新疆" ,
+    "number":"500"
+  }]
+}
