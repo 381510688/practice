@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>css 伪类选择器</title>
+
+    <style>
+        #container input[type='number']:out-of-range {
+            color: red;
+        }
+
+        #container input[type='number']:out-of-range + span.error:after {
+            content: '输入数字超出范围';
+            color: red;
+        }
+    </style>
+
+</head>
+<body>
+    <!--input，img，iframe等元素都不能包含其他元素，所以不能通过伪元素插入内容。-->
+    <div id="container">
+        <input type="number" min="0" max="100">
+        <span class="error"></span>
+    </div>
+</body>
+</html>

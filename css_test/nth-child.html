@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>css选择器</title>
+
+    <style>
+
+        div {
+            border: 1px solid red;
+            box-sizing: border-box;
+        }
+
+        #container {
+            display: flex;
+            justify-content: space-around;
+            width: 300px;
+        }
+
+        .content {
+            width: 100%;
+            text-align: center;
+        }
+        .content:first-child {
+            margin-right: 10px;
+        }
+
+        /*偶数 针对所有子元素进行计算 container所有子元素中偶数位上且是h2使用**/
+        .content:first-child h2:nth-child(even) {
+            background-color: yellow;
+        }
+        /*奇数 针对所有子元素进行计算 container所有子元素中奇数位上且是h2使用*/
+        .content:first-child h2:nth-child(odd) {
+            background-color: skyblue;
+        }
+
+        /*偶数 针对同类型的子元素进行计算 所有h2中偶数位上的使用*/
+        .content:last-child h2:nth-of-type(even) {
+            background-color: yellow;
+        }
+        /*奇数 针对同类型的子元素进行计算 所有h2中奇数位上的使用*/
+        .content:last-child h2:nth-of-type(odd) {
+            background-color: skyblue;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="container">
+        <div class="content">
+            <h2>title1</h2><p>内容1</p>
+            <h2>title2</h2><p>内容2</p>
+            <h2>title3</h2><p>内容3</p>
+            <h2>title4</h2><p>内容4</p>
+            <h2>title5</h2><p>内容5</p>
+            <h2>title6</h2><p>内容6</p>
+        </div>
+        <div class="content">
+            <h2>title1</h2><p>内容1</p>
+            <h2>title2</h2><p>内容2</p>
+            <h2>title3</h2><p>内容3</p>
+            <h2>title4</h2><p>内容4</p>
+            <h2>title5</h2><p>内容5</p>
+            <h2>title6</h2><p>内容6</p>
+        </div>
+    </div>
+
+</body>
+</html>

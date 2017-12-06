@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <style>
+        .demo{
+            display: flex;
+        }
+        li{
+            width: 30px;
+            height: 30px;
+            border: 1px solid #ddd;
+            list-style: none;
+        }
+        .active{
+            background: #f60;
+        }
+    </style>
+</head>
+<body>
+<div class="demo">
+    <ul><li v-for="(col,x) in cols" @click="alert(x)" :class="position[0]===x?'active':''"></li></ul>
+    <!--<ul><li v-for="(col,x) in cols" @click="alert(x)" :class="positionX===x?'active':''"></li></ul>-->
+    <button @click="inc()">+1</button>
+</div>
+
+<script>
+  new Vue({
+    el:'.demo',
+    data(){
+      return{
+        cols:[1,2,3,4,5,6,7,8,9,10],
+        position:[0],
+        positionX:0
+      }
+    },
+    methods:{
+      inc(){
+//        this.position[0]++
+        console.log(this.position[0])
+        this.$set(this.position, 0, (this.position[0] + 1))
+        console.log(this.position[0])
+        this.positionX++
+      },
+      alert(x){
+        console.log(this.position[0]===x)//第一段ul中li样式不动，但当点击下一个li时，输出是true
+        console.log(this.positionX===x)//第二段ul中li样式动，点击输出是true
+      }
+    }
+  })
+</script>
+</body>
+</html>
