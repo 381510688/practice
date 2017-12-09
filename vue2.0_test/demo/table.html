@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <!-- 引入样式 -->
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <!-- 引入组件库 -->
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+</head>
+<body>
+    <div id="app">
+        <el-table
+            :data="tableData"
+            border
+            :span-method="objectSpanMethod"
+            style="width: 100%; margin-top: 20px">
+            <el-table-column type="selection" width="55"></el-table-column>
+            <el-table-column prop="manufacturer" label="manufacturer"></el-table-column>
+            <el-table-column prop="numbering" label="numbering"></el-table-column>
+            <el-table-column prop="productName" label="productName"></el-table-column>
+            <el-table-column prop="num" label="num"></el-table-column>
+        </el-table>
+    </div>
+
+    <script>
+        const data = [{
+          id: 1,
+          identification:1,//合并行的标识
+          manufacturer: '奔驰',
+          numbering: 'benchi',
+          productName: 'V40 MY18 车书',
+          num: 1000,
+          unit: '本',
+          price: 2.20,
+          totalCost: 4900,
+          status: 0
+        }, {
+          id: 2,
+          identification:1,//合并行的标识
+          manufacturer: '奔驰',
+          numbering: 'benchi',
+          productName: 'V40 MY18 车书',
+          num: 1200,
+          unit: '册',
+          price: 2.20,
+          totalCost: 4900,
+          status: 1
+        }, {
+          id: 3,
+          identification:2,//合并行的标识
+          manufacturer: '宝马',
+          numbering: 'baoma',
+          productName: 'V40 MY18 车书',
+          num: 1280,
+          unit: '册',
+          price: 2.20,
+          totalCost: 4900,
+          status: 1
+        }, {
+          id: 4,
+          identification:2,//合并行的标识
+          manufacturer: '宝马',
+          numbering: 'baoma',
+          productName: 'V40 MY18 车书',
+          num: 1030,
+          unit: '本',
+          price: 2.20,
+          totalCost: 4900,
+          status: 0
+        }, {
+          id: 3,
+          identification:2,//合并行的标识
+          manufacturer: '宝马',
+          numbering: 'baoma',
+          productName: 'V40 MY18 车书',
+          num: 1280,
+          unit: '册',
+          price: 2.20,
+          totalCost: 4900,
+          status: 1
+        }, {
+          id: 4,
+          identification:2,//合并行的标识
+          manufacturer: '宝马',
+          numbering: 'baoma',
+          productName: 'V40 MY18 车书',
+          num: 1030,
+          unit: '本',
+          price: 2.20,
+          totalCost: 4900,
+          status: 0
+        }]
+
+        new Vue({
+          el: '#app',
+          data() {
+            return {
+              tableData: data,
+              identificationDic: {} // 1: {first: 第一次出现行号，count: 出现次数}
+            }
+          },
+          methods: {
+              objectSpanMethod({ row, column, rowIndex, columnIndex }) {
+                if ([0, 1, 2].includes(columnIndex)) {
+                  let {first, count} = this.identificationDic[row.identification]
+                  if (rowIndex === first) {
+                    return [count, 1]
+                  } else if (rowIndex < first + count) {
+                    return [0, 0]
+                  }
+                }
+              }
+          },
+          created() {
+            this.tableData.forEach((item, index) => {
+              if(this.identificationDic.hasOwnProperty(item.identification)) {
+                this.identificationDic[item.identification].count += 1
+              }else {
+                this.identificationDic[item.identification] = {
+                  count: 1,
+                  first: index
+                }
+              }
+            })
+          }
+        })
+    </script>
+</body>
+</html>
