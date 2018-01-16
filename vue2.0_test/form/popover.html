@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>refs问题</title>
+    <meta charset="utf-8">
+    <script src="https://cdn.bootcss.com/vue/2.4.4/vue.js"></script>
+    <script src="https://cdn.bootcss.com/element-ui/1.4.6/index.js"></script>
+
+    <link href="https://cdn.bootcss.com/element-ui/1.4.6/theme-default/index.css" rel="stylesheet">
+</head>
+<body>
+<div id="app">
+    <el-popover
+            ref="popover"
+            placement="top-start"
+            title="标题"
+            width="200"
+            trigger="hover">
+        {{value}}
+    </el-popover>
+    <input class="fieldStyle" placeholder="选择字段" type="text" name="" @click="selectValue()" v-popover:popover>
+</div>
+
+<script type="text/javascript">
+  const app = new Vue({
+    el: '#app',
+    data() {
+      return {
+        value: ''
+      };
+    },
+    methods: {
+      selectValue() {
+        if (window.getSelection) {//一般浏览器
+          var userSelection = window.getSelection();
+        } else if (document.selection) {
+          //IE浏览器、Opera
+          var userSelection = document.selection.createRange();
+        }
+        this.$nextTick(function () {
+          this.value = userSelection.toString()
+          console.log(this.value)
+        })
+
+      }
+
+    }
+  })
+</script>
+</body>
+</html>
