@@ -14,25 +14,34 @@
             box-sizing: border-box;
         }
 
-        .box {
+        .main {
+            display: flex;
+        }
+
+        .main .main-left {
+            width: 180px;
+            flex-basis: 180px;
+            flex-shrink: 0;
+            border: 0 solid;
+        }
+
+        .main .main-right {
             display: flex;
             height: 500px;
             width: 100%;
+            min-width: 1280px;
             align-items: center;
-            border: 1px solid red;
+            border: 3px solid red;
         }
 
-        .left {
-            /*flex-basis: 500px;*/
-            min-width: 500px;
-
+        .main .main-right .left {
+            min-width: 300px;
             height: 80%;
             background-color: #00d6b2;
-
             position: relative;
         }
 
-        .left .line {
+        .main .main-right .left .line {
             position: absolute;
             top: 0;
             right: 0;
@@ -42,22 +51,27 @@
             cursor: ew-resize;
         }
 
-        .right {
+        .main .main-right .right {
             flex-grow: 1;
             height: 80%;
             background-color: blue;
-
             min-width: 300px;
         }
+
     </style>
 </head>
 <body>
-    <div class="box">
-        <div class="left">
-            <div class="line" onmousedown="dragLine(event)"></div>
+    <div class="main">
+        <div class="main-left"></div>
+
+        <div class="main-right" id="box">
+            <div class="left">
+                <div class="line" onmousedown="dragLine(event)"></div>
+            </div>
+            <div class="right"></div>
         </div>
-        <div class="right"></div>
     </div>
+
 
     <script>
         function dragLine(e) {
@@ -67,25 +81,49 @@
 
           let leftDom = document.querySelector('.left')
           // 返回当前元素左上角相对于 HTMLElement.offsetParent 节点的左边界偏移的像素值
-          let offsetL = leftDom.offsetLeft + document.body.scrollLeft
+          // 这里相当于box的border
+          let offsetL = leftDom.offsetLeft
           let width = leftDom.offsetWidth
 
-          if (posX > (offsetL + width - 10)) {
+          console.log(`e.clientX=${e.clientX}, e.x = ${e.x}, e.offsetX = ${e.offsetX},  e.pageX=${e.pageX}, e.screenX=${e.screenX}`)
+
+          console.log(`clientWidth=${leftDom.clientWidth}, clientLeft = ${leftDom.clientLeft}, scrollWidth = ${leftDom.scrollWidth}, scrollLeft=${leftDom.scrollLeft}`)
+          console.log(`offsetWidth=${leftDom.offsetWidth}, offsetLeft = ${leftDom.offsetLeft}`)
+
+
+          // 当前点击位置 + 滚动条
+          // offsetL .left元素距离浏览器左侧边缘的距离
+          // e.pageX === posX + getScrollLeft()
+          if (e.pageX > (offsetL + width - 10)) {
             isResize = true
           }
-          document.onmousemove = throttle(function (e) {
+
+
+          let container = document.querySelector('.main-right')
+
+          container.onmousemove = throttle(function (e) {
             if (isResize) {
               leftDom.style.width = width + (e.clientX - posX) + 'px'
-              console.log(leftDom.style.width)
             }
           }, 16)
-          document.onmouseup = function () {
-            document.onmousemove = null
-            document.onmouseup = null
-            document.mousedown = null
+          container.onmouseup = function () {
+            container.onmousemove = null
+            container.onmouseup = null
           }
         }
 
+        // 滚动条左侧宽度
+        function getScrollLeft() {
+          var scrollLeft = 0;
+          if(document.documentElement && document.documentElement.scrollLeft) {
+            scrollLeft = document.documentElement.scrollLeft;
+          } else if(document.body) {
+            scrollLeft = document.body.scrollLeft;
+          }
+          return scrollLeft;
+        }
+
+        // 节流
         function throttle(func, wait, options) {
           var context, args, result;
           var timeout = null;
