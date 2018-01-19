@@ -7,6 +7,7 @@
 </template>
 
 <script>
+  import '@/views/es6/a'
   import {name, setName} from './person.js'
 
   export default {

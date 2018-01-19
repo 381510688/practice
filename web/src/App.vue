@@ -5,9 +5,11 @@
 </template>
 
 <script>
-export default {
-  name: 'app'
-}
+  import 'babel-polyfill'
+  import './views/es6/a'
+  export default {
+    name: 'app'
+  }
 </script>
 
 <style>
