@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>动态隐藏侧边栏</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        #app {
+            display: flex;
+            height: 300px;
+            width: 100%;
+        }
+
+        #app .left {
+            position: relative;
+            width: 180px;
+            /*注意这里不要写成100%，否则收起时会有问题*/
+            height: 300px;
+            margin-right: 32px;
+            background-color: #386f6b;
+        }
+
+        #app .left.close {
+            position: absolute;
+            transform: translateX(-100%);
+        }
+
+        #app .left span {
+            position: absolute;
+            right: 0;
+            bottom: 0;
+            transform: translateX(100%);
+            background-color: #00b3ee;
+
+        }
+        #app .right {
+            flex: 1;
+            background-color: #00d6b2;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <div class="left">
+            <span class="opt">收放</span>
+        </div>
+        <div class="right"></div>
+    </div>
+
+    <script>
+        function $(selector) {
+          return document.querySelector(selector)
+        }
+        // 当前状态
+        var currentStatus = 'open'
+        // 操作区域
+        var leftDom = $('#app .left'),
+            rightDom = $('#app .right'),
+            optDom = $('#app .opt')
+
+        optDom.addEventListener('click', function(event) {
+          currentStatus = currentStatus === 'open' ? 'close' : 'open';
+          /* 方式一：问题"收放"操作按钮不能放到left内部，否则会一并隐藏 */
+          // leftDom.style.display = currentStatus === 'open' ? 'block' : 'none';
+
+          /* 方式二：transform实现 */
+          currentStatus === 'open' ? leftDom.classList.remove('close') : leftDom.classList.add('close');
+          rightDom.style['margin-left'] = currentStatus === 'open' ? '0' : '32px';
+
+          /*
+          * 1. 绝对定位，元素相对于position值不为static的第一位祖先元素来定位（脱离文本流）
+          * 2. 绝对定位元素高度、宽度100%，受position值不为static的第一位祖先元素影响
+          * */
+        })
+    </script>
+</body>
+</html>

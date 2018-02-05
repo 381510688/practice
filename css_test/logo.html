@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>background-size</title>
+
+    <style>
+        .logo {
+            background: url(./logo_idss.png) no-repeat left;
+            width: 100px;
+            height: 100px;
+            background-size: 30%;
+            padding-left: 50px;
+            line-height: 100px;
+        }
+
+       .logo-image {
+           display: block;
+           height: 25px;
+           line-height: 25px;
+       }
+
+        .logo-txt {
+            display: block;
+            margin-left: 5px;
+            line-height: 25px;
+            height: 25px;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <div class="logo">标题信息</div>
+    </div>
+    <div style="display: flex;">
+        <image src="./logo_idss.png" class="logo-image"></image>
+        <span class="logo-txt">标题信息</span>
+    </div>
+</body>
+</html>
