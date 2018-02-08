@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>全屏</title>
+</head>
+<body>
+    <button id="toggleBtn">全屏</button>
+
+    <script>
+        var btn = document.querySelector('#toggleBtn');
+        btn.addEventListener('click', function() {
+          var doc = document;
+          var isFullScreen = doc.fullscreenElement
+            || doc.mozFullScreenElement
+            || doc.webkitFullscreenElement
+            || doc.msFullscreenElement;
+
+          /* 这里并不能在IE9下判断是否全部，但是IE9都是通过F11触发，所以不会有问题 */
+          if (isFullScreen) {
+            exitFullScreen();
+            btn.innerHTML = '全屏';
+          } else {
+            requestFullScreen();
+            btn.innerHTML = '退出全屏';
+          }
+        })
+
+        function requestFullScreen() {
+          var docEle = document.documentElement;
+          var reqFullScreenFn = docEle.requestFullscreen
+            || docEle.webkitRequestFullscreen
+            || docEle.mozRequestFullScreen
+            || docEle.msRequestFullscreen;
+
+          if (reqFullScreenFn) {
+            reqFullScreenFn.call(docEle);
+          } else if (window.ActiveXObject) {
+            var ws = new ActiveXObject("WScript.Shell");
+            ws && ws.SendKeys("{F11}");
+          }
+        }
+
+        function exitFullScreen() {
+          var doc = document;
+          var exitFullScreenFn = doc.exitFullscreen
+            || doc.webkitExitFullscreen
+            || doc.mozCancelFullScreen
+            || doc.msExitFullscreen;
+
+          if (exitFullScreenFn) {
+            exitFullScreenFn.call(doc);
+          } else if (window.ActiveXObject) {
+            var ws = new ActiveXObject("WScript.Shell");
+            ws && ws.SendKeys("{F11}");
+          }
+        }
+    </script>
+</body>
+</html>
