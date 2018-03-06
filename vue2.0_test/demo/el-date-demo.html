@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>el-date问题</title>
+    <script src="https://cdn.bootcss.com/vue/2.4.4/vue.js"></script>
+    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+</head>
+<body>
+<div id="app">
+    <div class="block">
+        <span class="demonstration">使用 value-format</span>
+        <div class="demonstration">值：{{ value }}</div>
+        <el-date-picker
+                v-model="value"
+                type="date"
+                placeholder="选择日期"
+                format="yyyy-MM-dd mm:hh:ss"
+                value-format="yyyy-MM-dd mm:hh:ss">
+        </el-date-picker>
+    </div>
+</div>
+
+<script type="text/javascript">
+  const app = new Vue({
+    el: '#app',
+    data() {
+      return {
+        value: '2018-2-28 16:00:00'
+      }
+    },
+    methods: {
+    }
+  })
+</script>
+</body>
+</html>

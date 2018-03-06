@@ -2,9 +2,98 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>$Title$</title>
+    <title>Title</title>
+
+    <!-- 引入样式 -->
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <!-- 引入组件库 -->
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
 </head>
 <body>
-$END$
+    <div id="app">
+        <el-select v-model="value7" placeholder="请选择" @change="value => console.log(value)">
+            <el-option-group
+                    v-for="group in options3"
+                    :key="group.group"
+                    :label="group.group">
+                <el-option
+                        v-for="item in group.options"
+                        :key="item.key"
+                        :label="item.name"
+                        :value="item.key">
+                </el-option>
+            </el-option-group>
+        </el-select>
+    </div>
+
+<script>
+  new Vue({
+    el: '#app',
+    data() {
+      return {
+        options3: [
+          {
+            "group": "命中异常",
+            "options": [
+              {"key":"sprider","name":"命中爬虫特征"},
+              {"key":"uri_scan","name":"URI命中扫描特征"},
+              {"key":"cookies_scan","name":"cookies命中扫描特征"},
+              {"key":"no_ua","name":"UA异常"}
+            ]
+          },
+          {
+            "group": "返回码",
+            "options": [
+              {"key":"r_200","name":"200页面"},
+              {"key":"r_200_o","name":"200类其他页面"},
+              {"key":"r_301","name":"301页面"},
+              {"key":"r_302","name":"302页面"},
+              {"key":"r_304","name":"304页面"},
+              {"key":"r_300_o","name":"300类其他页面"},
+              {"key":"r_400","name":"400页面"},
+              {"key":"r_403","name":"403页面"},
+              {"key":"r_404","name":"404页面"},
+              {"key":"r_499","name":"499页面"},
+              {"key":"r_400_o","name":"400类其他页面"},
+              {"key":"r_500","name":"500页面"},
+              {"key":"r_504","name":"504页面"},
+              {"key":"r_500_o","name":"500类其他页面"}
+            ]
+          },
+          {
+            "group": "请求方法",
+            "options": [
+              {"key":"r_head","name":"HEAD_请求"},
+              {"key":"r_get","name":"GET_请求"},
+              {"key":"r_post","name":"POST_请求"},
+              {"key":"r_delete","name":"DELETE_请求"},
+              {"key":"r_put","name":"PUT_请求"},
+              {"key":"r_options","name":"OPTIONS_请求"},
+              {"key":"r_others","name":"OTHERS_请求"},
+              {"key":"r_o_p","name":"非正常请求占比"}
+            ]
+          },
+          {
+            "group": "访问量",
+            "options": [
+              {"key":"pages","name":"访问页面总量"},
+              {"key":"uri_uniq","name":"访问URI数量"},
+              {"key":"uri_avg","name":"URI平均访问量"},
+              {"key":"uri_max","name":"访问量最多URI"},
+              {"key":"uri_max_p","name":"访问量最多URI占比"},
+              {"key":"ua_tol","name":"UA数量"},
+              {"key":"static_pages","name":"静态页面"},
+              {"key":"dyn_pages","name":"动态页面"},
+              {"key":"dyn_p","name":"动态页面占比"},
+              {"key":"cookies_max","name":"cookies最大长度"}
+            ]
+          }
+        ],
+        value7: ''
+      }
+    }
+  })
+</script>
 </body>
 </html>
