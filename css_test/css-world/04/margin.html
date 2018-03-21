@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>margin test</title>
+	<style type="text/css">
+		div {
+			box-sizing: border-box;
+		}
+		.container {
+			height: 500px;
+			width: 1000px;
+			border: 1px solid red;
+		}
+		.content {
+			width: 100px;
+			height: 100px;
+			border: 1px solid red;
+			/* 只作用于水平方向 */
+			margin: auto;
+			/* 包含块元素的width的25% */
+			margin-top: 25%;
+		}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<div class="content"></div>
+	</div>
+</body>
+</html>
