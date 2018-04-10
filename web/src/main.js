@@ -7,9 +7,14 @@ import ElementUI from 'element-ui'
 
 import 'element-ui/lib/theme-chalk/index.css'
 
+import CommonComponent from '@/components'
+import request from '@/plugin/request.js'
+
 Vue.config.productionTip = false
 
 Vue.use(ElementUI)
+Vue.use(CommonComponent)
+Vue.use(request, {isReqInterceptor: true}) // 请求插件
 
 /* eslint-disable no-new */
 new Vue({

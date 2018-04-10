@@ -1,0 +1,22 @@
+{
+  "status": "success",
+  "content": [
+    { "name": "event_category_technique", "key": "event_category_technique" },
+    { "name": "设备IP", "key": "equ_ip" },
+    { "name": "日志发生时间", "key": "create_time" },
+    { "name": "日志名称", "key": "event_name" },
+    { "name": "日志严重级别", "key": "priority" },
+    { "name": "威胁等级", "key": "severity" },
+    { "name": "源IP", "key": "src_ip" },
+    { "name": "源端口", "key": "src_port" },
+    { "name": "协议", "key": "protocol" },
+    { "name": "目的IP所属省", "key": "dst_province" },
+    { "name": "目的IP所属市", "key": "dst_city" },
+    { "name": "目的IP资产价值", "key": "asset_value" },
+    { "name": "目的IP所属部门", "key": "dst_org" },
+    { "name": "目的端口", "key": "dst_port" },
+    { "name": "日志ID", "key": "event_id" },
+    { "name": "日志来源", "key": "event_source" },
+    { "name": "动作", "key": "action" }
+  ]
+}

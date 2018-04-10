@@ -7,6 +7,8 @@
       <C ref="c" v-if="item.name === 'c'">3</C>
     </div>
     <button @click="getRefs">获取</button>
+
+    <iframe src="http://localhost:9090/vue/ie" frameborder="0" name="myframe"></iframe>
   </div>
 </template>
 
@@ -37,6 +39,13 @@
       A,
       B,
       C
+    },
+    mounted() {
+      window.bigViewIsShow = true
+      window.name = 'xxx'
+      window.fullClose = function() {
+        console.log('fullClose')
+      }
     }
   }
 </script>

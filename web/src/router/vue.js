@@ -8,6 +8,8 @@ import refs from '@/views/vue/refs.vue'
 import childCompValidate from '@/views/vue/childCompValidate.vue'
 import uploadFileList from '@/views/vue/upload-filelist.vue'
 
+import ie from '@/views/vue/ie.vue'
+
 export default {
   path: '/vue',
   component: empty,
@@ -20,5 +22,8 @@ export default {
   }, {
     path: 'upload-filelist',
     component: uploadFileList
+  }, {
+    path: 'ie',
+    component: ie
   }]
 }

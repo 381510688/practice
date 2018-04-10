@@ -6,7 +6,6 @@
 
 <script>
   import 'babel-polyfill'
-  import './views/es6/a'
   export default {
     name: 'app'
   }
