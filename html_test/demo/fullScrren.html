@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script>
+      window.bigViewIsShow = true
+      window.fullClose = function() {
+        console.log('fullClose')
+      }
+    </script>
+    </body>
+</head>
+<body>
+<iframe src="http://localhost:9090/vue/ie" frameborder="0" name="myframe"></iframe>
+
+<script>
+  frames['myframe'].postMessage(JSON.stringify({status: '建立连接'}), '*');
+  window.addEventListener('message', function(event) {
+    console.log('fullScrren', event.data)
+    if (event.source === frames['myframe']) {
+      fullClose()
+    }
+  }, false);
+
+</script>
+
+</html>

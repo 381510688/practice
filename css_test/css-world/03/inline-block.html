@@ -2,9 +2,32 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>$Title$</title>
+    <title>inline-block</title>
+    <style>
+
+        .box {
+            padding: 10px;
+            background-color: red;
+            text-align: center;
+        }
+        .content {
+            display: inline-block;
+            text-align: left;
+        }
+    </style>
 </head>
 <body>
-$END$
+    <div style="background-color: #00b3ee;width: 200px;margin: auto;">
+        <div class="box">
+            <div class="content">123</div>
+        </div>
+    </div>
+
+    <div>
+        <span>aaaaa</span>
+        <span>bbbbb</span>
+        <br>
+        <p>aaaaa</p>
+    </div>
 </body>
 </html>
