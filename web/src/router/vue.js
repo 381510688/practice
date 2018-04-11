@@ -9,6 +9,7 @@ import childCompValidate from '@/views/vue/childCompValidate.vue'
 import uploadFileList from '@/views/vue/upload-filelist.vue'
 
 import ie from '@/views/vue/ie.vue'
+import tree from '@/views/vue/treeDemo.vue'
 
 export default {
   path: '/vue',
@@ -25,5 +26,8 @@ export default {
   }, {
     path: 'ie',
     component: ie
+  }, {
+    path: 'tree',
+    component: tree
   }]
 }

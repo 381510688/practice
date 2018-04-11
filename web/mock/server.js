@@ -14,7 +14,7 @@ app.use(bodyParser())
 const router = Router()
 app.use(router['routes']())
 
-app.use((ctx) => {
+app.use(async (ctx) => {
   let url = ctx.request.url
 
   let filePath = path.join(__dirname, ctx.request.path.replace('/api/', '').replace('/query', '').replace('/delete', '') + '.json')
@@ -49,6 +49,11 @@ app.use((ctx) => {
   }
   // response.data=??;
   ctx.set('Content-Type', 'application/json')
+  await new Promise(resolve => {
+    setTimeout(() => {
+      resolve('')
+    }, 3000)
+  })
   ctx.body = data
 })
 app.listen(3000)

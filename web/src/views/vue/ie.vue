@@ -8,8 +8,8 @@
     export default {
       data () {
         return {
-            time: '',
-            event: null
+          time: '',
+          event: null,
         }
       },
       methods: {
@@ -33,8 +33,20 @@
         })
 
         this.$request({
-          url: 'http://localhost:3000/api/test'
+          url: '/api/test'
+        }, {
+          isCancel: true
         }).then(data => {console.log(data)})
+        setTimeout(() => {
+          this.$requestSource('/api/test');
+        }, 1000)
+
+
+        this.$request({
+          url: '/api/tree'
+        }, {
+          isCancel: true
+        }).then(data => console.log(data))
       },
       destroyed() {
         // 移除监听
