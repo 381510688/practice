@@ -6,6 +6,8 @@
                 lazy
                 show-checkbox>
         </el-tree>
+        <span>{{ary}}</span>
+        <el-button @click="click">获取数组数据</el-button>
     </div>
 </template>
 
@@ -16,16 +18,22 @@
           props: {
             label: 'name',
             children: 'children'
-          }
+          },
+          ary: {}
         }
       },
       methods: {
         loadNode (node, resolve) {
+          console.log(node)
           this.$request({
             url: '/api/tree'
           }).then(data => {
             return resolve(data)
           })
+        },
+        click() {
+          this.$set(this.ary, 'children', [])
+          this.ary.children.push({name: 123})
         }
       },
       created() {
