@@ -2,9 +2,33 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>$Title$</title>
+    <title>magint塌陷</title>
+    <style>
+        .wrapper{
+            width:200px;
+            height:200px;
+            background-color:red;
+            margin-top:100px;
+
+            /*border: 1px solid;*/
+
+            /*BFC*/
+            /*overflow:hidden;*/
+            /*display:inline-block;*/
+            /*position:absolute;*/
+            /*float:left;*/
+        }
+        .content{
+            width:100px;
+            height:100px;
+            background-color:green;
+            margin-top:150px;
+        }
+    </style>
 </head>
 <body>
-$END$
+    <div class="wrapper">
+        <div class="content"></div>
+    </div>
 </body>
 </html>

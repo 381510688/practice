@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>懒加载</title>
+
+    <style>
+        div {
+            border: 1px solid red;
+            height: 300px;
+            width: 300px;
+        }
+    </style>
+</head>
+<body>
+    <div class="content">1</div>
+    <div class="content">2</div>
+    <div class="content">3</div>
+    <div class="content">4</div>
+    <div class="content">5</div>
+
+    <script>
+        function $(selector) {
+          return Array.from(document.querySelectorAll(selector))
+        }
+
+        var io = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            let {target, intersectionRatio} = entry
+            if (intersectionRatio) {
+              target.innerHTML = +new Date()
+              io.unobserve(target)
+            }
+          })
+        }, {
+          threshold: [0, 0.25, 0.5, 0.75, 1]
+        })
+        // 监听
+        $('.content').forEach(element => {
+          io.observe(element)
+        })
+
+    </script>
+</body>
+</html>

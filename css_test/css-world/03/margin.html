@@ -2,9 +2,43 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>$Title$</title>
+    <title>margin</title>
+
+    <style>
+        html, body {
+            height: 100%;
+        }
+
+        div {
+            box-sizing: border-box;
+        }
+
+        .container {
+            margin-top: 50px;
+            height: 50%;
+            border: 1px solid blue;
+            background-color: red;
+
+            border-top: 50px solid transparent;
+        }
+
+        .content {
+            height: 50%;
+            width: 100%;
+            /*border: 1px solid red;*/
+        }
+
+        .first {
+            /*margin-top: 100px;*/
+            /*padding-top: 50px;*/
+        }
+    </style>
 </head>
 <body>
-$END$
+
+    <div class="container">
+        <div class="content first" style="background-color: beige">1</div>
+        <div class="content" style="background-color: goldenrod">2</div>
+    </div>
 </body>
 </html>

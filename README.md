@@ -6,5 +6,6 @@
 |-------|---|
 |抓取页面|web/src/views/puppeteer|
 |axios封装|web/src/plugin/request.js|
+|$attrs&$linsteners|web/src/views/vue/attrs.vue|
 
 
