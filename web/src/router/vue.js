@@ -10,6 +10,8 @@ import uploadFileList from '@/views/vue/upload-filelist.vue'
 
 import ie from '@/views/vue/ie.vue'
 import tree from '@/views/vue/treeDemo.vue'
+import tree2 from '@/views/vue/treeDemo2.vue'
+import attrs from '@/views/vue/attrs.vue'
 
 export default {
   path: '/vue',
@@ -29,5 +31,11 @@ export default {
   }, {
     path: 'tree',
     component: tree
+  }, {
+    path: 'tree2',
+    component: tree2
+  },  {
+    path: 'attrs',
+    component: attrs
   }]
 }

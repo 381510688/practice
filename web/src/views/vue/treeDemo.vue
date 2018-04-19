@@ -8,6 +8,8 @@
         </el-tree>
         <span>{{ary}}</span>
         <el-button @click="click">获取数组数据</el-button>
+
+
     </div>
 </template>
 
@@ -24,12 +26,20 @@
       },
       methods: {
         loadNode (node, resolve) {
-          console.log(node)
-          this.$request({
-            url: '/api/tree'
-          }).then(data => {
-            return resolve(data)
-          })
+          if(node.level === 0) {
+            this.$request({
+              url: '/api/tree'
+            }).then(data => {
+              return resolve(data)
+            })
+          } else {
+            this.$request({
+              url: '/api/tree'
+            }).then(data => {
+              return resolve([])
+            })
+          }
+
         },
         click() {
           this.$set(this.ary, 'children', [])
