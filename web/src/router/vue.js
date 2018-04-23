@@ -12,6 +12,7 @@ import ie from '@/views/vue/ie.vue'
 import tree from '@/views/vue/treeDemo.vue'
 import tree2 from '@/views/vue/treeDemo2.vue'
 import attrs from '@/views/vue/attrs.vue'
+import table from '@/views/vue/table.vue'
 
 export default {
   path: '/vue',
@@ -37,5 +38,8 @@ export default {
   },  {
     path: 'attrs',
     component: attrs
+  }, {
+    path: 'table',
+    component: table
   }]
 }
