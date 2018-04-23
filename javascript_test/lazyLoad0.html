@@ -27,11 +27,11 @@
     </style>
 </head>
 <body>
-    <div class="content"><span>1</span></div>
-    <div class="content"><span>2</span></div>
-    <div class="content"><span>3</span></div>
-    <div class="content"><span>4</span></div>
-    <div class="content"><span>5</span></div>
+    <div class="content" data-src=""><span>1</span></div>
+    <div class="content" data-src=""><span>2</span></div>
+    <div class="content" data-src=""><span>3</span></div>
+    <div class="content" data-src=""><span>4</span></div>
+    <div class="content" data-src=""><span>5</span></div>
 
     <script>
 
@@ -41,25 +41,30 @@
           return Array.from(document.querySelectorAll(selector))
         }
 
-        var io = new IntersectionObserver((entries) => {
-          entries.forEach(entry => {
-            let {target, intersectionRatio} = entry
-            if (intersectionRatio) {
-              let index = target.querySelector('span').innerHTML
+        const viewHeight = document.documentElement.clientHeight // 可视区域的高度
+
+        function lazyload () {
+          // 获取所有要进行懒加载的图片
+          $('.content').forEach(item => {
+            let rect, imgSrc
+            let index = item.querySelector('span').innerHTML
+            // 资源已加载，避免重复加载
+            if (item.dataset.src !== '') return
+            rect = item.getBoundingClientRect()
+            // 图片一进入可视区，动态加载
+            if (rect.bottom >= 0 && rect.top < viewHeight) {
+              imgSrc = `${imageAddress}${index}.jpg`
+              item.dataset.src = imgSrc
               let img = document.createElement('img')
-              img.src = `${imageAddress}${index}.jpg`
-              target.appendChild(img)
-//              target.innerHTML = +new Date()
-              io.unobserve(target)
+              img.src = imgSrc
+              item.appendChild(img)
             }
           })
-        }, {
-          threshold: [0]
-        })
-        // 监听
-        $('.content').forEach(element => {
-          io.observe(element)
-        })
+        }
+        // 首屏要人为的调用，否则刚进入页面不显示图片
+        lazyload()
+
+        document.addEventListener('scroll', lazyload)
 
     </script>
 </body>

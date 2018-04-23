@@ -8,58 +8,61 @@
     <title>懒加载</title>
 
     <style>
-        .content {
-            position: relative;
-            border: 1px solid red;
-            height: 300px;
-            width: 300px;
-            margin-bottom: 10px;
-        }
 
-        .content span {
-            position: absolute;
-        }
-
-        .content img{
+        html, body {
             width: 100%;
             height: 100%;
+        }
+
+        .header {
+            position: fixed;
+            top: 5px;
+            left: 50%;
+            transform: translate(-50%);
+            box-sizing: border-box;
+            border: 1px solid red;
+        }
+
+        .placeholderH {
+           height: 1000px;
+           border: 1px solid;
+        }
+
+        .target {
+            width: 300px;
+            height: 300px;
+            background-color: #00b3ee;
         }
     </style>
 </head>
 <body>
-    <div class="content"><span>1</span></div>
-    <div class="content"><span>2</span></div>
-    <div class="content"><span>3</span></div>
-    <div class="content"><span>4</span></div>
-    <div class="content"><span>5</span></div>
+    <header class="header">0%</header>
+    <div class="placeholderH">12</div>
+    <div class="target">123</div>
 
     <script>
 
-        const imageAddress = '../images/'
 
         function $(selector) {
-          return Array.from(document.querySelectorAll(selector))
+          let domList = Array.from(document.querySelectorAll(selector))
+          if (domList.length > 1) {
+            return domList
+          }
+          return domList[0]
         }
+
 
         var io = new IntersectionObserver((entries) => {
           entries.forEach(entry => {
             let {target, intersectionRatio} = entry
-            if (intersectionRatio) {
-              let index = target.querySelector('span').innerHTML
-              let img = document.createElement('img')
-              img.src = `${imageAddress}${index}.jpg`
-              target.appendChild(img)
-//              target.innerHTML = +new Date()
-              io.unobserve(target)
-            }
+            console.log(target.tagName, intersectionRatio)
+            $('.header').innerHTML = intersectionRatio
           })
         }, {
           threshold: [0, 0.25, 0.5, 0.75, 1]
         })
         // 监听
-        $('.content').forEach(element => {
-          io.observe(element)
-        })
+        io.observe($('.target'))
 
     </script>
 </body>
