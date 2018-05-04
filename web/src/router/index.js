@@ -3,6 +3,7 @@ import Router from 'vue-router'
 
 import es6 from '@/router/es6.js'
 import vue from '@/router/vue.js'
+import echarts from '@/router/echarts.js'
 
 import index from '@/views/index'
 
@@ -15,7 +16,8 @@ const routes = [
     component: index
   },
   es6,
-  vue
+  vue,
+  echarts
 ]
 
 export default new Router({
