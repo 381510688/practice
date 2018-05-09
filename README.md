@@ -10,3 +10,5 @@
 |懒加载|javascript_test/lazyLoad.html|
 |条目无限滚动|html_test/scrollTop.html|
 |html2pdf|web/src/plugin/html2pdf.js|
+|mock.js|web/mock/test/line.js|
+|mock数据生成器|html_test/CodeMirror.html|
