@@ -17,7 +17,7 @@ export default {
      * 发送请求前拦截
      */
     isReqInterceptor && axios.interceptors.request.use(req => {
-      req.headers.Authorization = 'token'
+      req.headers.Authorization = window.localStorage.Authorization
       return req;
     }, error => {
       return Promise.reject(error);

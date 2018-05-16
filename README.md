@@ -12,3 +12,4 @@
 |html2pdf|web/src/plugin/html2pdf.js|
 |mock.js|web/mock/test/line.js|
 |mock数据生成器|html_test/CodeMirror.html|
+|git-hooks|git-hooks/verify-commit-msg.js|

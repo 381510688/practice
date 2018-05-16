@@ -19,11 +19,13 @@ app.use(async (ctx) => {
   let filePath = path.join(__dirname, ctx.request.path.replace('/api/', '').replace('/query', '').replace('/delete', ''))
   let data
 
-  if (fs.existsSync(filePath)) {
+  console.log(filePath, fs.existsSync(filePath))
+  if (fs.existsSync(filePath  + '.json')) {
     data = jsonfile.readFileSync(filePath + '.json')
   } else {
     data = require(filePath).data
   }
+
   ctx.set('Content-Type', 'application/json')
   ctx.body = data
 })
