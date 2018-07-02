@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>宽度分离</title>
+	<style type="text/css">
+		textarea {
+			background-color: red;
+			border: 1px solid red;
+		}
+
+		.t1 {
+			width: 100%;
+			display: block;
+		}
+
+		.t2 {
+			width: 100%;
+			box-sizing: border-box;
+		}
+	</style>
+</head>
+<body>
+	<textarea class="t1">
+		
+	</textarea>
+	<textarea class="t2">
+		
+	</textarea>
+
+
+	<div style="height: 100px; padding: 10px;">
+		<div style="height: 100%;"></div>
+	</div>
+
+	<div style="height: 100px; position: relative; padding: 10px;">
+		<div style="height: 100%; position: absolute;"></div>
+	</div>
+</body>
+</html>
