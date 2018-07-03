@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <style>
+      .box {
+          width: 100px;
+          height: 100px;
+          border: 1px solid red;
+          text-align: center;
+      }
+      .content {
+          display: inline-block;
+          text-align: left;
+      }
+
+      .ao, .to {
+        display: inline-block;
+        width: 0;
+        transform: rotate(-90deg);
+        margin: 45px;
+      }
+      .ao:before {
+        content: 'love 我 love';
+        outline: 1px solid red;
+        color: #fff;
+      }
+      .to:after {
+        content: '我 love 你';
+        outline: 1px solid red;
+        color: #fff;
+      }
+
+    </style>
+</head>
+<body>
+    <div style="width: 100px; border: 1px solid red;">
+        <div>afaewfaewfwwaefwaefafeaefaefeafwaeffaeaeafewfaefae</div>
+        <div style="white-space: nowrap;">afaewfaewfwwaefwaefafeaefaefeafwaeffaeaeafewfaefae</div>
+        <span>afaewfaewfwwaefwaefafeaefaefeafwaeffaeaeafewfaefae</span>
+        <span style="white-space: nowrap;">afaewfaewfwwaefwaefafeaefaefeafwaeffaeaeafewfaefae</span>
+
+        <div>纸上得来终觉浅，绝知此事要躬行</div>
+        <div style="white-space: nowrap;">纸上得来终觉浅，绝知此事要躬行</div>
+        <span>纸上得来终觉浅，绝知此事要躬行</span>
+        <span style="white-space: nowrap;">纸上得来终觉浅，绝知此事要躬行</span>
+    </div>
+
+    <div style="position: relative; width: 100px">
+        <div style="position: absolute;top:0;bottom: 0;right: 0; left: 0;"></div>
+    </div>
+
+    <br><br><br>
+    <div class="box">
+        <div class="content">
+            纸上得来终觉浅，绝知此事要躬行
+        </div>
+    </div>
+
+    <br>
+    <div class="box">
+        <span style="text-align: left">纸上得来终觉浅，绝知此事要躬行</span>
+    </div>
+
+    <br><br>
+    <div class="ao"></div>
+    <div class="to"></div>
+</body>
+</html>

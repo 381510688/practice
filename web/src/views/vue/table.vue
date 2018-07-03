@@ -34,6 +34,42 @@
       name: 'table',
       data() {
         return {
+          data: [
+            {
+              "name": "漏洞数",
+              "key": "bugs",
+              "value": [
+                {
+                  "name": "无线事业群",
+                  "key": "无线事业群",
+                  "value": 123
+                },
+                {
+                  "name": "消费金融事业群",
+                  "key": "消费金融事业群",
+                  "value": 123
+                }
+              ]
+            },
+            {
+              "name": "已修复数",
+              "key": "fixed",
+              "value": [
+                {
+                  "name": "无线事业群",
+                  "key": "无线事业群",
+                  "value": 123
+                },
+                {
+                  "name": "消费金融事业群",
+                  "key": "消费金融事业群",
+                  "value": 123
+                }
+              ]
+            }
+          ],
+
+
           tableData3: [{
             date: '2016-05-03',
             name: '王小虎',

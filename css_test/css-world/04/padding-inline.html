@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .icon-menu {
+            height: 10px;
+            width: 100px;
+            background-color: #333;
+            background-clip: content-box;
+
+            padding: 30px 0;
+
+            border-top: 10px solid #333;
+            border-bottom: 10px solid #333;
+        }
+
+        .icon-menu2 {
+            height: 10px;
+            width: 100px;
+            background-color: #333;
+            background-clip: content-box;
+            padding: 40px 0;
+            position: relative;
+        }
+        .icon-menu2:before, .icon-menu2:after {
+            position: absolute;
+            content: '';
+            height: 10px;
+            width: 100px;
+            background-color: #333;
+            display: block;
+        }
+        .icon-menu2:before {
+            top: 0;
+        }
+        .icon-menu2:after {
+            bottom: 0
+        }
+    </style>
+</head>
+<body style="color: blue;">
+    <div>123</div>
+    <div>123</div>
+
+    <div style="width: 20px; height: 20px;">
+        <span style="background-color: red; padding: 20px;">123</span>
+    </div>
+    <span>123</span>
+
+    <br><br>
+    <div class="icon-menu"></div>
+    <br><br>
+    <div class="icon-menu2"></div>
+</body>
+</html>

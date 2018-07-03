@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="demo/lib/vue.js" charset="UTF-8"></script>
+</head>
+<body>
+  <div id="app">
+    <base-component></base-component>
+    <my-base></my-base>
+  </div>
+
+<script>
+  const BaseComponent = {
+    name: 'baseComponent',
+    template: `<div>{{message}}</div>`,
+    data () {
+      return {
+        message: 'My is BaseComponent!'
+      }
+    },
+    created () {
+      console.log(`BaseComponent ${this.message}`)
+    }
+  }
+
+  const base = Vue.extend(BaseComponent)
+  Vue.component('myBase', BaseComponent)
+
+
+  //  const VueExtendComponent = Vue.extend(BaseComponent)
+//  // 创建 Profile 实例，并挂载到一个元素上。
+//  new VueExtendComponent().$mount('#app')
+
+
+//  Vue.mixin({
+//    created () {
+//      var myOption = this.$options.myOption
+//      if (myOption) {
+//        console.log(myOption)
+//      }
+//    }
+//  })
+//  new Vue({
+//    myOption: 'hello!'
+//  })
+
+
+//  const vm = new Vue({
+//    el: '#app',
+//    extends: BaseComponent,
+//    data () {
+//      return {
+//        message: 'My is Mixins!'
+//      }
+//    },
+//    created: function () {
+//      console.log(`mixins ${this.message}`)
+//    }
+//  })
+
+
+
+  Vue.mixin({
+    created () {
+      console.log('Vue.mixin')
+    }
+  })
+//  Vue.extend({
+//    created () {
+//      console.log('Vue.extend')
+//    }
+//  })
+
+  Vue.config.optionMergeStrategies.myOption = function (toVal, fromVal) {
+     return toVal
+  }
+
+  let myMixin = {
+    data () {
+      return {
+        message: 'local mixin'
+      }
+    },
+    created () {
+      console.log('local mixin')
+    }
+  }
+  let myExtend = {
+    data () {
+      return {
+        message: 'local extend'
+      }
+    },
+    created () {
+      console.log('local extend')
+    }
+  }
+  new Vue({
+    el: '#app',
+    extends: myExtend,
+    mixins: [myMixin],
+//    template: `<div>{{message}}</div>`,
+    created () {
+      console.log('current Vue instance')
+    },
+    components: {
+      baseComponent: base
+    }
+  })
+</script>
+</body>
+</html>

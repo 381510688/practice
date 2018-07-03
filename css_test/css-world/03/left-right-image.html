@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+
+  <style>
+    .box {
+      position: relative;
+      display: inline-block;
+    }
+
+    .pre, .next {
+      position: absolute;
+      top: 0;
+      height: 100%;
+      width: 50%;
+      opacity: 0.5;
+    }
+    .pre {
+      background-color: #cd0000;
+      left: 0;
+    }
+    .next {
+      background-color: #34538b;
+      right: 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="box">
+    <a href=":;" class="pre">上一张</a>
+    <a href=":;" class="next">下一张</a>
+    <img src="../../../images/1.jpg" alt="风景">
+  </div>
+</body>
+</html>

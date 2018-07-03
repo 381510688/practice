@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="demo/lib/vue.js" charset="UTF-8"></script>
+</head>
+<body>
+  <div id="app">
+    <base-component></base-component>
+    <my-base></my-base>
+  </div>
+
+<script>
+  console.log(Vue.config.optionMergeStrategies)
+
+  const BaseComponent = {
+    name: 'baseComponent',
+    template: `<div>{{message}}</div>`,
+    data () {
+      return {
+        message: 'My is BaseComponent!'
+      }
+    },
+    created () {
+      console.log(`BaseComponent ${this.message}`)
+    }
+  }
+
+  const base = Vue.extend(BaseComponent)
+
+  Vue.component('myBase', BaseComponent)
+  new Vue({
+    el: '#app',
+    components: {
+      baseComponent: base
+    }
+  })
+
+
+
+
+
+
+</script>
+</body>
+</html>

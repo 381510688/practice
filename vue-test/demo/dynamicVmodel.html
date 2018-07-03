@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="lib/vue.js"></script>
+</head>
+<body>
+  <div id="app">
+      <button @click="parsing">解析</button>
+      <div v-for="(item, key) in paramsObj" :key="key">
+          <label :for="key">{{item.label}}</label>
+          <input type="text" :id="key" v-model="item.value">
+          <input type="text" v-model="item.computed">
+          <button @click="computedRes(key)">计算</button>
+      </div>
+  </div>
+
+  <script>
+    var app = new Vue({
+      el: '#app',
+      data() {
+        return {
+          paramsObj: {},
+          computedObj: {
+            '${1}': '${2}+${3}+${4}'
+          }
+        }
+      },
+      methods: {
+        parsing() {
+          // 解析获取到
+          let paramsAry = ['${1}', '${2}', '${3}', '${4}']
+          for(let item of paramsAry) {
+            this.$set(this.paramsObj, item, {label: item, value: 0, computed: (this.computedObj[item] || item)})
+          }
+        },
+        // 获取计算结果
+        computedRes(key) {
+          let expression = this.paramsObj[key].computed
+          let resultExp = expression
+          for (let item of expression.match(/\${\d+}/g)) {
+            resultExp = resultExp.replace(item, this.paramsObj[item].value)
+          }
+          this.paramsObj[key].value = (new Function(`return ${resultExp}`))() // eval(resultExp)
+        }
+      }
+    });
+  </script>
+</body>
+</html>

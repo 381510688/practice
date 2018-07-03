@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>高度收起</title>
+  <style>
+    .element {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 2s;
+    }
+    :checked ~ .element {
+      max-height: 66px;
+    }
+  </style>
+</head>
+<body>
+  <input id="check" type="checkbox">
+  <p>纸上得来终觉浅，绝知此事要躬行...</p>
+  <div class="element">
+    <p>come on!</p>
+  </div>
+  <label for="check" class="check-in">更多↓</label>
+  <label for="check" class="check-out">收起↑</label>
+</body>
+</html>
