@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>vertical</title>
+  <style>
+    .box {
+      line-height: 32px;
+    }
+    .box > span {
+      font-size: 24px;
+    }
+
+    .box1 {line-height: 20px;}
+    .box1 span {line-height: 36px;}
+    .box2 {line-height: 36px;}
+    .box2 span {line-height: 20px;}
+
+    .ib-baseline {
+      display: inline-block;
+      height: 100px;
+      width: 100px;
+      border: 1px solid red;
+    }
+  </style>
+</head>
+<body>
+  <div class="box">
+    <a>x</a><span>你好x</span>
+  </div>
+
+
+  <span>x</span>
+  <span style="font-size: 24px;">你好x</span>
+
+  <div class="box1"><span>span</span></div>
+  <div class="box2"><span>span</span></div>
+
+  <div class="ib-baseline"></div>
+  <div class="ib-baseline">x-baseline</div>
+</body>
+</html>
