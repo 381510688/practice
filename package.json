@@ -8,8 +8,7 @@
     "changelog": "./node_modules/.bin/conventional-changelog -p angular -i CHANGELOG.md -s -r 0"
   },
   "gitHooks": {
-    "commit-msg": "node git-hooks/verify-commit-msg.js",
-    "post-receive": "node git-hooks/sendEmail-post-receive.js"
+    "commit-msg": "node git-hooks/sendEmail-post-receive.js"
   },
   "repository": {
     "type": "git",
