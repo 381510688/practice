@@ -1,7 +1,7 @@
 /**
  * Created by ligang on 17/1/4.
  */
-require('babel-core/register');
+// require('babel-core/register');
 var Koa = require('koa');
 const app = new Koa();
 

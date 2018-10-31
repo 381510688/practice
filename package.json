@@ -8,7 +8,7 @@
     "changelog": "./node_modules/.bin/conventional-changelog -p angular -i CHANGELOG.md -s -r 0"
   },
   "gitHooks": {
-    "post-update": "node git-hooks/sendEmail-post-receive.js"
+    "commit-msg": "node git-hooks/verify-commit-msg.js"
   },
   "repository": {
     "type": "git",
@@ -47,7 +47,7 @@
     "jquery": "^3.1.0",
     "json-loader": "^0.5.4",
     "jsonfile": "^2.4.0",
-    "koa": "^2.0.0",
+    "koa": "^2.6.1",
     "load-grunt-tasks": "^3.5.2",
     "node-cli": "^0.1.0",
     "nodemailer": "^4.6.8",

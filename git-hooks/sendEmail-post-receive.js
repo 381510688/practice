@@ -1,9 +1,9 @@
 /**
  * Created by ligang on 2018/10/24.
  */
-var nodemailer  = require('nodemailer');
+const nodemailer  = require('nodemailer');
 
-var mailTransport = nodemailer.createTransport({
+const mailTransport = nodemailer.createTransport({
   host : 'smtp.qq.com',
   secureConnection: true, // 使用SSL方式（安全方式，防止被窃取信息）
   auth : {
@@ -12,7 +12,7 @@ var mailTransport = nodemailer.createTransport({
   },
 });
 
-var options = {
+const options = {
   from: '李刚<381510688@qq.com>',
   to: '381510688@qq.com,ligang@idss-cn.com',
   // cc: ''  //抄送
