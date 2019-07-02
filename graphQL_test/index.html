@@ -1,0 +1,24 @@
+<html>
+<header>
+    <title>GraphQL test</title>
+</header>
+
+<body>
+    <div>test</div>
+    <div id="content"></div>
+    <script>
+        fetch('http://localhost:9999/graphql?', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ query: '{ user{name}, role{name} } ', variables: null })
+        }).then(function (response) {
+            return response.json()
+        }).then(function (data) {
+            document.querySelector('#content').innerHTML = JSON.stringify(data)
+        })
+    </script>
+</body>
+
+</html>
