@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <iframe id="test" ref="test" src="" frameborder="0"
+            style="height: 500px; width: 1200px; border: 1px solid red;">
+        </iframe>
+        <button @click="insertBlock">插入数据</button>
+    </div>
+    <script>
+
+        const app = new Vue({
+            el: '#app',
+            data() {
+                return {
+                    myDocument: null,
+                    myWindow: null
+                }
+            },
+            methods: {
+                insertBlock() {
+                    this.myWindow.focus()
+                    let id = +new Date()
+                    this.myDocument.execCommand('inserthtml', false, `<span id="${id}" style="display: inline-block;border: 1px solid red;background-color: blue;">xxxx</span>`);
+                    this.myDocument.getElementById(id).setAttribute('contenteditable', false)
+                    this.myWindow.focus()
+                }
+            },
+            mounted() {
+                this.myDocument = this.$refs['test'].contentDocument
+                this.myWindow = this.$refs['test'].contentWindow
+                this.myDocument.designMode = 'on'
+                this.myDocument.contentEditable = true;
+            }
+        })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,11 @@
+{
+    "name": "webpack4-test",
+    "scripts": {
+        "dev": "webpack --mode development",
+        "prod": "webpack --mode production"
+    },
+    "devDependencies": {
+        "webpack": "^4.39.2",
+        "webpack-cli": "^3.3.7"
+    }
+}
