@@ -9,14 +9,14 @@ import { Message } from 'element-ui'
 
 Vue.config.productionTip = false
 
-console.log(ElementUI.Message)
-console.log(Message)
-console.log('Message === ElementUI.Message', Message === ElementUI.Message)
+// console.log(ElementUI.Message)
+// console.log(Message)
+// console.log('Message === ElementUI.Message', Message === ElementUI.Message)
 
 Vue.use(ElementUI)
 
-console.log('Vue.prototype.$message === Message', Vue.prototype.$message === Message)
-console.log('Vue.prototype.$message === ElementUI.Message', Vue.prototype.$message === ElementUI.Message)
+// console.log('Vue.prototype.$message === Message', Vue.prototype.$message === Message)
+// console.log('Vue.prototype.$message === ElementUI.Message', Vue.prototype.$message === ElementUI.Message)
 // console.log(Message === m)
 
 new Vue({

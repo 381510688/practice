@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="./vue.js"></script>
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="app">
+    <p id="message">{{message || 'xxx'}}</p>
+    <button @click="clkBtn">点击</button>
+    <my-component :data="message" ref="myComponents"></my-component>
+  </div>
+  <script>
+    const app = new Vue({
+      el: '#app',
+      data() {
+        return {
+          message: 'message'
+        }
+      },
+      methods: {
+        clkBtn() {
+          this.message = 'message 2'
+          // this.$nextTick(() => {
+          //   this.$refs['myComponents'].printData()
+          // })
+          this.$refs['myComponents'].printData()
+        }
+      },
+      created() {
+        this.message = "message 1"
+      },
+      beforeUpdate() {
+        console.log('beforeUpdate', document.querySelector('#message').innerHTML, this.message)
+      },
+      updated() {
+        console.log('updated', document.querySelector('#message').innerHTML, this.message)
+      },
+      components: {
+        myComponent: {
+          template: `<span>{{xxx}}</span>`,
+          props: {
+            data: {
+              default () {
+                return '1'
+              }
+            }
+          },
+          data() {
+            return {
+              xxx: 1
+            }
+          },
+          methods: {
+            printData () {
+              console.log('printData', this.data)
+            }
+          },
+          created() {
+            this.xxx = 2
+          },
+          beforeUpdate() {
+            this.xxx = 3
+            console.log(this.message)
+          },
+          updated() {
+            this.xxx = 4
+            console.log(this.message)
+          },
+        }
+      }
+    })
+  </script>
+</body>
+
+</html>

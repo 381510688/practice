@@ -3,46 +3,83 @@
 <head>
     <title>refs问题</title>
     <meta charset="utf-8">
-    <script src="https://cdn.bootcss.com/vue/2.4.4/vue.js"></script>
+    <script src="https://cdn.bootcss.com/vue/2.5.16/vue.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+    
+    <!-- <script src="https://cdn.bootcss.com/vue/2.4.4/vue.js"></script>
     <script src="https://cdn.bootcss.com/element-ui/1.4.6/index.js"></script>
+    <link href="https://cdn.bootcss.com/element-ui/1.4.6/theme-default/index.css" rel="stylesheet"> -->
 
-    <link href="https://cdn.bootcss.com/element-ui/1.4.6/theme-default/index.css" rel="stylesheet">
 </head>
 <body>
 <div id="app">
-    <el-popover
+    <div>
+      <el-input @focus="focusInput" @click.native="clickInput" style="width: 100px;" v-if="isShow"></el-input>
+      <span v-else>dsfsdfsadfas</span>
+
+      <el-popover
             ref="popover"
             placement="top-start"
             title="标题"
-            width="200"
-            trigger="hover">
-        {{value}}
+            width="800"
+            trigger="click">
+              <el-date-picker
+                @focus="xxx"
+                v-model="time"
+                default-time="00:00:00"
+                type="datetime"
+                size="small"
+                placeholder="选择开始日期时间">
+            </el-date-picker>
+            
     </el-popover>
-    <input class="fieldStyle" placeholder="选择字段" type="text" name="" @click="selectValue()" v-popover:popover>
+    <input class="fieldStyle" placeholder="选择字段" type="text" name=""  v-popover:popover>
+    </div>
 </div>
 
 <script type="text/javascript">
+  document.addEventListener('click', (event) => {
+    console.log('document', event.path)
+  })
   const app = new Vue({
     el: '#app',
     data() {
       return {
-        value: ''
+        value: '',
+        time: '',
+        isShow: true,
       };
     },
     methods: {
-      selectValue() {
-        if (window.getSelection) {//一般浏览器
-          var userSelection = window.getSelection();
-        } else if (document.selection) {
-          //IE浏览器、Opera
-          var userSelection = document.selection.createRange();
-        }
-        this.$nextTick(function () {
-          this.value = userSelection.toString()
-          console.log(this.value)
-        })
+      focusInput(e){
+        console.log('focusInput')
+        setTimeout(() => {
+          this.isShow = false
+        }, 1000)
+       
+        e.stopPropagation()
 
-      }
+      },
+      clickInput(e) {
+        console.log('clickInput', e)
+      },
+      xxx(){
+        console.log('1123')
+      },
+      // selectValue() {
+      //   if (window.getSelection) {//一般浏览器
+      //     var userSelection = window.getSelection();
+      //   } else if (document.selection) {
+      //     //IE浏览器、Opera
+      //     var userSelection = document.selection.createRange();
+      //   }
+      //   this.$nextTick(function () {
+      //     this.value = userSelection.toString()
+      //     console.log(this.value)
+      //   })
+
+      // }
 
     }
   })

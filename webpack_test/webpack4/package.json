@@ -5,6 +5,7 @@
         "prod": "webpack --mode production"
     },
     "devDependencies": {
+        "copy-webpack-plugin": "^5.1.1",
         "webpack": "^4.39.2",
         "webpack-cli": "^3.3.7"
     }

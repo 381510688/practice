@@ -281,3 +281,31 @@ datas = [5, 4, 3, 7, 1, 2, 8, 6, 9];
 var start = + new Date();
 console.log(quickSort2([].concat(datas), 0, datas.length - 1));
 console.log("quickSort2", + new Date() - start);
+
+
+/** 
+ * 计数排序
+ * @params dataAry
+ */
+function countSort(dataAry) {
+    // 获取最大数，并创建数组
+    var maxNumber = Math.max.call(undefined, ...dataAry)
+    var countArray = new Array(maxNumber+1).fill(0)
+    // 填充统计数组
+    for (let data of dataAry) {
+        countArray[data]++
+    }
+    // 遍历统计结果数组
+    var sortedArray = new Array(dataAry.length)
+    var index = 0
+    for (let i = 0, len = countArray.length;i < len; i++) {
+        for (let j = 0; j < countArray[i]; j++) {
+            sortedArray[index++] = i
+        }
+    }
+    return sortedArray
+}
+// 测试
+var start = + new Date();
+countSort([].concat(datas));
+console.log("countSort", + new Date() - start);

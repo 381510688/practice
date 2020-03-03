@@ -10,38 +10,121 @@
 </head>
 
 <body>
-    <div id="app">
-        <iframe id="test" ref="test" src="" frameborder="0"
-            style="height: 500px; width: 1200px; border: 1px solid red;">
-        </iframe>
-        <button @click="insertBlock">插入数据</button>
+    <div id="content"></div>
+    <div id="test">
+        <!-- <span>{{_myName}}</span> -->
+        <span>This is new {{$data._myName}}</span>
+        <span>{{Object}}</span>
+        <!-- <span>{{myName}}</span> -->
+        <!-- <my-components></my-components>
+        <my-components2></my-components2> -->
+
+        <!-- <my-c></my-c> -->
     </div>
+    <!-- <div id="app">
+        iframe id="test" ref="test" src="" frameborder="0"
+            style="height: 500px; width: 1200px; border: 1px solid red;">
+        </iframe> 
+        <button @click="insertBlock">插入数据</button>
+    </div> -->
     <script>
 
+        // Vue.component('myC', {
+        //     data () {
+        //         return {
+        //             _myName: 'ligang'
+        //         }
+        //     },
+        //     // template: '<div>{{name}}</div>'
+        //     render(createElement){
+        //         return createElement('div', {'class': {
+        //             foo: true,
+        //             bar: false
+        //         }}, [
+        //             `<span>${this.name}</span>`
+        //         ])
+        //     }
+        // })
+
+
+        // const res = Vue.compile(`
+        //     <div>
+        //         <span>你名字</span>
+        //         <span>{{name}}</span>
+        //     </div>
+        // `)
+
+        // console.log(res)
+
+        // new Vue({
+        //     el: "#content",
+        //     data () {
+        //         return {
+        //             name: 'ligang'
+        //         }
+        //     },
+        //     render: res.render
+        // })
+
+
+        // const c = Vue.component('my-components', {
+        //     template: '<div>this is my components</div>'
+        // })
+        // console.log('c', c)
+
         const app = new Vue({
-            el: '#app',
-            data() {
+            el: '#test',
+            data () {
                 return {
-                    myDocument: null,
-                    myWindow: null
+                    _myName: 'ligang',
+                    Object: 'xx111'
                 }
             },
-            methods: {
-                insertBlock() {
-                    this.myWindow.focus()
-                    let id = +new Date()
-                    this.myDocument.execCommand('inserthtml', false, `<span id="${id}" style="display: inline-block;border: 1px solid red;background-color: blue;">xxxx</span>`);
-                    this.myDocument.getElementById(id).setAttribute('contenteditable', false)
-                    this.myWindow.focus()
-                }
-            },
-            mounted() {
-                this.myDocument = this.$refs['test'].contentDocument
-                this.myWindow = this.$refs['test'].contentWindow
-                this.myDocument.designMode = 'on'
-                this.myDocument.contentEditable = true;
-            }
+            // components: {
+            //     'my-components2': {
+            //         template: '<div>this is my components2</div>'
+            //     }
+            // },
+            // render(createElement){
+            //     return createElement('div', {'class': {
+            //         foo: true
+            //     }}, [
+            //         `<span>${this._myName}${this.Object}</span>`
+            //     ])
+            // }
+            // created () {
+                // console.log(this._myName)
+                // console.log(this.$data._myName)
+            // }
+
         })
+        // console.log(app.$options.render)
+        
+
+        // const app = new Vue({
+        //     el: '#app',
+        //     data() {
+        //         return {
+        //             myDocument: null,
+        //             myWindow: null
+        //         }
+        //     },
+        //     methods: {
+        //         insertBlock() {
+        //             this.myWindow.focus()
+        //             let id = +new Date()
+        //             this.myDocument.execCommand('inserthtml', false, `<span id="${id}" style="display: inline-block;border: 1px solid red;background-color: blue;">xxxx</span>`);
+        //             this.myDocument.getElementById(id).setAttribute('contenteditable', false)
+        //             this.myWindow.focus()
+        //         }
+        //     },
+        //     mounted() {
+        //         this.myDocument = this.$refs['test'].contentDocument
+        //         this.myWindow = this.$refs['test'].contentWindow
+        //         this.myDocument.designMode = 'on'
+        //         this.myDocument.contentEditable = true;
+        //     }
+        // })
     </script>
 </body>
 

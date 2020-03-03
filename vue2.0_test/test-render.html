@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>vue test</title>
+</head>
+
+<body>
+    <div id="test">
+        <header>
+          <p>This is my vue render test</p>
+        </header>
+        <div>
+          <p>This is my vue render test</p>
+        </div>
+        <p>This is my vue render test</p>
+        <p>my name is {{$data.myName}}</p>
+    </div>
+  
+    <script>
+        const app = new Vue({
+            el: '#test',
+            data () {
+                return {
+                    myName: 'ligang'
+                }
+            },
+            components: {
+                'my-components': {
+                    template: '<div>this is my components</div>'
+                }
+            },
+            // render(createElement){
+            //     return createElement('div', {'class': {
+            //         foo: true
+            //     }}, [
+            //         `<span>${this._myName}${this.Object}</span>`
+            //     ])
+            // },
+            created () {
+            }
+
+        })
+        console.log(app.$options.render)
+        console.log(app.$options.staticRenderFns)
+
+        console.log(app.$options.staticRenderFns[0])
+    </script>
+</body>
+
+</html>
