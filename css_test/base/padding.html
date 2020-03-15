@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>padding/marrgin 百分比自适应</title>
+  <style>
+    html, body {
+      height: 100%;
+      width: 100%;
+      margin: 0;
+      padding: 0;
+    }
+
+    .row {
+      display: flex;
+      width: 100%;
+      border: 1px solid red;
+      box-sizing: border-box;
+    }
+
+    .cell {
+      position: relative;
+      width: calc(100% / 6);
+      padding-top: calc(100% / 6);
+      background-color: burlywood;
+      max-height: 100px;
+      overflow: hidden;
+    }
+
+    .cell:after {
+      content: '';
+      display: block;
+      margin-top: 100%;
+    }
+
+    img {
+      position: absolute;
+      top: 0;
+      width: 100%;
+    }
+
+
+  </style>
+</head>
+<body>
+  <div class="row">
+    <div class="cell">
+      <img src="https://img-blog.csdnimg.cn/20200123222140782.jpg" alt="">
+    </div>
+  </div>
+</body>
+</html>
