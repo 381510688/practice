@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>vuex demo</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script src="https://unpkg.com/vuex"></script>
+</head>
+<body>
+    <div id="app">
+        <div>
+          <input v-model="key"/>
+          <input v-model="value"/>
+          <button @click="addPersonProperty">增加</button>
+          {{result}}
+          {{result1}}
+          {{result2}}
+        </div>
+        <div>
+          <input v-model="key"/>
+          <input v-model="value"/>
+          <button @click="add">增加</button>
+          {{vueResult}}
+        </div>
+    </div>
+
+    <script type="module">
+      Vue.use(Vuex)
+      let {
+          mapActions,
+          mapState
+      } = window.Vuex;
+
+      const store = new Vuex.Store({
+          state() {
+              return {
+                  vueObj: {},
+                  person: {}
+              }
+          },
+          mutations: {
+              person(state, {
+                  key,
+                  value
+              }) {
+                  Vue.set(state.person, key, value)
+              }
+          },
+          actions: {
+              setPersion({
+                  commit
+              }, payload) {
+                  commit('person', payload)
+              }
+          },
+          getters: {
+              getPerson(state) {
+                  console.log('getters')
+                  return state.person
+              },
+              getPersonByX: (state) => (type) => {
+                console.log(type)
+                return state.person[type]
+              }
+          }
+      })
+
+      const app = new Vue({
+          el: '#app',
+          store,
+          data() {
+              return {
+                  key: '',
+                  value: ''
+              }
+          },
+          computed: {
+            vueResult () {
+              return this.vueObj.x
+            },
+            result () {
+              return this.$store.getters['getPerson']
+            },
+            result1 () {
+              return this.$store.getters['getPersonByX']('x')
+            },
+            result2 () {
+              return this.$store.getters['getPersonByX']('y')
+            }
+          },
+          methods: {
+              addPersonProperty() {
+                this.$store.dispatch('setPersion', {
+                    key: this.key,
+                    value: this.value
+                })
+              }
+          }
+      })
+    </script>
+</body>
+</html>

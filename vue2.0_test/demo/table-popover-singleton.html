@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.bootcss.com/vue/2.5.16/vue.js"></script>
+  <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+  <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <el-button size="small" type="primary" @click="tableVisible = !tableVisible">显示表格</el-button>
+    <el-table v-if="tableVisible" :data="tableData" size="small" style="width: 500px;"  border stripe>
+      <el-table-column prop="name" label="姓名"></el-table-column>
+      <el-table-column prop="age" label="年龄">
+        <template slot-scope="{row}">
+          <!-- <el-select size="small" v-model="currentRow.age">
+            <el-option v-for="age in ageList" :key="age" :label="age":value="age"></el-option>
+          </el-select> -->
+          <span @click="(event) => showPopper(event, row)"> {{row.age}}</span>
+        </template>
+      </el-table-column>
+    </el-table>
+
+    <el-popover
+      placement="bottom"
+      ref="popover"
+      trigger="click"
+      v-model="popoverVisible">
+      <template>
+        <!-- <div v-clickoutside="closePopover"> -->
+        <div>
+          <el-scrollbar style="height:300px">
+            <el-select size="small" v-model="currentRow.age" autocomplete>
+              <template slot="prefix">
+                123
+              </template>
+              <el-option v-for="age in ageList" :key="age" :label="age":value="age"></el-option>
+            </el-select>
+          </el-scrollbar>
+        </div>
+      </template>
+    </el-popover>
+
+  </div>
+  <script>
+    // import Clickoutside from 'element-ui/src/utils/clickoutside'
+    const ageList = (function (){
+      let res = []
+      for (let i = 0; i < 6000; i++) {
+        res.push(i+1)
+      }
+      return res
+    })()
+    const app = new Vue({
+      el: '#app',
+      // directives: { Clickoutside },
+      data () {
+        return {
+          tableVisible: false,
+          popoverVisible: false,
+          currentRow: {},
+          tableData: [
+            {name: 'lee1', age: 28},
+            {name: 'lee2', age: 29},
+            {name: 'lee3', age: 30},
+            {name: 'lee4', age: 31},
+            {name: 'lee5', age: 32},
+          ],
+          ageList: ageList
+        }
+      },
+      methods: {
+        showPopper (event, row) {
+          this.popoverVisible = true
+          this.currentRow = row // 引用类型
+          let pop = this.$refs['popover']
+          pop.updatePopper()
+          pop.referenceElm = event.target
+          this.$nextTick(() => {
+            pop.popperJS._reference = event.target
+            pop.popperJS.state.updateBound()
+          })
+        },
+        closePopover () {
+          this.popoverVisible = false
+        }
+      }
+    })
+  </script>
+</body>
+</html>

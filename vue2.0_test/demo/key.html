@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.bootcss.com/vue/2.4.4/vue.js"></script>
+
+  <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+  <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <template>
+      <el-select v-model="value" filterable placeholder="请选择">
+        <el-option
+          v-for="item in list"
+          :key="index"
+          :label="item.name + Date.now()"
+          :value="item.name">
+        </el-option>
+      </el-select>
+    </template>
+  </div>
+  <script>
+    new Vue({
+      el: '#app',
+      data () {
+        return {
+          value: '',
+          list: new Array(3)
+        }
+      },
+      created () {
+        console.log(1)
+        for (let i = 0, len = this.list.length; i < len; i++) {
+          this.list[i] = {index: i+1, name: `name${i+1}`}
+        }
+      }
+    })
+  </script>
+</body>
+</html>
