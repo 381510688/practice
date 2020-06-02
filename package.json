@@ -2,6 +2,9 @@
   "name": "practice",
   "version": "1.0.0",
   "description": "practice",
+  "bin": {
+    "my-practice-cli": "bin/my-practice-cli.js"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "commit": "./node_modules/.bin/git-cz",

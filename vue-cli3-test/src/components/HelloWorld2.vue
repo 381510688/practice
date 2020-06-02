@@ -7,7 +7,7 @@
 </template>
 <script>
 export default {
-  name: "HelloWorld",
+  name: "HelloWorld2",
   props: {
     person: Object
   },
@@ -26,7 +26,7 @@ export default {
   },
   updated() {
     // this.count++;
-    console.log('hello world updated')
+    console.log('helloworld2 updated')
   }
 };
 </script>

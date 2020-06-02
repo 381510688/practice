@@ -6,32 +6,60 @@
     </div>
     <router-view /> -->
 
-    <child
+    <!-- <child
       :initialValue="valueEmit"
       @update-value-by-child="updateParentValue">
     </child>
     <input type="text" v-model="valueEmit.dog" />
+    -->
+
+    <hello-world :person="{name: 'ligang'}"></hello-world>
+    <hello-world2 :person="p"></hello-world2>
+     <!-- <hello-world3 :person="{name: 'ligang'}"></hello-world3> -->
+    <input type="text" v-model="test" placeholder="请输入">
+
+    <button @click="setProp">动态设置属性</button>
+    {{obj}}
   </div>
+
+
 </template>
 <script>
-import child from './components/child2.vue'
-import ElementUI from 'element-ui'
+// import child from './components/child2.vue'
+// import ElementUI from 'element-ui'
+import HelloWorld from './components/HelloWorld.vue'
+import HelloWorld2 from './components/HelloWorld2.vue'
+import HelloWorld3 from './components/HelloWorld3.vue'
+import {compile} from 'vue-template-compiler'
 export default {
   data () {
     return {
-      valueEmit: {dog: 1, cat: 2}
+      // valueEmit: {dog: 1, cat: 2}
+      p: {name: 'ligang'},
+      obj: {},
+      test: ''
     }
   },
   components: {
-    child
+    // child
+    HelloWorld,
+    HelloWorld2,
+    HelloWorld3
   },
   methods: {
-    updateParentValue(newValue) {
-      this.valueEmit = newValue
+    setProp() {
+      this.$set(this.obj, Date.now(), 1)
     }
+    // updateParentValue(newValue) {
+    //   this.valueEmit = newValue
+    // }
   },
   created () {
     // console.log('xxx', ElementUI.Message === this.$message)
+  },
+  mounted () {
+    console.log(compile(`<hello-world :person="{name: 'ligang'}"></hello-world>`))
+    console.log(compile(`<hello-world2 :person="p"></hello-world2>`))
   }
 }
 </script>

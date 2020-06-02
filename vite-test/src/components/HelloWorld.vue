@@ -26,7 +26,7 @@ export default {
   },
   updated() {
     // this.count++;
-    console.log('hello world updated')
+    console.log(1)
   }
 };
 </script>
