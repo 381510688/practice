@@ -1,6 +1,6 @@
 function a() {
-  function innerA() {
-
+  async function innerA() {
+    
   }
   return innerA
 }
