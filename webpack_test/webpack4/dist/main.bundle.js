@@ -196,7 +196,7 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = "./index.js");
+/******/ 	return __webpack_require__(__webpack_require__.s = 0);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -208,7 +208,18 @@
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("// import name, * as A from './src/a.js'\n// let myName = '李刚'\n// console.log(myName, A.name, name)\n\n__webpack_require__.e(/*! import() */ 0).then(__webpack_require__.bind(null, /*! ./src/a.js */ \"./src/a.js\")).then(result => {\n  console.log(result)\n})\n\n//# sourceURL=webpack:///./index.js?");
+eval("// import name, * as A from './src/a.js'\n// let myName = '李刚'\n// console.log(myName, A.name, name)\n\n__webpack_require__.e(/*! import() */ 0).then(__webpack_require__.bind(null, /*! ./src/a.js */ \"./src/a.js\")).then(result => {\n  console.log(result)\n  if (true) {\n    console.log(JSONStringify(result))\n  }\n})\n\n//# sourceURL=webpack:///./index.js?");
+
+/***/ }),
+
+/***/ 0:
+/*!*****************************!*\
+  !*** multi ./index.js a.js ***!
+  \*****************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("__webpack_require__(/*! /Users/ligang/Documents/github/practice/webpack_test/webpack4/index.js */\"./index.js\");\n!(function webpackMissingModule() { var e = new Error(\"Cannot find module 'a.js'\"); e.code = 'MODULE_NOT_FOUND'; throw e; }());\n\n\n//# sourceURL=webpack:///multi_./index.js_a.js?");
 
 /***/ })
 

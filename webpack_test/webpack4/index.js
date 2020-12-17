@@ -4,4 +4,7 @@
 
 import('./src/a.js').then(result => {
   console.log(result)
+  if (process.env.NODE_ENV === 'production') {
+    console.log(JSONStringify(result))
+  }
 })

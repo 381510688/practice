@@ -1,8 +1,10 @@
+<docs>ligang</docs>
 <template>
   <div>
     <div>{{$options._componentTag}}</div>
     <div>Hello {{person.name}}</div>
     <div>Updated次数：{{count}}</div>
+    <slot></slot>
   </div>
 </template>
 <script>
@@ -18,15 +20,18 @@ export default {
   },
   watch: {
     person: {
-      handler (val, oldVal) {
+      handler () {
         this.count++
       },
       immediate: true
     }
   },
+  mounted () {
+    // console.log(1111111, this.$slots.default)
+  },
   updated() {
     // this.count++;
-    console.log('hello world updated')
+    // console.log('hello world updated')
   }
 };
 </script>

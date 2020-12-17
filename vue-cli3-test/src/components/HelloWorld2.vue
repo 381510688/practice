@@ -18,7 +18,7 @@ export default {
   },
   watch: {
     person: {
-      handler (val, oldVal) {
+      handler () {
         this.count++
       },
       immediate: true
@@ -26,7 +26,7 @@ export default {
   },
   updated() {
     // this.count++;
-    console.log('helloworld2 updated')
+    // console.log('helloworld2 updated')
   }
 };
 </script>

@@ -25,16 +25,16 @@ const router = new Router({
 })
 
 router.beforeEach((to, from, next) => {
-  setTimeout(() => {
-    router.addRoutes([
-      {
-        path: '/test',
-        name: 'test',
-        component: () => import('./views/Test.vue')
-      }
-    ])
-  }, 2000)
-  console.log(to)
+  // setTimeout(() => {
+  //   router.addRoutes([
+  //     {
+  //       path: '/test',
+  //       name: 'test',
+  //       component: () => import('./views/Test.vue')
+  //     }
+  //   ])
+  // }, 2000)
+  // console.log(to)
   next()
 })
 

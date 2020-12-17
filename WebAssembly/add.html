@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ADD</title>
+</head>
+
+<body>
+
+  <div>
+    <label for="num1"><input id="num1" type="text"></label>
+    <label for="num2">+</label>
+    <label for="num2"><input id="num2" type="text"></label>
+    <input id="compute" type="button" @click="add" value="计算"></input>
+    <label id="result"></label>
+  </div>
+
+  <script>
+    const $ = (arg) => document.querySelector(arg)
+
+    const memory = new WebAssembly.Memory({ initial: 256, maximum: 256 });
+    const importObj = {
+      env: {
+        abortStackOverflow: () => { throw new Error('overflow'); },
+        table: new WebAssembly.Table({ initial: 0, maximum: 0, element: 'anyfunc' }),
+        tableBase: 0,
+        memory: memory,
+        memoryBase: 1024,
+        STACKTOP: 0,
+        STACK_MAX: memory.buffer.byteLength,
+      }
+    };
+
+    fetch('./add.wasm').then(response =>
+      response.arrayBuffer()
+    ).then(bytes =>
+      WebAssembly.instantiate(bytes, importObj)
+    ).then(wa => {
+      $('#compute').addEventListener('click', () => {
+        let result = wa.instance.exports.add(+$('#num1').value, +$('#num2').value)
+        $('#result').innerHTML = result
+      })
+    });
+  </script>
+</body>
+
+</html>
