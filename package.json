@@ -67,7 +67,7 @@
     "koa-static": "^5.0.0",
     "load-grunt-tasks": "^3.5.2",
     "node-cli": "^0.1.0",
-    "nodemailer": "^4.6.8",
+    "nodemailer": "^6.4.16",
     "open-browser-webpack-plugin": "0.0.2",
     "react": "^15.3.1",
     "react-dom": "^15.3.1",
