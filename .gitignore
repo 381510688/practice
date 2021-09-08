@@ -11,6 +11,7 @@ angularjs_test/.DS_Store
 /element/
 /element-plus/
 /element-ui-verify/
+/vuetify/
 
 /extract-text-webpack-plugin/
 /mini-css-extract-plugin/

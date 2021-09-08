@@ -1,10 +1,9 @@
 <template>
   <!-- <button>点击</button> -->
-  <div>
+  <div class="child">
     <el-dialog
       title="Child Component"
       close-on-click-modal	
-      :modal="false"
       :visible.sync="dialogVisible"
       custom-class="dialog"
       >

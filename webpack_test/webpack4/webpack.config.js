@@ -1,4 +1,5 @@
 const path = require('path')
+const webpack = require('webpack')
 // module.exports = {
 //     entry: './index.js',
 //     output: {
@@ -18,9 +19,10 @@ module.exports = {
         filename: '[name].bundle.js',
         chunkFilename: '[name].bundle.js'
     },
-  // plugins: [
-  //   new CopyPlugin([
-  //     { from: 'src/a.js', to: './'}
-  //   ])
-  // ]
+    optimization: {
+      usedExports: true
+    },
+    plugins: [
+      // new webpack.optimize.ModuleConcatenationPlugin()
+    ]
 }

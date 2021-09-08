@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta http-equiv="X-UA-Compatible" />
+  <title>SVG测试</title>
+</head>
+
+<body style="padding:0px; margin:0px;">
+  <svg width="100%" height="100%">
+    <defs>
+      <filter x="0" y="0" width="1" height="1" id="solid">
+        <feFlood flood-color="yellow" />
+        <feComposite in="SourceGraphic" />
+      </filter>
+    </defs>
+    <text filter="url(#solid)" x="20" y="50" font-size="50">solid background</text>
+  </svg>
+</body>

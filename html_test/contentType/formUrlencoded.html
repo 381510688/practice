@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+
+  <style>
+    p {
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+<form action="http://localhost:8888/api/post" method="get" target="" enctype="multipart/form-data">
+  <p><label>文章标题：<input type="text" name="title" value="" /></label></p>
+  <p><label>文章内容：<textarea name="content" rows="5" cols="33"></textarea></label></p>
+  <p><label>文章分类：
+      <select multiple name="category">
+        <option value="">--选择分类--</option>
+        <option value="javascript">javascript</option>
+        <option value="前端">前端</option>
+      </select>
+    </label></p>
+  <p><label>封面图片：<input type="file" name="logo" /></label></p>
+  <p><button type="submit">提交</button></p>
+</form>
+
+<form action="http://localhost:8888/api/post" method="post" target="" enctype="multipart/form-data">
+  <p><label>文章标题：<input type="text" name="title" value="" /></label></p>
+  <p><label>文章内容：<textarea name="content" rows="5" cols="33"></textarea></label></p>
+  <p><label>封面图片：<input type="file" name="logo" /></label></p>
+  <p><button type="submit">提交</button></p>
+</form>
+
+<body>
+
+  <script>
+    const searchParams = new URLSearchParams()
+    searchParams.set('title', '你好')
+    searchParams.set('content', 'this post about x-www-form-urlencoded')
+    console.log(searchParams.toString())
+  </script>
+
+</body>
+
+</html>

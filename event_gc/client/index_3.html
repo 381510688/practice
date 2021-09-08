@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div>
+    <p>
+      <button id="img1">图片1</button>
+      <button id="img2">图片2</button>
+      <button id="img3">图片3</button>
+    </p>
+    <p>当前图片的宽高为：<strong id="result"></strong></p>
+    <img src="" alt="请选择" />
+
+    <p>
+      <img src="../images/1.png" alt="" width="150px">
+      <img src="../images/2.png" alt="" width="150px">
+      <img src="../images/3.png" alt="" width="150px">
+    </p>
+  </div>
+
+  <script>
+    let controller
+    async function showImageSize(id) {
+      if (controller) controller.abort()
+
+      try {
+        controller = new AbortController()
+        const { signal } = controller
+        const imageBlob = await fetch(
+          new Request(`http://localhost:8888/images?name=${id}`),
+          { signal }
+        ).then(r => r.blob())
+          .catch(error => error.name === 'AbortError' ? console.warn('请求已取消') : console.error(error))
+
+        console.log(signal.aborted)
+        const img = await abortable(signal, createImageBitmap(imageBlob))
+        document.querySelector('img').src = URL.createObjectURL(imageBlob)
+        document.querySelector('#result').innerHTML = `${img.width}px * ${img.height}px`
+        controller = null
+      } catch (error) {
+        if (error.name === 'AbortError') return
+        // throw error
+      }
+    }
+
+    document.querySelector('#img1').onclick = () => showImageSize(1)
+    document.querySelector('#img2').onclick = () => showImageSize(2)
+    document.querySelector('#img3').onclick = () => showImageSize(3)
+
+
+    async function abortable(signal, promise) {
+      if (signal.aborted) throw new DOMException('AbortError', 'AbortError')
+      return Promise.race([
+        promise,
+        new Promise((resolve, reject) => {
+          signal.addEventListener('abort', () => {
+            reject(new DOMException('AbortError', 'AbortError'));
+          })
+        })
+      ])
+    }
+
+  </script>
+</body>
+
+</html>

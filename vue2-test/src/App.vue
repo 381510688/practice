@@ -5,7 +5,8 @@
     <test-prop-default></test-prop-default>
     <test-boolean-prop :param1="param1" :param3="param3" :param4="param4" :testParam="testParam"></test-boolean-prop>
     <test-prop :testParam="testParam"></test-prop> -->
-
+    <input v-model="a.a" />
+    <button @click="btnClick">xxx</button>
     <parent>
       <child></child>
     </parent>
@@ -34,6 +35,9 @@ export default {
   },
   data () {
     return {
+      a: {
+        a: ''
+      },
       message: '',
       param1: '',
       param3: '',
@@ -47,6 +51,10 @@ export default {
     // vue3：https://github.com/vuejs/vue-next/issues/25
     helloWorldCreated () {
       console.log(`HelloWorld's created called by hook:created!`)
+    },
+    btnClick () {
+      var a = this.a.a
+      console.log(a)
     }
   },
   mounted () {

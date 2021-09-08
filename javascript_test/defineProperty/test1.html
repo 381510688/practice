@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+
+  <style>
+    table,
+    td {
+      border: 1px solid #333;
+    }
+
+    thead,
+    tfoot {
+      background-color: #333;
+      color: #fff;
+    }
+  </style>
+</head>
+
+<body>
+  <button id="btn">获取数据</button>
+  <div id="data">
+
+  </div>
+  <script>
+    function render(data) {
+      let content = `
+      <table>
+        <thead><tr><th>国家</th><th>数量</th></tr></thead>
+        <tbody>
+      `
+      data.forEach(element => {
+        content += `<tr><td>${element.name}</td><td>${element.value}</td></tr>`
+      })
+      content += '</tbody></table>'
+      document.querySelector('#data').innerHTML = content
+    }
+
+    let res = {
+      get data() {
+        let _data = fetch(new Request('./data.json')).then(res => res.json())
+        Object.defineProperty(this, 'data', {
+          value: _data,
+          writable: false,
+          configurable: false,
+          enumerable: false
+        })
+        return _data
+      }
+    }
+    document.querySelector('#btn').addEventListener('click', async () => render(
+      await res.data
+    ))
+
+    // let res = {}
+    // Object.defineProperty(res, 'data', {
+    //   async get() {
+    //     let result = await fetch(new Request('./data.json')).then(res => res.json())
+    //     Object.defineProperty(this, "data", {
+    //       value: result,
+    //       writable: false,
+    //       configurable: false,
+    //       enumerable: false
+    //     })
+    //     return result
+    //   }
+    // })
+    // document.querySelector('#btn').addEventListener('click', async () => render(
+    //   await res.data
+    // ))
+
+
+
+  </script>
+
+</body>
+
+</html>

@@ -1,12 +1,15 @@
 <!doctype html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
-    <script src="../../vue-test/demo/lib/vue.js"></script></head>
+    <script src="../../vue-test/demo/lib/vue.js"></script>
+</head>
+
 <body>
     <div id="app">
         <template v-for="n in 10">
@@ -18,6 +21,9 @@
             <my-component v-for="(item, index) in list" :key="item.name" :name="item.name"></my-component>
         </div>
 
+        <button @click="show = !show">切换</button>
+        <span v-if="show">{{data}}</span>
+
     </div>
 
     <script>
@@ -25,7 +31,14 @@
             el: '#app',
             data() {
                 return {
-                    list: [{name: 'a'}, {name: 'b'}, {name: 'c'}]
+                    list: [{ name: 'a' }, { name: 'b' }, { name: 'c' }],
+                    show: false
+                }
+            },
+            computed: {
+                data() {
+                    console.log(123)
+                    return [1, 23, 4]
                 }
             },
             components: {
@@ -37,4 +50,5 @@
         });
     </script>
 </body>
+
 </html>
