@@ -15,7 +15,7 @@
     "echarts": "^4.1.0",
     "echarts-gl": "^1.1.0",
     "element-ui": "^2.2.2",
-    "puppeteer": "^1.0.0",
+    "puppeteer": "^1.13.0",
     "vue": "^2.5.13",
     "vue-router": "^3.0.1"
   },
