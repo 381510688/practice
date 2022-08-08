@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <input id="num1"></input>
+  <strong>+</strong>
+  <input id="num2"></input>
+  <button id="comput">=</button>
+  <span id="res"></span>
+
+  <script type="module">
+    import * as Comlink from "https://unpkg.com/comlink/dist/esm/comlink.mjs";
+
+    let num1 = document.querySelector('#num1')
+    let num2 = document.querySelector('#num2')
+    let comput = document.querySelector('#comput')
+    let res = document.querySelector('#res')
+
+    // const worker = new Worker("worker.js");
+    // // WebWorkers use `postMessage` and therefore work with Comlink.
+    // const cw = Comlink.wrap(worker);
+
+    // comput.addEventListener('click', async function () {
+    //   let result = await cw(num1.value, num2.value)
+    //   res.innerHTML = result
+    // })
+
+    const worker = new Worker("worker3.js");
+    // WebWorkers use `postMessage` and therefore work with Comlink.
+    const cw = Comlink.wrap(worker);
+    const cpt = await new cw();
+
+    comput.addEventListener('click', async function () {
+      let result = await cpt.add(num1.value, num2.value)
+      res.innerHTML = result
+    })
+
+
+
+
+
+  </script>
+</body>
+
+</html>

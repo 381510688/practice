@@ -1,17 +1,24 @@
 <!doctype html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="http://wwcdn.weixin.qq.com/node/wework/wwopen/js/wwLogin-1.2.4.js"></script>
     <title>Document</title>
 </head>
+
 <body>
-<form action="http://localhost:8081/api/sys/roles/4" method="post">
-    <input type="text" value="123% 12" name="name">
-    <input type="text" value="456" name="age">
-    <button type="submit">提交</button>
-</form>
+    <form action="http://localhost:8081/api/sys/roles/4" method="post">
+        <input type="text" value="123% 12" name="name">
+        <input type="text" value="456" name="age">
+        <button type="submit">提交</button>
+
+        <iframe
+            src="https://open.work.weixin.qq.com/wwopen/sso/qrConnect?appid=ww534ca332cb32f974&agentid=1000002&redirect_uri=http%3A%2F%2Fidssguananxinxi.vaiwan.com%2Fclient%2Funoauth%2Fwecon%2Fcallback&state="></iframe>
+    </form>
 </body>
+
 </html>

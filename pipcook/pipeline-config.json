@@ -1,0 +1,12 @@
+{
+  "datasource": "https://cdn.jsdelivr.net/gh/imgcook/pipcook-script@master/scripts/image-classification/build/datasource.js?url=http://ai-sample.oss-cn-hangzhou.aliyuncs.com/image_classification/datasets/mnist.zip",
+  "dataflow": "https://cdn.jsdelivr.net/gh/imgcook/pipcook-script@master/scripts/image-classification/build/dataflow.js?size=224&size=224",
+  "model": "https://cdn.jsdelivr.net/gh/imgcook/pipcook-script@master/scripts/image-classification/build/model.js",
+  "options": {
+    "framework": "tfjs@3.8",
+    "train": {
+      "epochs": 20,
+      "validationRequired": true
+    }
+  }
+}

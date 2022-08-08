@@ -1,0 +1,12 @@
+{
+  "name": "thinking",
+  "version": "1.0.0",
+  "description": "",
+  "main": "calc24.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "practice": "node command.js"
+  },
+  "author": "",
+  "license": "ISC"
+}

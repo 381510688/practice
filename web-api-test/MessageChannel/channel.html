@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    iframe {
+      height: 300px;
+      width: 40%;
+      border: 1px solid red;
+    }
+  </style>
+</head>
+
+<body>
+  <iframe src="iframe_1.html"></iframe>
+  <iframe src="iframe_2.html"></iframe>
+
+  <script>
+
+
+    const [ifr1, ifr2] = document.querySelectorAll('iframe')
+    const ifr1Window = ifr1.contentWindow
+    const ifr2Window = ifr2.contentWindow
+
+    // 监听
+    ifr1Window.addEventListener("message", function (msgEvent) {
+      let btn = ifr1Window.document.querySelector('#btn')
+      btn.addEventListener('click', function () {
+        let data = ifr1Window.document.querySelector('#data')
+        msgEvent.ports[0].postMessage(data.value)
+      })
+    })
+
+
+    ifr2Window.addEventListener("load", function () {
+      const channel = new MessageChannel();
+      channel.port1.onmessage = function (msgEvent) {
+        ifr2Window.document.querySelector('#message').innerHTML = msgEvent.data
+      }
+      // 给 iframe1 发送信息
+      ifr1Window.postMessage('I am ready', '*', [channel.port2])
+    })
+  </script>
+</body>
+
+</html>

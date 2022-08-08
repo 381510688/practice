@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="./index.js" type="module"></script>
+  <script type="module">
+    console.log(1, import.meta)
+    console.log(import.meta.__proto__)
+    function loadImg(relativePath) {
+      const url = new URL(relativePath, import.meta.url)
+      const image = new Image()
+      image.src = url
+      return image
+    }
+    loadImg('../../images/1.jpg')
+  </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

@@ -32,7 +32,8 @@ app.use(async (ctx, next) => {
 });
 
 app.use((ctx) => {
-    ctx.body = 'hello world';
+    console.log(ctx.request.headers)
+    ctx.body = 'hello world1';
     // console.log(ctx);
     // console.log(ctx.req);
     // console.log(ctx.res);
@@ -54,4 +55,4 @@ app.on('error', (err, ctx) =>
     console.error('server error', err, ctx)
 );
 
-app.listen(3000);
+app.listen(9999);

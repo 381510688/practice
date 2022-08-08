@@ -42,6 +42,7 @@
 
     let res = {
       get data() {
+        // let _data = fetch(new URL('./data.json')).then(res => res.json())
         let _data = fetch(new Request('./data.json')).then(res => res.json())
         Object.defineProperty(this, 'data', {
           value: _data,
