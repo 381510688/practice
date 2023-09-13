@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/markdown-it/13.0.1/markdown-it.js"
+    integrity="sha512-yucm4wm2T2mZNzxtKGWQLTsMAGI+KNFRLsfFDNO9SqdMn9eauAORCybt1UnXRAAlrxJoFpdLSR9lhfuCKx22kQ=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+</head>
+
+<body>
+  <div id="content"></div>
+
+  <script>
+    let md = window.markdownit({
+      typographer: true,
+      break: true
+    })
+    let content = '# title1\n## title2\n**加粗***斜体*'
+    console.log(content)
+    let result = md.render(content)
+    document.querySelector('#content').innerHTML = result
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,72 @@
+body {
+  font-size: 48px;
+}
+
+.card {
+  display: inline-block;
+  height: 68px;
+  overflow: hidden;
+}
+
+ /* 分钟 */
+.card-minutes {
+  height: 136px;
+  overflow: hidden;
+   /* 60-pastSeconds */
+  animation: delay-counter 10s steps(1) 1 forwards;
+}
+
+/* 小时 */
+.card-hours {
+  height: 136px;
+  overflow: hidden;
+  /* 3600-pastMinutes*60-pastSeconds */
+  animation: delay-counter 70s steps(1) 1 forwards;
+}
+
+.hours, .minutes, .seconds {
+  width: 68px;
+  line-height: 68px;
+}
+
+ /* 秒 */
+.seconds:after {
+  display: block;
+  content: attr(data-seconds);
+  animation: counter 60s steps(60) infinite forwards;
+}
+
+.minutes:after {
+  display: block;
+  content: attr(data-minutes);
+  animation: counter 3600s steps(60) infinite forwards;
+  animation-delay: 10s;
+}
+
+.hours:after {
+  display: block;
+  content: attr(data-hours);
+  animation: counter 86400s infinite steps(24) forwards;
+  animation-delay: 70s;
+}
+
+@keyframes counter {
+  from {
+    /* transform: translate3d(0,0,0); */
+    translate: 0 0;
+  }
+  to {
+    /* transform: translate3d(0,-100%,0); */
+    translate: 0 -100%;
+  }
+}
+@keyframes delay-counter {
+  from {
+    /* transform: translate3d(0, 0, 0); */
+    translate: 0 0;
+  }
+  to {
+    /* transform: translate3d(0, -50%, 0); */
+    translate: 0 -50%;
+  }
+}

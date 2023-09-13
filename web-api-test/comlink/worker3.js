@@ -1,7 +1,9 @@
 importScripts("https://unpkg.com/comlink/dist/umd/comlink.js");
 
 class Comput {
-  constructor () {}
+  constructor (name) {
+    this.name = name
+  }
   add (num1, num2) {
     return Number(num1) + Number(num2);
   }
@@ -9,5 +11,7 @@ class Comput {
     return Number(num1) - Number(num2);
   }
 }
+
+console.log('workers3', Date.now())
 
 Comlink.expose(Comput)

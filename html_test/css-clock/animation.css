@@ -1,0 +1,59 @@
+body {
+  font-size: 48px;
+}
+
+.card {
+  display: inline-block;
+  height: 68px;
+  text-align: center;
+  overflow: hidden;
+}
+
+.hours, .minutes, .seconds {
+  position: relative;
+  width: 68px;
+  line-height: 68px;
+  overflow: hidden;
+}
+
+ /* 秒 */
+.seconds:after {
+  display: block;
+  content: attr(data-seconds);
+  animation: counter 60s infinite steps(60) forwards;
+}
+
+ /* 分钟 */
+.minutes:after {
+  display: block;
+  content: attr(data-minutes);
+  animation: counter 3600s infinite steps(60) forwards;
+  /* animation-delay: var(--temp-minutes); */
+}
+
+ /* 小时 */
+.hours:after {
+  display: block;
+  content: attr(data-hours);
+  animation: counter 86400s infinite steps(24) forwards;
+  /* animation-delay: var(--temp-hours); */
+}
+
+
+
+@keyframes counter {
+  from {
+    transform: translate3d(0,0,0);
+  }
+  to {
+    transform: translate3d(0,-100%,0);
+  }
+}
+@keyframes delay-counter {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(0, -50%, 0);
+  }
+}

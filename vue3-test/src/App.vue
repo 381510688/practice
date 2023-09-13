@@ -1,32 +1,10 @@
 <template>
-  <div>
-    <parent>
-      <child></child>
-    </parent>
-  </div>
+  <Repl :editor="CodeMirror" />
 </template>
 
-<script>
-import Child from './components/Child.vue'
-import Parent from './components/Parent.vue'
-
-
-export default {
-  name: 'App',
-  components: {
-    Child,
-    Parent
-  }
-}
+<script setup>
+import { Repl } from '@vue/repl'
+import CodeMirror from '@vue/repl/codemirror-editor'
+import '@vue/repl/style.css'
 </script>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>

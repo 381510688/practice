@@ -21,7 +21,7 @@
     let num1 = document.querySelector('#num1')
     let num2 = document.querySelector('#num2')
     let comput = document.querySelector('#comput')
-    let res = document.querySelector('#res')
+    const res = document.querySelector('#res')
 
     // const worker = new Worker("worker.js");
     // // WebWorkers use `postMessage` and therefore work with Comlink.
@@ -32,10 +32,12 @@
     //   res.innerHTML = result
     // })
 
-    const worker = new Worker("worker3.js");
+    console.log('index.html 1', Date.now())
+    var worker = new Worker("worker3.js");
     // WebWorkers use `postMessage` and therefore work with Comlink.
+    console.log('index.html 2', Date.now())
     const cw = Comlink.wrap(worker);
-    const cpt = await new cw();
+    const cpt = await new cw('ligang');
 
     comput.addEventListener('click', async function () {
       let result = await cpt.add(num1.value, num2.value)

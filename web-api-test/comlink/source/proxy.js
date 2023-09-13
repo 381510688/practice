@@ -26,6 +26,38 @@ var fnP = new Proxy(fn, {
 console.log(fnP(123))
 
 
+class P {
+  constructor (name) {
+    this.name = name
+  }
+  sayName () {
+    console.log(this.name)
+    return this.name
+  }
+}
+
+const ProxyP = new Proxy(P, {
+  construct (target, args) {
+    return new target(...args)
+  }
+})
+new ProxyP('LiGang').sayName()
+
+function sum(a, b) {
+  return a + b;
+}
+
+const handler = {
+  apply: function(target, thisArg, args) {
+    return target(...args) * 10;
+  }
+};
+
+const proxy1 = new Proxy(sum, handler);
+
+console.log(sum(1, 2))			// 3
+console.log(proxy1(1, 2)) 
+
 
 // https://developer.mozilla.org/zh-CN/docs/Web/API/DedicatedWorkerGlobalScope
 /**

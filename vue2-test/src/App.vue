@@ -5,12 +5,31 @@
     <test-prop-default></test-prop-default>
     <test-boolean-prop :param1="param1" :param3="param3" :param4="param4" :testParam="testParam"></test-boolean-prop>
     <test-prop :testParam="testParam"></test-prop> -->
-    <input v-model="a.a" />
+
+    <!-- <input v-model="a.a" />
     <button @click="btnClick">xxx</button>
     <parent>
       <child></child>
-    </parent>
+    </parent> -->
+
+    <test-vif ref="test" :isShow="count > 0">
+      <template slot="content">
+        <p v-if="count === 1">1</p>
+        <p v-else-if="count === 2">2</p>
+        <p v-else-if="count >= 3">3</p>
+      </template>
+      <p>{{count}}</p>
+    </test-vif>
+    <button @click="() => count = count + 1">{{count}}+1</button>
+    <button @click="getTestSlots">获取test组件slots</button>
+
+    <slot-default>
+      <div v-if="data">{{data}}</div>
+    </slot-default>
     
+
+    <tab-pane :label="label" name="first">
+    </tab-pane>
   </div>
 </template>
 
@@ -20,8 +39,13 @@
 // import TestBooleanProp from './components/TestBooleanProp.vue'
 // import TestProp from './components/TestProp.vue'
 
-import Parent from './components/Parent.vue'
-import Child from './components/Child.vue'
+// import Parent from './components/Parent.vue'
+// import Child from './components/Child.vue'
+
+import TestVif from './components/slot/test-vif.vue'
+import SlotDefault from './components/slot/slot-default.js'
+
+import TabPane from './components/slot/tab-pane.vue'
 
 export default {
   name: 'App',
@@ -30,22 +54,33 @@ export default {
     // TestProp,
     // TestPropDefault,
     // TestBooleanProp,
-    Parent,
-    Child
-  },
+    // Parent,
+    // Child
+    TestVif,
+    SlotDefault,
+    TabPane  },
   data () {
     return {
-      a: {
-        a: ''
-      },
-      message: '',
-      param1: '',
-      param3: '',
-      param4: 'param4',
-      testParam: 'test-param'
+      count: 0,
+      data: "",
+      label: '123'
+
+      // a: {
+      //   a: ''
+      // },
+      // message: '',
+      // param1: '',
+      // param3: '',
+      // param4: 'param4',
+      // testParam: 'test-param'
     }
   },
   methods: {
+    getTestSlots () {
+      this.label = '1231231231231212'
+      console.log(this.$refs['test'].$slots)
+       console.log(this.$refs['test'].$scopedSlots)
+    },
     // https://github.com/vuejs/vue/blob/dev/src/core/instance/lifecycle.js#L336
 
     // vue3：https://github.com/vuejs/vue-next/issues/25
@@ -58,11 +93,23 @@ export default {
     }
   },
   mounted () {
+    console.log('app', this)
+  },
+  created () {
+    console.log('app', 'created')
     // const HelloWorldVmOption = this.$refs['HelloWorldRef'].$options
     // if (!HelloWorldVmOption['updated']) HelloWorldVmOption['updated'] = []
     // HelloWorldVmOption['updated'].push(() => {
     //   console.log(`HelloWorld's created called by HelloWorldRef.$options!`)
     // })
+    setTimeout(() => {
+      this.count = 2
+      this.data = {a: 1, b:2, c:3}
+      setTimeout(() => {
+        this.count = 3
+        this.data = {a: 4, b:5, c:6}
+      }, 5000)
+    }, 5000)
   }
 }
 </script>

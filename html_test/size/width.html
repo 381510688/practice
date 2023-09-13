@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .width-100 {
+      width: 100px;
+    }
+
+    .overflow {
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="overflow width-100">afefawefawefawef123123123123123123123112</div>
+
+  <span class="overflow" id="target" style="display:block;">
+    <span>IP/URL:</span>
+    <span>afefawefawefawef123123123123123123123112afefawefawefawef123123123123123123123112afefawefawefawef123123123123123123123112afefawefawefawef123123123123123123123112afefawefawefawef123123123123123123123112</span>
+  </span>
+
+  <script>
+    function calcWidth(el) {
+      // 计算文本宽度和容器宽度大小
+      var range = document.createRange();
+      range.setStart(el, 0);
+      range.setEnd(el, el.childNodes.length);
+      var rangeWidth = range.getBoundingClientRect().width;
+      return {
+        rangeWidth: rangeWidth,
+        offsetWidth: el.offsetWidth,
+        scrollWidth: el.scrollWidth
+      }
+    }
+    console.log(calcWidth(document.querySelector('.width-100')))
+    console.log(calcWidth(document.querySelector('#target')))
+
+  </script>
+</body>
+
+</html>

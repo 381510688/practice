@@ -21,7 +21,9 @@
     let comput = document.querySelector('#comput')
     let res = document.querySelector('#res')
 
+    console.log('index.js', Date.now())
     const worker = new Worker('worker.js')
+    console.log('index.js', Date.now())
 
     comput.addEventListener('click', function () {
       worker.postMessage({
@@ -32,11 +34,7 @@
     worker.onmessage = function (msgEvent) {
       res.innerHTML = msgEvent.data
     }
-
-
-
-
-    
+    console.log('index.js', Date.now())
   </script>
 </body>
 

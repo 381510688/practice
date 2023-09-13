@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    div {
+      display: flex;
+      flex-direction: row-reverse;
+      justify-content: flex-end;
+    }
+
+    li {
+      display: inline-block;
+      width: 30px;
+      height: 30px;
+      margin-right: 10px;
+      background-color: gainsboro;
+    }
+
+
+    .b+.a {
+      background-color: blueviolet;
+    }
+  </style>
+</head>
+
+<body>
+  <div>
+    <li class="b">b</li>
+    <li class="a">a</li>
+
+    <li class="b">b</li>
+    <li class="a">a</li>
+    <li class="a">a</li>
+
+    <li class="b">b</li>
+
+    <li class="a">a</li>
+    <li class="a">a</li>
+    <li class="a">a</li>
+    <li class="a">a</li>
+  </div>
+</body>
+
+</html>

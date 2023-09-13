@@ -1,15 +1,18 @@
 <!doctype html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
-    <script src="../../vue-test/demo/lib/vue.js"></script>
+    <script src="../vue.js"></script>
 </head>
+
 <body>
     <div id="app">
+        <div>{{abc}}{{test()}}</div>
         <table>
             <!-- 可以正常渲染到table中 -->
             <tr is="my-row"></tr>
@@ -32,25 +35,42 @@
     </script>
 
     <script>
-    // 全局组件
-    Vue.component('hello-world', {
-        template: '#hello-world-template'
-    })
-
-    const app = new Vue({
-        el: '#app',
-        components: {
-            'my-row': {
-                props: {
-                    message: {
-                        type: String,
-                        default: 'DOM模板解析'
-                    }
-                },
-                template: '<tr>{{message}}</tr>'
+        Vue.prototype.$a = {
+            abc: () => {
+                console.log('!!!')
+                console.log(this.abc)
             }
         }
-    });
+        // 全局组件
+        Vue.component('hello-world', {
+            template: '#hello-world-template'
+        })
+
+        const app = new Vue({
+            el: '#app',
+            data() {
+                return {
+                    abc: 123
+                }
+            },
+            components: {
+                'my-row': {
+                    props: {
+                        message: {
+                            type: String,
+                            default: 'DOM模板解析'
+                        }
+                    },
+                    template: '<tr>{{message}}</tr>'
+                }
+            },
+            methods: {
+                test() {
+                    this.$a.abc()
+                }
+            }
+        });
     </script>
 </body>
+
 </html>

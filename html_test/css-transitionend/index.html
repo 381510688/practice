@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+
+  <style>
+    .container:hover {
+      animation: hide 2s forwards;
+    }
+
+    @keyframes hide {
+      0% {
+        opacity: 1;
+      }
+
+      99% {
+        opacity: 1;
+      }
+
+      100% {
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">提示内容，2S后消失</div>
+  <div class="message"></div>
+  <script>
+    let containerDom = document.querySelector('.container')
+    let message = document.querySelector('.message')
+    containerDom.addEventListener('animationstart', function () {
+      console.log('animation 开始');
+      message.textContent = 'animation 开始'
+    });
+    containerDom.addEventListener('animationend', () => {
+      console.log('animation 结束');
+      message.textContent = 'animation 结束'
+    })
+  </script>
+</body>
+
+</html>
